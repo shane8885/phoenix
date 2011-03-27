@@ -9,6 +9,6 @@ module ApplicationHelper
     end
 
     def logo
-        image_tag("logo.jpg", :alt => "MFF Logo", :size => "40x40" )
+        image_tag("logo.gif", :alt => "MFF Logo" )
     end
 end

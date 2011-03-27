@@ -2,8 +2,17 @@
     <%= link_to logo, root_path %>
 </div>
 <div class="right last">
-    <%= link_to "login","#" %>
-    <%= link_to "sign up","#" %>
+  <% if user_signed_in? %>
+    Welcome <%= current_user.email %> 
+    <% if current_user.admin? %>
+      [admin]
+    <% end %>
+    | <%= link_to "Sign out", destroy_user_session_path %>
+  <% else %>
+    Not logged in | 
+    <%= link_to "Sign in", new_user_session_path %> | 
+    <%= link_to "Sign up", new_user_registration_path %>
+  <% end %>
 </div>
 <hr />
 <div id="subheader" class="span-24 push-2 last">

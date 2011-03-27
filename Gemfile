@@ -5,6 +5,7 @@ gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
 gem 'gravatar_image_tag', '0.1.0'
 gem 'will_paginate', '3.0.pre2'
 gem 'ruby-tmdb'
+gem 'devise', '1.1.rc0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
