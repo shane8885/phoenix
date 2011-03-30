@@ -6,6 +6,7 @@ gem 'gravatar_image_tag', '0.1.0'
 gem 'will_paginate', '3.0.pre2'
 gem 'ruby-tmdb'
 gem 'devise', '1.1.rc0'
+gem 'dynamic_form'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
