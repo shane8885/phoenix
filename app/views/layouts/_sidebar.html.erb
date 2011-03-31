@@ -2,7 +2,7 @@
     <div class="box">
         <h3 class="caps">site</h3>
         <ul>
-            <li><%= link_to "Home", "#" %>
+            <li><%= link_to "Home", root_path %>
             <li><%= link_to "Contact", "#" %>
             <li><%= link_to "Help", "#" %>
             <li><%= link_to "About", "#" %>
@@ -13,7 +13,16 @@
         </ul>
         <h3 class="caps">films</h3>
         <ul>
-            <li><%= link_to "Find", "#" %>
+            <li><%= link_to "Find", "/movies/search" %>
         </ul>
     </div>
+    <% if user_signed_in? %>
+        <div class="box">
+            <h3 class="caps">members</h3>
+            <ul>
+                <li><%= link_to "Account", "#" %>
+                <li><%= link_to "Events", "#" %>
+            </ul>
+        </div>
+    <% end %>
 </div>

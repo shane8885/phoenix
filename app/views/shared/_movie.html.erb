@@ -1,0 +1,20 @@
+<tr>
+    <td>
+        <% unless movie.posters.nil? %>
+            <% unless movie.posters.first.nil? %>
+                <%= link_to image_tag(movie.posters.first.url, :alt => "no image", :height => "100"), :action => "show", :movie => movie.id %>
+            <% end %>
+        <% end %>
+    </td>
+    <td width="20%">
+        <%= movie.name %><br>
+        <%= movie.released %><br>
+        User Rating: <%= movie.rating %>
+    </td>
+    <td>
+        <%= movie.overview %>
+        <div class="right">
+            <%= link_to "show", :action => "show", :id => movie.id %>
+        </div>
+    </td>
+</tr>

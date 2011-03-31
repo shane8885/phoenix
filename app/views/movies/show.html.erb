@@ -1,0 +1,40 @@
+<h1><%= @movie.name %></h1>
+<div class="span-6">
+    <% unless @movie.posters.nil? %>
+        <% unless @movie.posters.first.nil? %>
+            <%= image_tag @movie.posters.first.url, :alt => "no image", :height => "300" %>
+        <% end %>
+    <% end %>
+</div>
+<div class="span-10">
+    <table>
+        <tr>
+            <td>Released</td>
+            <td><%= @movie.released %></td>
+        </tr>
+        <tr>
+            <td>Url</td>
+            <td><%= link_to @movie.url, @movie.url %></td>
+        </tr>
+        <tr>
+            <td>Popularity</td>
+            <td><%= @movie.popularity %></td>
+        </tr>
+        <tr>
+            <td>User Rating</td>
+            <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
+        </tr>
+        <tr>
+            <td>Classification</td>
+            <td><%= @movie.certification %></td>
+        </tr>
+        <tr>
+            <td>Running Time</td>
+            <td><%= @movie.runtime %></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><%= @movie.overview %></td>
+        </tr>
+    </table>
+</div>
