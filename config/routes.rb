@@ -1,11 +1,12 @@
 Phoenix::Application.routes.draw do
+ 
+  devise_for :users
+  
   get "movies/search"
 
   get "movies/show"
   
   get "movies/index"
-
-  devise_for :users
 
   get "pages/home"
 

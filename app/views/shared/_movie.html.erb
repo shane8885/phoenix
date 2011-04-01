@@ -2,7 +2,7 @@
     <td>
         <% unless movie.posters.nil? %>
             <% unless movie.posters.first.nil? %>
-                <%= link_to image_tag(movie.posters.first.url, :alt => "no image", :height => "100"), :action => "show", :movie => movie.id %>
+                <%= link_to image_tag(movie.posters.first.url, :alt => "no image", :height => "100"), :action => "show", :id => movie.id %>
             <% end %>
         <% end %>
     </td>
