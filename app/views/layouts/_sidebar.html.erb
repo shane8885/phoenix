@@ -13,7 +13,7 @@
         </ul>
         <h3 class="caps">films</h3>
         <ul>
-            <li><%= link_to "Find", "/movies/search" %>
+            <li><%= link_to "Find", movies_search_path %>
         </ul>
     </div>
     <% if user_signed_in? %>
@@ -21,7 +21,7 @@
             <h3 class="caps">members</h3>
             <ul>
                 <li><%= link_to "Account", edit_user_registration_path %>
-                <li><%= link_to "Events", "#" %>
+                <li><%= link_to "Events", events_path %>
             </ul>
         </div>
     <% end %>

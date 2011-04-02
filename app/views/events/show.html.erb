@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @event.name %>
+</p>
+
+<p>
+  <b>Public:</b>
+  <%= @event.public %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%= @event.start %>
+</p>
+
+<p>
+  <b>Maxmovies:</b>
+  <%= @event.maxmovies %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
