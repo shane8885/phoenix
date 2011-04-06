@@ -6,6 +6,11 @@ class MoviesController < ApplicationController
     
     def show
         @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+        if( user_signed_in? )
+            @selection = current_user.selections.build()
+            #TODO: restrict to events that user owns or has priveleged invite to
+            @events = Event.all
+        end
     end
     
     def index

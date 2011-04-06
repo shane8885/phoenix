@@ -5,6 +5,20 @@
             <%= image_tag @movie.posters.first.url, :alt => "no image", :height => "300" %>
         <% end %>
     <% end %>
+    <% if user_signed_in? %>
+        Unofficial selection for
+        <% form_for @selection do |f| %>
+            <div class="field">
+                <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
+            </div>
+            <%= f.hidden_field :user_id %>
+            <%= f.hidden_field :movie_id, :value => @movie.id %>
+            <%= f.hidden_field :movie_name, :value => @movie.name %>
+            <div class="action">
+                <%= f.submit "Select" %>
+            </div>
+        <% end %>
+    <% end %>
 </div>
 <div class="span-10">
     <table>

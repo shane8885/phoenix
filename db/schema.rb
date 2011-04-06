@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401220130) do
+ActiveRecord::Schema.define(:version => 20110403083036) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(:version => 20110401220130) do
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
+  create_table "selections", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "movie_id"
+    t.string   "movie_name"
+    t.integer  "user_id"
+    t.integer  "votes"
+    t.boolean  "official"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "selections", ["event_id"], :name => "index_selections_on_event_id"
+  add_index "selections", ["user_id"], :name => "index_selections_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",    :null => false

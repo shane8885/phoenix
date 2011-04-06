@@ -20,6 +20,14 @@
   <%= @event.maxmovies %>
 </p>
 
+<% if not @event.selections.empty? %>
+    Selections
+    <div class="selections">
+        <table class="selections_table">
+            <%= render :partial => 'shared/selection', :collection => @event.selections %>
+        </table>
+    </div>
+<% end %>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

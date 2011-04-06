@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event_id: 1
+  movie_id: 1
+  user_id: 1
+  votes: 1
+  official: false
+
+two:
+  event_id: 1
+  movie_id: 1
+  user_id: 1
+  votes: 1
+  official: false

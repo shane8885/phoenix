@@ -1,5 +1,7 @@
 Phoenix::Application.routes.draw do
  
+  resources :selections, :only => [:create, :destroy]
+
   resources :events
 
   devise_for :users
