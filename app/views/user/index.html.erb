@@ -1,0 +1,8 @@
+<h1>Users</h1>
+<% unless @users.empty? %>
+    <%= will_paginate @users %>
+    <table :class="users">
+        <%= render :partial => 'shared/user', :collection => @users %>
+    </table>
+    <%= will_paginate @users %>
+<% end %>

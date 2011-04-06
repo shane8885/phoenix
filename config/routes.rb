@@ -1,10 +1,13 @@
 Phoenix::Application.routes.draw do
- 
+
   resources :selections, :only => [:create, :destroy]
 
   resources :events
 
+  #devise user registration
   devise_for :users
+  #additonal admin actions and user show action
+  resources :user
   
   get "movies/search"
 

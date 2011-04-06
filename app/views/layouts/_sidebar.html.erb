@@ -1,28 +1,35 @@
 <div class="span-4 last" id="sidebar">
+  <div class="box">
+    <h3 class="caps">site</h3>
+    <ul>
+      <li><%= link_to "Home", root_path %>
+      <li><%= link_to "Contact", "#" %>
+      <li><%= link_to "Help", "#" %>
+      <li><%= link_to "About", "#" %>
+    </ul>
+    <h3 class="caps">events</h3>
+    <ul>
+      <li><%= link_to "Find", "#" %>
+    </ul>
+    <h3 class="caps">films</h3>
+    <ul>
+      <li><%= link_to "Find", movies_search_path %>
+    </ul>
+  </div>
+  <% if user_signed_in? %>
     <div class="box">
-        <h3 class="caps">site</h3>
+      <h3 class="caps">members</h3>
+      <ul>
+        <li><%= link_to "MyHome", "user/#{current_user.id}" %>
+        <li><%= link_to "Account", edit_user_registration_path %>
+        <li><%= link_to "Events", events_path %>
+      </ul>
+      <% if current_user.admin? %>
+        <h3 class="caps">admin</h3>
         <ul>
-            <li><%= link_to "Home", root_path %>
-            <li><%= link_to "Contact", "#" %>
-            <li><%= link_to "Help", "#" %>
-            <li><%= link_to "About", "#" %>
+          <li><%= link_to "Users", "user" %>
         </ul>
-        <h3 class="caps">events</h3>
-        <ul>
-            <li><%= link_to "Find", "#" %>
-        </ul>
-        <h3 class="caps">films</h3>
-        <ul>
-            <li><%= link_to "Find", movies_search_path %>
-        </ul>
+      <% end %>
     </div>
-    <% if user_signed_in? %>
-        <div class="box">
-            <h3 class="caps">members</h3>
-            <ul>
-                <li><%= link_to "Account", edit_user_registration_path %>
-                <li><%= link_to "Events", events_path %>
-            </ul>
-        </div>
-    <% end %>
+  <% end %>
 </div>
