@@ -1,5 +1,7 @@
 Phoenix::Application.routes.draw do
 
+  resources :attendances
+
   resources :selections, :only => [:create, :destroy]
 
   resources :events

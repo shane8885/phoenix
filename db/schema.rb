@@ -10,7 +10,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110403083036) do
+ActiveRecord::Schema.define(:version => 20110406134148) do
+
+  create_table "attendances", :force => true do |t|
+    t.integer  "event_id"
+    t.integer  "attending_id"
+    t.integer  "inviting_id"
+    t.boolean  "confirmed",    :default => false
+    t.boolean  "selector",     :default => true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "attendances", ["attending_id"], :name => "index_attendances_on_attending_id"
+  add_index "attendances", ["event_id"], :name => "index_attendances_on_event_id"
 
   create_table "events", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event_id: 1
+  attending_id: 1
+  inviting_id: 1
+  confirmed: false
+  selector: false
+
+two:
+  event_id: 1
+  attending_id: 1
+  inviting_id: 1
+  confirmed: false
+  selector: false

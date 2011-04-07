@@ -1,0 +1,31 @@
+<h1>Listing attendances</h1>
+
+<table>
+  <tr>
+    <th>Event</th>
+    <th>Attending</th>
+    <th>Inviting</th>
+    <th>Confirmed</th>
+    <th>Selector</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @attendances.each do |attendance| %>
+  <tr>
+    <td><%= attendance.event_id %></td>
+    <td><%= attendance.attending_id %></td>
+    <td><%= attendance.inviting_id %></td>
+    <td><%= attendance.confirmed %></td>
+    <td><%= attendance.selector %></td>
+    <td><%= link_to 'Show', attendance %></td>
+    <td><%= link_to 'Edit', edit_attendance_path(attendance) %></td>
+    <td><%= link_to 'Destroy', attendance, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Attendance', new_attendance_path %>
