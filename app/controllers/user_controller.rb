@@ -36,7 +36,7 @@ class UserController < ApplicationController
     end
     
     def has_authority(id)
-      redirect_to(root_path, :notice => 'Not authorized to access that page.') unless current_user.admin? or current_user.id == id
+      redirect_to(root_path, :notice => 'Not authorized to access that page.') unless user_signed_in? and (current_user.admin? or current_user.id == id)
     end
 
 end
