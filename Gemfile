@@ -7,6 +7,7 @@ gem 'will_paginate', '3.0.pre2'
 gem 'ruby-tmdb', '0.1.4'
 gem 'devise', '1.1.rc0'
 gem 'dynamic_form', '1.1.3'
+gem 'bcrypt-ruby', '2.1.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
