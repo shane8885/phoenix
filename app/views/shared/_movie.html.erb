@@ -1,10 +1,6 @@
 <tr>
     <td>
-        <% unless movie.posters.nil? %>
-            <% unless movie.posters.first.nil? %>
-                <%= link_to image_tag(movie.posters.first.url, :alt => "no image", :height => "100"), :action => "show", :id => movie.id %>
-            <% end %>
-        <% end %>
+      <%= link_to insert_poster(movie,100), :action => "show", :id => movie.id %>
     </td>
     <td width="20%">
         <%= movie.name %><br>

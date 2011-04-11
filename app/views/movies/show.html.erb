@@ -1,10 +1,6 @@
 <h1><%= @movie.name %></h1>
 <div class="span-6">
-    <% unless @movie.posters.nil? %>
-        <% unless @movie.posters.first.nil? %>
-            <%= image_tag @movie.posters.first.url, :alt => "no image", :height => "300" %>
-        <% end %>
-    <% end %>
+    <%= insert_poster(@movie,300) %>
     <% if user_signed_in? %>
         Unofficial selection for
         <% form_for @selection do |f| %>
@@ -14,9 +10,8 @@
             <%= f.hidden_field :user_id %>
             <%= f.hidden_field :movie_id, :value => @movie.id %>
             <%= f.hidden_field :movie_name, :value => @movie.name %>
-            <div class="action">
-                <%= f.submit "Select" %>
-            </div>
+            <%= f.hidden_field :poster, :value => get_poster_url(@movie) %>
+            <%= f.submit "Select" %>
         <% end %>
     <% end %>
 </div>

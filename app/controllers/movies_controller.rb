@@ -9,7 +9,13 @@ class MoviesController < ApplicationController
         if( user_signed_in? )
             @selection = current_user.selections.build()
             #TODO: restrict to events that user owns or has priveleged invite to
-            @events = current_user.events
+            if( current_user.admin? )
+              #admin can see everything
+              @events = Event.all
+            else
+              #user just sees their events
+              @events = current_user.events
+            end
         end
     end
     
