@@ -1,10 +1,10 @@
 <tr>
-  <td><%= invitation.inviting_id %></td>
-  <td><%= invitation.event_id %></td>
-  <td>
+  <td width="30"><%= invitation.inviting_id %></td>
+  <td width="30"><%= invitation.event_id %></td>
+  <td width="30">
     <% form_for invitation do |f| %>
       <%= f.hidden_field :confirmed, :value => true %>
-      <%= f.submit "Accept" %>
+      <%= f.submit "Accept", :class => "button_as_hyperlink" %>
     <% end %>
   <td><%= link_to 'Destroy', invitation, :confirm => 'Are you sure you want to remove this invitation?', :method => :delete %></td>
   </td>
