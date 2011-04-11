@@ -1,4 +1,4 @@
-<h1><%= @user.username %><h1>
+<h1><%= @user.username %></h1>
 
 <% if not @user.accepted_events.empty? %>
     <h3>Attending Events</h3>
@@ -7,6 +7,8 @@
             <%= render :partial => 'shared/event', :collection => @user.accepted_events %>
         </table>
     </div>
+<% else %>
+  <p>You're not attending any events.</p>
 <% end %>
 
 <% if not @user.open_invitations.empty? %>
@@ -16,4 +18,6 @@
             <%= render :partial => 'shared/invitation', :collection => @user.open_invitations %>
         </table>
     </div>
+<% else %>
+  <p>You have no invitations.</p>
 <% end %>

@@ -1,4 +1,6 @@
 class AttendancesController < ApplicationController
+  before_filter :authenticate_user!
+  
   # GET /attendances
   # GET /attendances.xml
   def index
@@ -7,28 +9,6 @@ class AttendancesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @attendances }
-    end
-  end
-
-  # GET /attendances/1
-  # GET /attendances/1.xml
-  def show
-    @attendance = Attendance.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @attendance }
-    end
-  end
-
-  # GET /attendances/new
-  # GET /attendances/new.xml
-  def new
-    @attendance = Attendance.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @attendance }
     end
   end
 
@@ -44,11 +24,9 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.save
-        format.html { redirect_to(@attendance, :notice => 'Attendance was successfully created.') }
-        format.xml  { render :xml => @attendance, :status => :created, :location => @attendance }
+        format.html { redirect_to(Event.find(@attendance.event_id), :notice => 'Invitation was successfully created.') }
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @attendance.errors, :status => :unprocessable_entity }
+        format.html { redirect_to root_path }
       end
     end
   end
@@ -60,7 +38,7 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.update_attributes(params[:attendance])
-        format.html { redirect_to(@attendance, :notice => 'Attendance was successfully updated.') }
+        format.html { redirect_to(Event.find(@attendance.event_id), :notice => 'Attendance was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -73,11 +51,23 @@ class AttendancesController < ApplicationController
   # DELETE /attendances/1.xml
   def destroy
     @attendance = Attendance.find(params[:id])
-    @attendance.destroy
+    event = Event.find(@attendance.event_id)
+    if( current_user.authorized?(@attendance.attending_id) or current_user.authorized?(@attendance.inviting_id) )
+      @attendance.destroy
+    else
+      action_not_permitted
+    end
 
     respond_to do |format|
-      format.html { redirect_to(attendances_url) }
+      format.html { redirect_to(event, :notice => 'Successfully destroyed invitation') }
       format.xml  { head :ok }
     end
   end
+  
+  private 
+  
+    def action_not_permitted
+      redirect_to(root_path, :notice => 'Not authorized to perform that action.')
+    end
+    
 end

@@ -10,12 +10,11 @@ class SelectionsController < ApplicationController
       if @selection.save
         flash[:notice] = 'Selection was successfully created.'
         format.html { redirect_to(:controller => 'movies', :action => 'show', :id => @selection.movie_id ) }
-        #format.html { redirect_to(root_path, :notice => 'Selection was successfully created.', :id => @selection.movie_id) }
-        format.xml  { render :xml => @selection, :status => :created, :location => @selection }
+        #format.xml  { render :xml => @selection, :status => :created, :location => @selection }
       else
           #TODO: this is an error, new action doesn't exist
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @selection.errors, :status => :unprocessable_entity }
+        format.html { redirect_to root_path }
+        #format.xml  { render :xml => @selection.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -48,4 +47,9 @@ class SelectionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def show
+    @attendance = Attendance.find(params[:id])
+  end
+  
 end

@@ -1,6 +1,6 @@
 Phoenix::Application.routes.draw do
 
-  resources :attendances
+  resources :attendances, :except => [:index, :show]
 
   resources :selections, :only => [:create, :destroy]
 
