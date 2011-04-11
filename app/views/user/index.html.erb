@@ -1,8 +1,13 @@
 <h1>Users</h1>
-<% unless @users.empty? %>
-    <%= will_paginate @users %>
-    <table :class="users">
-        <%= render :partial => 'shared/user', :collection => @users %>
-    </table>
-    <%= will_paginate @users %>
+Find by username <% form_tag '/friends/search', :method => 'get' do %>
+    <%= text_field_tag :search %>"
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+<br>
+<% if not @users.nil? %>
+  <%= will_paginate @users %>
+  <table :class="users">
+    <%= render :partial => 'shared/user', :collection => @users %>
+  </table>
+  <%= will_paginate @users %>
 <% end %>

@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:show,:index]
+  before_filter :authenticate_user!, :except => [:index]
+
   # GET /events
   # GET /events.xml
   def index
@@ -15,11 +16,10 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @event }
-    end
+    # check that current user owns this event or that current user is admin
+    if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
+      action_not_permitted
+    end 
   end
 
   # GET /events/new
@@ -36,6 +36,9 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    if not current_user.authorized?(@event.user_id)
+      action_not_permitted
+    end
   end
 
   # POST /events
@@ -75,12 +78,16 @@ class EventsController < ApplicationController
   # DELETE /events/1.xml
   def destroy
     @event = Event.find(params[:id])
-    @event.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(events_url) }
-      format.xml  { head :ok }
-    end
+    if current_user.authorized?(@event.user_id)
+      @event.destroy
+    else
+      action_not_permitted
+    end 
   end
   
+  private 
+    
+    def action_not_permitted
+      redirect_to(root_path, :notice => 'Not authorized to perform that action.')
+    end
 end

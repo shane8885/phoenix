@@ -10,14 +10,17 @@ namespace :db do
 end
 
 def make_users
-  admin = User.create!(:email => "admin@localhost.com",
+  admin = User.create!(:username => "admin",
+               :email => "admin@localhost.com",
                :password => "foobar",
                :password_confirmation => "foobar")
   admin.toggle!(:admin)
   99.times do |n|
-    email = "user-#{n+1}@localhost.com"
+    user = "user-#{n+1}"
+    email = "#{user}@localhost.com"
     password = "password"
-    User.create(:email => email,
+    User.create(:username => user,
+                :email => email,
                 :password => password,
                 :password_confirmation => password)
   end

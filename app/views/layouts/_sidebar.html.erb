@@ -23,13 +23,8 @@
         <li><%= link_to "MyHome", "/user/#{current_user.id}" %>
         <li><%= link_to "Account", edit_user_registration_path %>
         <li><%= link_to "Events", events_path %>
+        <li><%= link_to "Users", "/user" %>
       </ul>
-      <% if current_user.admin? %>
-        <h3 class="caps">admin</h3>
-        <ul>
-          <li><%= link_to "Users", "/user" %>
-        </ul>
-      <% end %>
     </div>
   <% end %>
 </div>

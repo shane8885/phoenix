@@ -1,6 +1,6 @@
 <div id="logininfo" class="right last">
 <% if user_signed_in? %>
-  Welcome <%= current_user.email %> 
+  <%= current_user.username %> is signed in
   <% if current_user.admin? %>
     [admin]
   <% end %>
