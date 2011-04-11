@@ -1,4 +1,17 @@
 <tr>
-  <td><%= user.email %></td>
-  <td><%= link_to 'Remove',user, :method => :delete, :confirm => 'Are you sure you want to remove this user?' %></td>
+  <td><%= user.username %></td>
+  <% if current_user.admin? %>
+    <td><%= link_to 'Show',user %></td>
+    <td><%= link_to 'Remove',user, :method => :delete, :confirm => 'Are you sure you want to remove this user?' %></td>
+  <% end %>
+  <% if @events.count > 0 %>
+    <td>
+      <% form_for(@attendance) do |f| %>
+        Invite to <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
+        <%= f.hidden_field :inviting_id, :value => current_user.id %>
+        <%= f.hidden_field :attending_id, :value => user.id %>
+        <%= f.submit "Invite" %>
+      <% end %>
+    </td>
+  <% end %>
 </tr>

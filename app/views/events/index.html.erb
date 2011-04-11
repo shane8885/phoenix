@@ -3,25 +3,14 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Owner</th>
     <th>Public</th>
     <th>Start</th>
-    <th>Maxmovies</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
-
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.name %></td>
-    <td><%= event.public %></td>
-    <td><%= event.start %></td>
-    <td><%= event.maxmovies %></td>
-    <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, :confirm => 'Are you sure you want to remove this event?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <%= render :partial => 'shared/event', :collection => @events %>
 </table>
 
 <br />
