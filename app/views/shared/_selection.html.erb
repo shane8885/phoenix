@@ -2,6 +2,10 @@
     <td><%= link_to image_tag(selection.poster, :alt => "no image", :height => "60") %></td>
     <td><%= selection.movie_name %></td>
     <td><%= selection.votes %></td>
+    <td><% form_for selection do |f| %>
+      <%= f.hidden_field :votes, :value => selection.votes+1 %>
+      <%= f.submit "Vote", :class => "button_as_hyperlink" %>
+    <% end %></td>
     <% if current_user.authorized?(selection.user_id) %>
       <td><%= link_to 'Remove',selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?' %></td>
     <% end %>

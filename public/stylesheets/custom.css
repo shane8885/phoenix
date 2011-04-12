@@ -73,5 +73,6 @@ a.signup_button {
 
 .button_as_hyperlink:hover {
   cursor: pointer;
+  color: #f544ff;
 }
 
