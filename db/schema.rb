@@ -10,16 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411055455) do
+ActiveRecord::Schema.define(:version => 20110415115155) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id"
     t.integer  "attending_id"
     t.integer  "inviting_id"
-    t.boolean  "confirmed",    :default => false
-    t.boolean  "selector",     :default => true
+    t.boolean  "confirmed",            :default => false
+    t.boolean  "selector",             :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "votes_remaining"
+    t.integer  "selections_remaining"
   end
 
   add_index "attendances", ["attending_id"], :name => "index_attendances_on_attending_id"
@@ -28,11 +30,13 @@ ActiveRecord::Schema.define(:version => 20110411055455) do
   create_table "events", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.boolean  "public",     :default => false
+    t.boolean  "public",                  :default => false
     t.date     "start"
     t.integer  "maxmovies"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "selections_per_attendee", :default => 10
+    t.integer  "votes_per_attendee",      :default => 10
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"

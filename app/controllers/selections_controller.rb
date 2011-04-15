@@ -21,13 +21,30 @@ class SelectionsController < ApplicationController
   # PUT /selections/1.xml
   def update
     selection = Selection.find(params[:id])
-
+    event = Event.find(selection.event_id)
+    voting_ok = true
+    # if this update represents a vote we have to decrement the users vote allowance
+    # also, if they run out of votes we have to return an error
+    if params[:voting]
+      attendance = Attendance.find_by_event_id_and_attending_id(selection.event_id,current_user.id)
+      if attendance.votes_remaining > 0
+        attendance.votes_remaining -= 1
+        if not attendance.save
+          flash[:error] = 'Failed to updated attendance.'
+          voting_ok = false
+        end
+      else
+        flash[:error] = 'You have no more votes.'
+        voting_ok = false
+      end
+    end
+    
     respond_to do |format|
-      if selection.update_attributes(params[:selection])
-        format.html { redirect_to(Event.find(selection.event_id), :notice => 'Selection was successfully updated.') }
+      if voting_ok and selection.update_attributes(params[:selection] )
+        format.html { redirect_to(event, :notice => 'Successfully updated selection.') }
         format.xml  { head :ok }
       else
-        format.html { redirect_to root_path }
+        format.html { redirect_to event }
       end
     end
   end

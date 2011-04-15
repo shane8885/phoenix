@@ -1,6 +1,8 @@
 <tr>
   <td width="30"><%= invitation.inviting_id %></td>
   <td width="30"><%= invitation.event_id %></td>
+  <td width="30"><%= invitation.selections_remaining %></td>
+  <td width="30"><%= invitation.votes_remaining %></td>
   <td width="30">
     <% form_for invitation do |f| %>
       <%= f.hidden_field :confirmed, :value => true %>

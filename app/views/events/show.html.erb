@@ -19,7 +19,18 @@
   <b>Maxmovies:</b>
   <%= @event.maxmovies %>
 </p>
-
+<p>
+  <b>Selections per attendee:</b>
+  <%= @event.selections_per_attendee %>
+</p>
+<p>
+  <b>Votes per attendee:</b>
+  <%= @event.votes_per_attendee %>
+</p>
+<% if current_user.invited_to?(@event) %>
+  <h4>You have <%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections left</h4>
+  <h4>You have <%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</h4>
+<% end %>
 <% if not @event.selections.empty? %>
     <h3>Selections</h3>
     <div class="selections">

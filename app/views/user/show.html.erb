@@ -22,6 +22,7 @@
     <h3>Open Invitations</h3>
     <div class="invitations">
         <table class="invitations_table">
+          <tr><th>Inviter</th><th>Event</th><th>Selections</th><th>Votes</th></tr>
             <%= render :partial => 'shared/invitation', :collection => @user.open_invitations %>
         </table>
     </div>

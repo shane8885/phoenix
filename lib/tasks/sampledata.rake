@@ -5,7 +5,7 @@ namespace :db do
     make_users
     make_events
     make_selections
-    make_acceptances
+    make_attendances
   end
 end
 
@@ -46,14 +46,14 @@ def make_selections
   end 
 end
 
-def make_acceptances
+def make_attendances
   Event.all.each do |event|
     rand(50).times do
       confirmed = false
       if rand(2) == 0
         confirmed = true
       end
-      Attendance.create(:attending_id => rand(100),:inviting_id => rand(100),:event_id => event.id,:selector => true,:confirmed => confirmed)
+      Attendance.create(:attending_id => rand(100),:inviting_id => rand(100),:event_id => event.id,:selector => true,:confirmed => confirmed, :selections_remaining => event.selections_per_attendee, :votes_remaining => event.votes_per_attendee )
     end
   end
 end
