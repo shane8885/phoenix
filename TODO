@@ -4,4 +4,4 @@ TODO:
 - validate start and deadline dates for events
 - add event search to index page
 - maybe I should just add the event owner as a unconfirmed attendee by default?
-- event page should preview selections then link to browse seperately (multiple paginations on 1 page is messy)
+- event page should preview selections then link to browse seperately
