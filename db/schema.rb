@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110419120328) do
+ActiveRecord::Schema.define(:version => 20110419222810) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(:version => 20110419120328) do
     t.datetime "updated_at"
     t.integer  "selections_per_attendee", :default => 10
     t.integer  "votes_per_attendee",      :default => 10
+    t.string   "description",             :default => "No Description."
+    t.date     "selections_deadline"
+    t.date     "votes_deadline"
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"

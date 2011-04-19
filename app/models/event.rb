@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-    attr_accessible :name, :public, :maxmovies, :start
+    attr_accessible :name, :description, :public, :maxmovies, :start, :selections_deadline, :votes_deadline
     
     belongs_to :user
     has_many :selections
@@ -11,5 +11,7 @@ class Event < ActiveRecord::Base
     validates :name, :presence => true, :length => { :maximum => 30 }
     validates :maxmovies, :numericality => { :within => 1..1000 }
     validates :start, :presence => true
+    validates :selections_deadline, :presence => true
+    validates :votes_deadline, :presence => true
     validates :user_id, :presence => true
 end

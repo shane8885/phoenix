@@ -4,7 +4,10 @@
   <b>Name:</b>
   <%= @event.name %>
 </p>
-
+<p>
+  <b>Description:</b>
+  <%= @event.description %>
+</p>
 <p>
   <b>Public:</b>
   <%= @event.public %>
@@ -14,7 +17,14 @@
   <b>Start:</b>
   <%= @event.start %>
 </p>
-
+<p>
+  <b>Selections Deadline:</b>
+  <%= @event.selections_deadline %>
+</p>
+<p>
+  <b>Votes Deadline:</b>
+  <%= @event.votes_deadline %>
+</p>
 <p>
   <b>Maxmovies:</b>
   <%= @event.maxmovies %>
