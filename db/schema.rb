@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415115155) do
+ActiveRecord::Schema.define(:version => 20110419120328) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20110415115155) do
     t.integer  "movie_id"
     t.string   "movie_name"
     t.integer  "user_id"
-    t.integer  "votes"
+    t.integer  "votes",      :default => 0
     t.boolean  "official"
     t.datetime "created_at"
     t.datetime "updated_at"

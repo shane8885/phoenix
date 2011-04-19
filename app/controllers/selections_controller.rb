@@ -5,15 +5,22 @@ class SelectionsController < ApplicationController
   # POST /selections.xml
   def create
     selection = Selection.new(params[:selection])
-
+    event = Event.find(selection.event_id)
+    attendance = Attendance.find_by_event_id_and_attending_id(event.id,current_user.id)
+    attendance.selections_remaining -= 1
+    
     respond_to do |format|
-      if selection.save
-        flash[:notice] = 'Selection was successfully created.'
-        format.html { redirect_to(:controller => 'movies', :action => 'show', :id => selection.movie_id ) }
+      # this will fail if selections_remaining has gone below 0
+      if attendance.save
+        if selection.save
+          flash[:notice] = 'Selection was successfully created.'
+        else
+          flash[:error] = 'Failed to create selection.'
+        end
       else
-          #TODO: this is an error, new action doesn't exist
-        format.html { redirect_to root_path }
+        flash[:error] = 'You have no selections remaining.'
       end
+      format.html { redirect_to event }
     end
   end
 
@@ -26,14 +33,10 @@ class SelectionsController < ApplicationController
     # if this update represents a vote we have to decrement the users vote allowance
     # also, if they run out of votes we have to return an error
     if params[:voting]
-      attendance = Attendance.find_by_event_id_and_attending_id(selection.event_id,current_user.id)
-      if attendance.votes_remaining > 0
-        attendance.votes_remaining -= 1
-        if not attendance.save
-          flash[:error] = 'Failed to updated attendance.'
-          voting_ok = false
-        end
-      else
+      attendance = Attendance.find_by_event_id_and_attending_id(event.id,current_user.id)
+      attendance.votes_remaining -= 1
+      # this will fail if votes_remaining has gone below 0
+      if not attendance.save
         flash[:error] = 'You have no more votes.'
         voting_ok = false
       end

@@ -3,6 +3,7 @@
 <% if not @user.events.empty? %>
   <h3>My Events</h3>
   <table>
+    <tr><th /><th>Event</th><th>Owner</th><th>Public?</th><th>Start</th></tr>
     <%= render :partial => 'shared/event', :collection => @user.events %>
   </table>
 <% end %>
@@ -11,7 +12,8 @@
     <h3>Attending Events</h3>
     <div class="attending_events">
         <table class="attending_events_table">
-            <%= render :partial => 'shared/event', :collection => @user.accepted_events %>
+            <tr><th /><th>Event</th><th>Owner</th><th>Selections</th><th>Votes</th><th>Start</th></tr>
+            <%= render :partial => 'shared/attending_event', :collection => @user.accepted_events %>
         </table>
     </div>
 <% else %>

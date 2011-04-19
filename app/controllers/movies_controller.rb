@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
               @events = Event.all
             else
               #user just sees their events
-              @events = current_user.events
+              @events = current_user.accepted_events
             end
         end
     end
