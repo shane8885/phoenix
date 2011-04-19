@@ -41,14 +41,22 @@
   <h4>You have <%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections left</h4>
   <h4>You have <%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</h4>
 <% end %>
-<% if not @selections.empty? %>
-    <h3>Selections</h3>
+<% if not @official.empty? %>
+    <h3>Offical Selections</h3>
     <div class="selections">
-      <%= will_paginate @selections %>
       <table class="selections_table">
-          <%= render :partial => 'shared/selection', :collection => @selections %>
+          <%= render :partial => 'shared/selection', :collection => @official %>
       </table>
-      <%= will_paginate @selections %>
+      <%= will_paginate @official,:param_name => 'official_page'  %>
+    </div>
+<% end %>
+<% if not @unofficial.empty? %>
+    <h3>Unoffical Selections</h3>
+    <div class="selections">
+      <table class="selections_table">
+          <%= render :partial => 'shared/selection', :collection => @unofficial %>
+      </table>
+      <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>
     </div>
 <% end %>
 

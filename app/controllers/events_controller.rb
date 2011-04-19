@@ -16,7 +16,8 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
-    @selections = @event.selections.paginate(:page => params[:page],:per_page => 10)
+    @official = @event.official_selections.paginate(:page => params[:official_page],:per_page => 10)
+    @unofficial = @event.unofficial_selections.paginate(:page => params[:unofficial_page],:per_page => 10)
     
     # check that current user owns this event or that current user is admin
     if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
