@@ -16,10 +16,14 @@ class AttendancesController < ApplicationController
   # POST /attendances.xml
   def create
     attendance = Attendance.new(params[:attendance])
-
+    event = Event.find(attendance.event_id)
+    #fill out the vote and selection allowances for attendees
+    attendance.votes_remaining = event.votes_per_attendee
+    attendance.selections_remaining = event.selections_per_attendee
+    
     respond_to do |format|
       if attendance.save
-        format.html { redirect_to(Event.find(attendance.event_id), :notice => 'Invitation was successfully created.') }
+        format.html { redirect_to(event, :notice => 'Invitation was successfully created.') }
       else
         format.html { redirect_to root_path }
       end
