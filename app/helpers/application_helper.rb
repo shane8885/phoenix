@@ -1,6 +1,6 @@
 module ApplicationHelper
     def title
-        base_title = "My Film Festival"
+        base_title = "Garage Film Festival"
         if @title.nil?
             base_title
         else
