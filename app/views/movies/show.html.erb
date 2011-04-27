@@ -10,6 +10,7 @@
             <%= f.hidden_field :user_id %>
             <%= f.hidden_field :movie_id, :value => @movie.id %>
             <%= f.hidden_field :movie_name, :value => @movie.name %>
+            <%= f.hidden_field :running_time, :value => @movie.runtime %>
             <%= f.hidden_field :poster, :value => get_poster_url(@movie) %>
             <%= f.submit "Select" %>
         <% end %>

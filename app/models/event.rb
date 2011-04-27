@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
     attr_accessible :name, :description, :public, :maxmovies, :start, :selections_deadline, :votes_deadline
     
     belongs_to :user
-    has_many :selections
+    has_many :selections, :dependent => :destroy
     has_many :official_selections, :class_name => 'Selection', :conditions => {:official => true}
     has_many :unofficial_selections, :class_name => 'Selection', :conditions => {:official => false}
     has_many :accepted_invitations, :class_name => 'Attendance', :conditions => {:confirmed => true}

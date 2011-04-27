@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username
   
-  has_many :events, :dependent => :destroy
+  has_many :events
   has_many :selections
   
   has_many :all_invitations, :class_name => 'Attendance', :foreign_key => :attending_id

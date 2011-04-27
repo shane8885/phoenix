@@ -1,6 +1,7 @@
 <tr>
     <td><%= link_to image_tag(selection.poster, :alt => "no image", :height => "60") %></td>
     <td><%= selection.movie_name %></td>
+    <td><%= selection.running_time %></td>
     <td><%= selection.votes %></td>
     <td><% form_for selection do |f| %>
       <%= f.hidden_field :votes, :value => selection.votes+1 %>
