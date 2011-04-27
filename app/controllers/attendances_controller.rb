@@ -25,7 +25,7 @@ class AttendancesController < ApplicationController
       if attendance.save
         format.html { redirect_to(event, :notice => 'Invitation was successfully created.') }
       else
-        format.html { redirect_to root_path }
+        format.html { redirect_to(event, :notice => 'Could not create invitation.') }
       end
     end
   end
