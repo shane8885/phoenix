@@ -48,10 +48,10 @@ class EventsController < ApplicationController
   # POST /events.xml
   def create
     @event = current_user.events.build(params[:event])
-    #@event = Event.new(params[:event])
-
+    
     respond_to do |format|
       if @event.save
+        attendance = Attendance.create!( :event_id => @event.id, :inviting_id => current_user.id, :attending_id => current_user.id, :votes_remaining => @event.votes_per_attendee, :selections_remaining => @event.selections_per_attendee )
         format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
