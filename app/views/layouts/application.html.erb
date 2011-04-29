@@ -9,13 +9,13 @@
     <body>
         <div class="container">
             <%= render 'layouts/header' %>
-            <div id=content class="span-19 colborder">
+            <div id=content class="span-24 colborder">
                 <% flash.each do |key, value| %>
                   <div class="flash <%= key %>"><%= value %></div>
                 <% end %>
                 <%= yield %>
             </div>
-            <%= render 'layouts/sidebar' %>
+            <!--%= render 'layouts/sidebar' %-->
             <%= render 'layouts/footer' %>
         </div>
     </body>

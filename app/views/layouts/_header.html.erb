@@ -11,12 +11,35 @@
   <%= link_to "Sign up", new_user_registration_path %>
 <% end %>
 </div>
-<div id="header" class="span-24">
+<div id="header" class="span-24 last">
   <!--%= link_to logo, root_path %-->
   <%= link_to "GarageFilmFestival", root_path, :class => "titlebanner"%>
 </div>
-<div id="subheader" class="span-24 push-2 last">
-    <h3 class="alt">All the glamour of the movies... in your slippers</h3>
+<div class="menu span-24 last">
+	<ul>
+		<li><%= link_to "Home", root_path %></li>
+		<li><a href="#" id="current">Films</a>
+			<ul>
+				<li><%= link_to "Find", movies_search_path %></li>
+		  </ul>
+	  </li>
+		<li><%= link_to "My Festival", "#" %>
+        <ul>
+          <% if user_signed_in? %>
+            <li><%= link_to "MyHome", "/user/#{current_user.id}" %></li>
+            <li><%= link_to "Account", edit_user_registration_path %></li>
+            <li><%= link_to "Events", events_path %></li>
+            <li><%= link_to "Users", "/user" %></li>
+          <% else %>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+    </li>
+		<li><%= link_to "Help", "#" %></li>
+		<li><%= link_to "Contact", "#" %></li>
+		<li><%= link_to "About", "#" %></li>
+	</ul>
 </div>
 <hr />
 
