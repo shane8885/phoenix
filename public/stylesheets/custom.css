@@ -4,6 +4,7 @@ body {
 
 #content {
   background:#ffffff
+  border: 2px solid black;
 }
 
 a.signup_button {
@@ -47,7 +48,63 @@ a.signup_button {
 }
 
 #logininfo a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+table.selections tbody tr:nth-child(even) td, tbody tr.even td {background:#ffa;}
+
+table.selections {
+	border-width: 0px;
+	border-spacing: 6px 10px;
+	border-collapse: separate;
+	background-color: white;
+}
+
+table.selections td {
+	border-width: 0px;
+	padding: 2px;
+	border-style: solid;
+	border-color: #ffff66;
+	vertical-align: center;
+	background-color: #ffff66;
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+table.selections td#votes {
+	background-color: #aaaaff;
+	vertical-align: center;
+	text-align: center;
+}
+
+table.selections td#selection_image {
+	background-color: white;
+	vertical-align: center;
+	margin-right: 0px;
+	text-align: right;
+	width: 40px;
+}
+
+table.selections td#selection_info {
+  width: 250px;
+  padding-left: 10px;
+}
+
+table.selections td#selection_buttons {
+	background-color: white;
+	vertical-align: center;
+	text-align: left;
+}
+
+#selection_button {
+  border: 1px solid #aaf;
+  background: #aaf;
+}
+
+#selection_button:hover {
+  background: #ddf;
 }
 
 #errorExplanation {

@@ -44,7 +44,7 @@
 <% if not @official.empty? %>
     <h3>Offical Selections</h3>
     <div class="selections">
-      <table class="selections_table">
+      <table class="selections">
           <%= render :partial => 'shared/selection', :collection => @official %>
       </table>
       <%= will_paginate @official,:param_name => 'official_page'  %>
@@ -53,7 +53,7 @@
 <% if not @unofficial.empty? %>
     <h3>Unoffical Selections</h3>
     <div class="selections">
-      <table class="selections_table">
+      <table class="selections">
           <%= render :partial => 'shared/selection', :collection => @unofficial %>
       </table>
       <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>

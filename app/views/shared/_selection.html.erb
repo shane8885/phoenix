@@ -1,14 +1,22 @@
 <tr>
-    <td><%= link_to image_tag(selection.poster, :alt => "no image", :height => "60") %></td>
-    <td><%= selection.movie_name %></td>
-    <td><%= selection.running_time %></td>
-    <td><%= selection.votes %></td>
-    <td><% form_for selection do |f| %>
+  <td id="selection_image">
+    <%= link_to image_tag(selection.poster, :alt => "no image", :height => "50") %>
+  </td>
+  <td id="selection_info">
+     <strong><font size="2"><%= selection.movie_name %></font></strong><br>
+     Running Time: <strong><%= selection.running_time %></strong>
+  </td>
+  <td id="votes" width="60">Votes<br> <strong><font size="5"><%= selection.votes %></font></strong></td>
+  <td id="selection_buttons" width="100">
+    <% form_for selection do |f| %>
       <%= f.hidden_field :votes, :value => selection.votes+1 %>
       <%= hidden_field_tag :voting, :value => 1 %>
       <%= f.submit "Vote", :class => "button_as_hyperlink" %>
-    <% end %></td>
-    <% if current_user.authorized?(selection.user_id) %>
-      <td><%= link_to 'Remove',selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?' %></td>
     <% end %>
+    <% if current_user.authorized?(selection.user_id) %>
+      <%= link_to 'Remove',selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?' %>
+    <% end %>
+  </td>
+  <!-- this extra column is just here to fill out the rest of the of the space -->
+  </td>
 </tr>
