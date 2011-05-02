@@ -1,16 +1,6 @@
 <h1>Listing events</h1>
 
-<table>
-  <tr>
-    <th />
-    <th>Name</th>
-    <th>Owner</th>
-    <th>Public</th>
-    <th>Start</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<table class="events">
   <%= render :partial => 'shared/event', :collection => @events %>
 </table>
 

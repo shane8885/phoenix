@@ -1,21 +1,22 @@
 <tr>
-  <td><%= image_tag( event_poster_url(event), :height => "60") %></td>
-  <td><%= event.name %></td>
-  <td><%= event.user_id %></td>
-  <td><%= event.public %></td>
-  <td><%= event.start %></td>
+  <td id="event_image"><%= image_tag( event_poster_url(event), :height => "60") %></td>
+  <td><span id="event_name"><%= event.name %></span><br>
+  <span id="event_description"><%= event.description %></span></td>
+  <td><span id="event_owner"><%= User.find(event.user_id).username %></span></td>
+  <td class="date">
+    <span class="month"><%= event.start.strftime("%b") %></span>
+    <span class="day"><%= event.start.strftime("%d") %></span>
+    <span class="year"><%= event.start.strftime("%Y") %></span>
+  </td>
+  <td id="event_buttons" width="60">
   <% if user_signed_in? %>
     <% if current_user.authorized?(event.user_id) or current_user.invited_to?(event) %>
-      <td width="30"><%= link_to 'Show', event %></td>
-    <% else %>
-      <td />
+      <%= link_to 'Show', event %>
     <% end %>
     <% if current_user.authorized?(event.user_id) %>
-      <td width="20"><%= link_to 'Edit', edit_event_path(event) %></td>
-      <td width="30"><%= link_to 'Destroy', event, :confirm => 'Are you sure you want to remove this event?', :method => :delete %></td>
-    <% else %>
-      <td />
-      <td />
+      <br><%= link_to 'Edit', edit_event_path(event) %>
+      <br><%= link_to 'Destroy', event, :confirm => 'Are you sure you want to remove this event?', :method => :delete %>
     <% end %>
   <% end %>
+  </td>
 </tr>
