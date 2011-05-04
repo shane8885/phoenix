@@ -1,14 +1,14 @@
 <tr>
   <td id="event_image"><%= image_tag( event_poster_url(event), :height => "60") %></td>
-  <td><span id="event_name"><%= event.name %></span><br>
-  <span id="event_description"><%= event.description %></span></td>
-  <td><span id="event_owner"><%= User.find(event.user_id).username %></span></td>
+  <td><span class="event_name"><%= event.name %></span><br>
+  <span class="event_description"><%= truncate(event.description, :length => 60) %></span></td>
+  <td><span class="event_owner"><%= User.find(event.user_id).username %></span></td>
   <td class="date">
     <span class="month"><%= event.start.strftime("%b") %></span>
     <span class="day"><%= event.start.strftime("%d") %></span>
     <span class="year"><%= event.start.strftime("%Y") %></span>
   </td>
-  <td id="event_buttons" width="60">
+  <td id="event_buttons">
   <% if user_signed_in? %>
     <% if current_user.authorized?(event.user_id) or current_user.invited_to?(event) %>
       <%= link_to 'Show', event %>

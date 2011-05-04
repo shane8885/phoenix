@@ -1,30 +1,11 @@
-<div class="span-4 last" id="sidebar">
-  <div class="box">
-    <h3 class="caps">site</h3>
-    <ul>
-      <li><%= link_to "Home", root_path %>
-      <li><%= link_to "Contact", "#" %>
-      <li><%= link_to "Help", "#" %>
-      <li><%= link_to "About", "#" %>
-    </ul>
-    <h3 class="caps">events</h3>
-    <ul>
-      <li><%= link_to "Find", "/events" %>
-    </ul>
-    <h3 class="caps">films</h3>
-    <ul>
-      <li><%= link_to "Find", movies_search_path %>
-    </ul>
-  </div>
+<div class="span-4 last box" id="sidebar">
+  <h3 class="caps">actions</h3>
   <% if user_signed_in? %>
-    <div class="box">
-      <h3 class="caps">members</h3>
-      <ul>
-        <li><%= link_to "MyHome", "/user/#{current_user.id}" %>
-        <li><%= link_to "Account", edit_user_registration_path %>
-        <li><%= link_to "Events", events_path %>
-        <li><%= link_to "Users", "/user" %>
-      </ul>
-    </div>
+    <%= link_to "CREATE EVENT", new_event_path, :class => "action_link" %>
+    <%= link_to "FIND EVENT", events_path, :class => "action_link" %>
+    <%= link_to "ADD SELECTION", movies_search_path, :class => "action_link" %>
+    <%= link_to "INVITE", user_index_path, :class => "action_link" %>
+    <hr />
+    <%= link_to "MY HOME", "/user/#{current_user.id}", :class => "action_link" %>
   <% end %>
 </div>

@@ -2,32 +2,28 @@
 
 <% if not @user.events.empty? %>
   <h3>My Events</h3>
-  <table>
-    <tr><th /><th>Event</th><th>Owner</th><th>Public?</th><th>Start</th></tr>
+  <table class="events">
     <%= render :partial => 'shared/event', :collection => @user.events %>
   </table>
 <% end %>
 
 <% if not @user.accepted_events.empty? %>
-    <h3>Attending Events</h3>
-    <div class="attending_events">
-        <table class="attending_events_table">
-            <tr><th /><th>Event</th><th>Owner</th><th>Selections</th><th>Votes</th><th>Start</th></tr>
-            <%= render :partial => 'shared/attending_event', :collection => @user.accepted_events %>
-        </table>
-    </div>
+  <h3>Attending Events</h3>
+  <table class="events">
+      <%= render :partial => 'shared/attending_event', :collection => @user.accepted_events %>
+  </table>
 <% else %>
   <p>You're not attending any events.</p>
 <% end %>
 
 <% if not @user.open_invitations.empty? %>
-    <h3>Open Invitations</h3>
-    <div class="invitations">
-        <table class="invitations_table">
-          <tr><th>Inviter</th><th>Event</th><th>Selections</th><th>Votes</th></tr>
-            <%= render :partial => 'shared/invitation', :collection => @user.open_invitations %>
-        </table>
-    </div>
+  <h3>Open Invitations</h3>
+  <div class="invitations">
+    <table class="invitations_table">
+      <tr><th>Inviter</th><th>Event</th><th>Selections</th><th>Votes</th></tr>
+        <%= render :partial => 'shared/invitation', :collection => @user.open_invitations %>
+    </table>
+  </div>
 <% else %>
   <p>You have no invitations.</p>
 <% end %>

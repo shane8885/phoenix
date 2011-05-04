@@ -1,43 +1,48 @@
 <p id="notice"><%= notice %></p>
-
-<h1><%= @event.name %></h1>
-<p>
-  <b>Description:</b>
-  <%= @event.description %>
-</p>
-<p>
-  <b>Public:</b>
-  <%= @event.public %>
-</p>
-
-<p>
-  <b>Start:</b>
-  <%= @event.start %>
-</p>
-<p>
-  <b>Selections Deadline:</b>
-  <%= @event.selections_deadline %>
-</p>
-<p>
-  <b>Votes Deadline:</b>
-  <%= @event.votes_deadline %>
-</p>
-<p>
-  <b>Maxmovies:</b>
-  <%= @event.maxmovies %>
-</p>
-<p>
-  <b>Selections per attendee:</b>
-  <%= @event.selections_per_attendee %>
-</p>
-<p>
-  <b>Votes per attendee:</b>
-  <%= @event.votes_per_attendee %>
-</p>
-<% if current_user.invited_to?(@event) %>
-  <h4>You have <%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections left</h4>
-  <h4>You have <%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</h4>
-<% end %>
+<table class="event_details">
+  <tr>
+    <td class="event_big_name"><%= @event.name %></td>
+    <td class="event_description">
+      <%= @event.description %>
+    </td>
+    <td class="date">
+      <span class="month"><%= @event.start.strftime("%b") %></span>
+      <span class="day"><%= @event.start.strftime("%d") %></span>
+      <span class="year"><%= @event.start.strftime("%Y") %></span>
+    </td>
+  </tr>
+  <tr>
+    <td class="event_detail_name">Selections Deadline:</td>
+    <td><span class="event_detail_value"><%= @event.selections_deadline %></span></td>
+  </tr>
+  <tr>
+    <td class="event_detail_name">Votes Deadline:</td>
+    <td><span class="event_detail_value"><%= @event.votes_deadline %></span></td>
+  </tr>
+  <tr>
+    <td class="event_detail_name">Maxmovies:</td>
+    <td><span class="event_detail_value"><%= @event.maxmovies %></span></td>
+  </tr>
+  <tr>
+    <td class="event_detail_name">Selections per attendee:</td>
+    <td><span class="event_detail_value"><%= @event.selections_per_attendee %></span></td>
+  </tr>
+  <tr>
+    <td class="event_detail_name">Votes per attendee:</td>
+    <td><span class="event_detail_value"><%= @event.votes_per_attendee %></span></td>
+  </tr>
+  <% if current_user.invited_to?(@event) %>
+  <tr>
+    <td class="event_detail_name">Selections</td> 
+    <td><span class="event_detail_value"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections remaining</span></td>
+  </tr>
+  <tr>  
+    <td class="event_detail_name">Votes</td>
+    <td><span class="event_detail_value"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</span></td>
+    </td>
+  </tr>
+  <% end %>
+</table>
 <% if not @official.empty? %>
     <h3>Offical Selections</h3>
     <div class="selections">
