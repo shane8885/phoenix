@@ -1,6 +1,6 @@
 <div class="span-4 last box" id="sidebar">
-  <h3 class="caps">actions</h3>
   <% if user_signed_in? %>
+    <h3 class="caps">actions</h3>
     <%= link_to "CREATE EVENT", new_event_path, :class => "action_link" %>
     <%= link_to "FIND EVENT", events_path, :class => "action_link" %>
     <%= link_to "ADD SELECTION", movies_search_path, :class => "action_link" %>

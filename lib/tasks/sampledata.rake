@@ -1,3 +1,5 @@
+require 'faker'
+
 namespace :db do
   desc "Fill database with sample data"
   task :populate => :environment do
@@ -29,7 +31,7 @@ end
 def make_events
   10.times do |n|
     user = User.find(n+1)
-    user.events.create(:name => "event-#{n+1}", :start => 60.days.from_now,:selections_deadline => 30.days.from_now,:votes_deadline => 50.days.from_now,:maxmovies => 100)
+    user.events.create(:name => Faker::Lorem.words(1), :start => 60.days.from_now,:selections_deadline => 30.days.from_now,:votes_deadline => 50.days.from_now,:maxmovies => 100,:description => Faker::Lorem.paragraph(5))
   end
 end
 
