@@ -5,3 +5,4 @@ TODO:
 - add event search to index page
 - maybe I should just add the event owner as a unconfirmed attendee by default?
 - event page should preview selections then link to browse seperately
+- create a helper that just returns the site name, make it easier to change it and not miss a spot

@@ -1,3 +1,5 @@
+require 'development_mail_interceptor'
+
 Phoenix::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -14,10 +16,23 @@ Phoenix::Application.configure do
   config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-
+  # mail config
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' } 
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :tls => false,
+    :enable_starttls_auto => false,
+    :address => "mail.gmx.com",
+    :port => 25,
+    :authentication => :login,
+    :user_name => "garagefilmfestival@gmx.com" ,
+    :password => "festival"
+  }
+  #redirect emails when in dev
+  Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
+  
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
