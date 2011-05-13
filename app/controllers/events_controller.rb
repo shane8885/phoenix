@@ -25,6 +25,26 @@ class EventsController < ApplicationController
     end 
   end
 
+  def selections
+    @event = Event.find(params[:id])
+    @official = @event.official_selections.paginate(:page => params[:official_page],:per_page => 10)
+    @unofficial = @event.unofficial_selections.paginate(:page => params[:unofficial_page],:per_page => 10)
+    
+    # check that current user owns this event or that current user is admin
+    if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
+      action_not_permitted
+    end
+  end
+  
+  def attendees
+    @event = Event.find(params[:id])
+    
+    # check that current user owns this event or that current user is admin
+    if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
+      action_not_permitted
+    end
+  end
+  
   # GET /events/new
   # GET /events/new.xml
   def new

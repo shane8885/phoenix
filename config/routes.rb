@@ -4,8 +4,13 @@ Phoenix::Application.routes.draw do
 
   resources :selections, :except => [:index, :show]
 
-  resources :events
-
+  resources :events do
+    member do
+      get 'selections'
+      get 'attendees'
+    end
+  end
+  
   #devise user registration
   devise_for :users
   #additonal admin actions and user show action

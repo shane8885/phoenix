@@ -43,42 +43,9 @@
   </tr>
   <% end %>
 </table>
-<% if not @official.empty? %>
-    <h3>Offical Selections</h3>
-    <div class="selections">
-      <table class="selections">
-          <%= render :partial => 'shared/selection', :collection => @official %>
-      </table>
-      <%= will_paginate @official,:param_name => 'official_page'  %>
-    </div>
-<% end %>
-<% if not @unofficial.empty? %>
-    <h3>Unoffical Selections</h3>
-    <div class="selections">
-      <table class="selections">
-          <%= render :partial => 'shared/selection', :collection => @unofficial %>
-      </table>
-      <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>
-    </div>
-<% end %>
-
-<% if not @event.confirmed_attendees.empty? %>
-    <h3>Confirmed Attendees</h3>
-    <div class="attendees">
-        <table class="attendees_table">
-            <%= render :partial => 'shared/attendee', :collection => @event.confirmed_attendees %>
-        </table>
-    </div>
-<% end %>
-
-<% if not @event.unconfirmed_attendees.empty? %>
-    <h3>Unconfirmed Attendees</h3>
-    <div class="attendees">
-        <table class="attendees_table">
-            <%= render :partial => 'shared/attendee', :collection => @event.unconfirmed_attendees %>
-        </table>
-    </div>
-<% end %>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class='member_buttons'>
+  <%= link_to 'Selections', selections_event_path, :class => 'member_link' %>
+  <%= link_to 'Attendees', attendees_event_path, :class => 'member_link' %>
+  <%= link_to 'Edit', edit_event_path(@event), :class => 'member_link' %>
+  <%= link_to 'Back', events_path, :class => 'member_link' %>
+</div>

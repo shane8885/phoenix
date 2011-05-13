@@ -34,7 +34,7 @@ Phoenix::Application.configure do
     :password => "festival"
   }
   #redirect emails when in dev
-  Mail.register_interceptor(DevelopmentMailInterceptor) if Rails.env.development?
+  Mail.register_interceptor(DevelopmentMailInterceptor)
   
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

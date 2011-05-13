@@ -42,14 +42,14 @@ a.signup_button {
 }
 
 #sidebar {
-  background: #aaf;
+  background: #38b;
   min-height: 600px;
 }
 
 .action_link {
   display: block;
   text-align: center;
-  background: #f60;
+  background: #333;
   border:1px solid gray;
   border-radius: 8px; /*w3c border radius*/
   -webkit-border-radius: 8px; /* webkit border radius */
@@ -57,12 +57,39 @@ a.signup_button {
   -webkit-box-shadow: 3px 3px 4px rgba(0,0,0,.5); /* webkit box shadow */
   padding: 10px;
   text-decoration: none;
-  color: #fff;
+  color: #ccc;
   font-family: "Verdana", sans-serif;
   margin-bottom: 5px;
 }
 
 .action_link:hover {
+  background: #ff6;
+  color: #000;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* w3c box shadow */
+  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* webkit box shadow */
+}
+
+.member_buttons {
+  text-align: center;
+}
+
+.member_link {
+  display: inline;
+  text-align: center;
+  background: #333;
+  border:1px solid gray;
+  border-radius: 8px; /*w3c border radius*/
+  -webkit-border-radius: 8px; /* webkit border radius */
+  box-shadow: 3px 3px 4px rgba(0,0,0,.5); /* w3c box shadow */
+  -webkit-box-shadow: 3px 3px 4px rgba(0,0,0,.5); /* webkit box shadow */
+  padding: 10px;
+  text-decoration: none;
+  color: #ccc;
+  font-family: "Verdana", sans-serif;
+  margin-bottom: 5px;
+}
+
+.member_link:hover {
   background: #ff6;
   color: #000;
   box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* w3c box shadow */
@@ -300,7 +327,7 @@ table.events td#event_buttons {
 	font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
 	font-size:14px;
 	font-weight:bold;
-	background:#333333;
+	background:#333;
 }
 .menu ul{
 	height:30px;
@@ -313,8 +340,8 @@ table.events td#event_buttons {
 	padding:0px;
 }
 .menu li a{
-	background:#333333 url("images/seperator.gif") bottom right no-repeat;
-	color:#cccccc;
+	background:#333 url("images/seperator.gif") bottom right no-repeat;
+	color:#ccc;
 	display:block;
 	font-weight:normal;
 	line-height:30px;
@@ -329,7 +356,7 @@ table.events td#event_buttons {
 	text-decoration:none;
 }
 .menu li ul{
-	background:#333333;
+	background:#333;
 	display:none;
 	height:auto;
 	padding:0px;
