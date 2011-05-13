@@ -9,10 +9,8 @@ gem 'devise', '1.1.rc0'
 gem 'dynamic_form', '1.1.3'
 gem 'bcrypt-ruby', '2.1.4'
 gem 'mail','2.2.15'
+gem 'faker', '0.3.1'
 
-group :development do
-    gem 'faker', '0.3.1'
-end
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
