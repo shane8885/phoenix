@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Invite to <%= @event.name %></h1>
+    <p>
+      <%= @inviter.username %> has invited you to a movie event.<br/>
+    </p>
+    <p>
+      To login to the site and accept the invitation, just follow this link: <%= new_user_session_url %>.
+    </p>
+    <p>Enjoy the festival!</p>
+  </body>
+</html

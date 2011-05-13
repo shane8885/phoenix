@@ -1,6 +1,9 @@
 Phoenix::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  #add an observer to respond to user model stuff
+  config.active_record.observers = :user_observer
+  
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
   config.cache_classes = true
@@ -35,9 +38,20 @@ Phoenix::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Disable delivery errors, bad email addresses will be ignored
-  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { :host => 'severe-planet-336.heroku.com' }
-
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :tls => false,
+    :enable_starttls_auto => false,
+    :address => "mail.gmx.com",
+    :port => 25,
+    :authentication => :login,
+    :user_name => "garagefilmfestival@gmx.com" ,
+    :password => "festival"
+  }
+  
   # Enable threaded mode
   # config.threadsafe!
 

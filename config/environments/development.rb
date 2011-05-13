@@ -3,6 +3,9 @@ require 'development_mail_interceptor'
 Phoenix::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  #add an observer to respond to user model stuff
+  config.active_record.observers = :user_observer
+
   # In the development environment your application's code is reloaded on
   # every request.  This slows down response time but is perfect for development
   # since you don't have to restart the webserver when you make code changes.

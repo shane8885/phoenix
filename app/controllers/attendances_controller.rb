@@ -23,6 +23,7 @@ class AttendancesController < ApplicationController
     
     respond_to do |format|
       if attendance.save
+        Notifier.invite_email(attendance).deliver
         format.html { redirect_to(event, :notice => 'Invitation was successfully created.') }
       else
         format.html { redirect_to(event, :notice => 'Could not create invitation.') }
