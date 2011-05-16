@@ -5,10 +5,10 @@ class MoviesController < ApplicationController
     end
     
     def show
+      #TODO: handle case where movie not found, need to present an error
         @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
         if( user_signed_in? )
             @selection = current_user.selections.build()
-            #TODO: restrict to events that user owns or has priveleged invite to
             if( current_user.admin? )
               #admin can see everything
               @events = Event.all
@@ -16,6 +16,11 @@ class MoviesController < ApplicationController
               #user just sees their events
               @events = current_user.all_events
             end
+        end
+        
+        if( @movie.class == Array and @movie.length == 0 )
+          flash[:error] = 'Sorry, Could not find movie, this was unexpected'
+          redirect_to(root_path)
         end
     end
     

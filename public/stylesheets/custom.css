@@ -42,7 +42,7 @@ a.signup_button {
 }
 
 #sidebar {
-  background: #38b;
+  background: #aaa;
   min-height: 600px;
 }
 
@@ -108,9 +108,10 @@ color: lightyellow;
   text-decoration: underline;
 }
 
-table.selections tbody tr:nth-child(even) td, tbody tr.even td {background:#ffa;}
-table.events tbody tr:nth-child(even) td, tbody tr.even td {background:#ffa;}
-table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:#fff;}
+table.selections tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
+table.events tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
+table.movies tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
+table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
 
 table.selections {
 	border-width: 0px;
@@ -123,9 +124,9 @@ table.selections td {
 	border-width: 0px;
 	padding: 2px;
 	border-style: solid;
-	border-color: #ffa;
+	border-color: lemonchiffon;
 	vertical-align: center;
-	background-color: #ffa;
+	background-color: lemonchiffon;
 	-moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -133,7 +134,7 @@ table.selections td {
 }
 
 table.selections td#votes {
-	background-color: #aaf;
+	background-color: lightblue;
 	vertical-align: center;
 	text-align: center;
 }
@@ -155,15 +156,64 @@ table.selections td#selection_buttons {
 	background-color: white;
 	vertical-align: center;
 	text-align: left;
+	width: 100px;
 }
 
-#selection_button {
-  border: 1px solid #aaf;
-  background: #aaf;
+.movies {
+  border-width: 0px;
+	border-spacing: 6px 10px;
+	border-collapse: separate;
+	background-color: white;
 }
 
-#selection_button:hover {
-  background: #ddf;
+.movies td {
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: lemonchiffon;
+	vertical-align: center;
+	background-color: lemonchiffon;
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+td.movie_rating {
+  width: 70px;
+  text-align: center;
+  background-color: lightblue;
+}
+#movie_rating {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+#movie_title {
+  font-weight: bold;
+  font-size: 150%;
+}
+
+#movie_overview{
+  font-style: italic;
+  color: seagreen;
+}
+#movie_thumbnail {
+	background-color: white;
+	vertical-align: center;
+	margin-right: 0px;
+	text-align: right;
+	width: 40px;
+}
+
+#movie_release {
+  text-align: right;
+}
+#movie_buttons {
+  border-width: 0px;
+	background-color: white;
+	vertical-align: center;
+	text-align: left;
 }
 
 table.events {
@@ -177,9 +227,9 @@ table.events td {
 	border-width: 1px;
 	padding: 2px;
 	border-style: solid;
-	border-color: #ffa;
+	border-color: lemonchiffon;
 	vertical-align: center;
-	background-color: #ffa;
+	background-color: lemonchiffon;
 	-moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
@@ -215,7 +265,7 @@ table.event_details {
 .event_description {
   padding-left: 15px;
   font-style: italic;
-  color: #444;
+  color: seagreen;
 }
 .event_owner {
   font-size: 125%;
@@ -225,7 +275,7 @@ table.event_details {
 .event_quota {
   font-size: 125%;
   padding-left: 10px;
-  color: #444;
+  color: seagreen;
 }
 
 .event_detail_name {
@@ -233,7 +283,7 @@ table.event_details {
   text-align: right;
 }
 .event_detail_value {
-  background: #ffa;
+  background: lemonchiffon;
   padding: 3px 10px;
 }
 
@@ -460,4 +510,6 @@ table.events td#event_buttons {
   overflow: hidden; 
 }
 
-
+.small-gravatar {
+  height: 30px;
+}

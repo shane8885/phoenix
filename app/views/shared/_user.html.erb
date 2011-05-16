@@ -1,4 +1,5 @@
 <tr>
+  <td width="50"><%= gravatar_image_tag(user.email,:alt => user.username,:class => 'small-gravatar') %>
   <td><%= user.username %></td>
   <% if current_user.admin? %>
     <td><%= link_to 'Show',user %></td>

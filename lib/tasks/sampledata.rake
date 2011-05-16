@@ -33,7 +33,7 @@ end
 def make_events
   10.times do |n|
     user = User.find(n+1)
-    user.events.create(:name => Faker::Lorem.words(1), :start => 60.days.from_now,:selections_deadline => 30.days.from_now,:votes_deadline => 50.days.from_now,:maxmovies => 100,:description => Faker::Lorem.paragraph(1+rand(10)))
+    user.events.create(:name => Faker::Lorem.words(1)[0], :start => 60.days.from_now,:selections_deadline => 30.days.from_now,:votes_deadline => 50.days.from_now,:maxmovies => 100,:description => Faker::Lorem.paragraph(1+rand(10)))
   end
 end
 

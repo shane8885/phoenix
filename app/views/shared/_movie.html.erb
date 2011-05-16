@@ -1,16 +1,18 @@
 <tr>
-    <td>
+    <td id="movie_thumbnail">
       <%= link_to insert_poster(movie,100), :action => "show", :id => movie.id %>
     </td>
-    <td width="20%">
-        <%= movie.name %><br>
-        <%= movie.released %><br>
-        User Rating: <%= movie.rating %>
+    <td class="movie_info">
+        <span id="movie_title"><%= movie.name %></span>
+        <span id="movie_release">     (<%= movie.released %>)</span><br>
+        <span id="movie_overview"><%= truncate(movie.overview, :length => 200) %></span>
     </td>
-    <td>
-        <%= movie.overview %>
-        <div class="right">
-            <%= link_to "show", :action => "show", :id => movie.id %>
-        </div>
+    <td class="movie_rating">
+      Rating<br>
+      <span id="movie_rating"><%= movie.rating %></span><br>
+      ( <%= movie.votes %> votes )
+    </td>
+    <td id="movie_buttons">
+      <%= link_to "show", { :action => "show", :id => movie.id }, :class => 'member_link'%>
     </td>
 </tr>
