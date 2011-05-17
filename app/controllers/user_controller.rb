@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   before_filter :authenticate_user!
   
-  def index
+  def search
     @attendance = Attendance.new
     @events = current_user.events
     @users = User.all.paginate(:page => params[:page], :per_page => 15)

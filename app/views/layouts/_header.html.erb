@@ -29,7 +29,7 @@
             <li><%= link_to "MyHome", "/user/#{current_user.id}" %></li>
             <li><%= link_to "Account", edit_user_registration_path %></li>
             <li><%= link_to "Events", events_path %></li>
-            <li><%= link_to "Users", "/user" %></li>
+            <li><%= link_to "Users", search_user_index_path %></li>
           <% else %>
             <li><%= link_to "Sign in", new_user_session_path %></li>
             <li><%= link_to "Sign up", new_user_registration_path %></li>

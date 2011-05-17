@@ -1,10 +1,9 @@
 body {
-  background:#ffffff
+  background:white;
 }
 
 #content {
-  background:#ffffff
-  border: 2px solid black;
+  background:white;
 }
 
 a.signup_button {
@@ -96,6 +95,27 @@ a.signup_button {
   -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* webkit box shadow */
 }
 
+.member_button {
+  background: #333;
+  border:1px solid gray;
+  border-radius: 8px; /*w3c border radius*/
+  -webkit-border-radius: 8px; /* webkit border radius */
+  box-shadow: 3px 3px 4px rgba(0,0,0,.5); /* w3c box shadow */
+  -webkit-box-shadow: 3px 3px 4px rgba(0,0,0,.5); /* webkit box shadow */
+  padding: 10px;
+  color: #ccc;
+  font-family: "Verdana", sans-serif;
+  margin-bottom: 5px;
+}
+
+.member_button:hover {
+  background: #ff6;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* w3c box shadow */
+  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* webkit box shadow */
+}
+
 .gradientbuttons li a:hover{
 color: lightyellow;
 }
@@ -111,6 +131,7 @@ color: lightyellow;
 table.selections tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
 table.events tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
 table.movies tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
+table.invitations tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
 table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
 
 table.selections {
@@ -214,6 +235,48 @@ td.movie_rating {
 	background-color: white;
 	vertical-align: center;
 	text-align: left;
+}
+
+.invitations {
+  border-width: 0px;
+	border-spacing: 6px 10px;
+	border-collapse: separate;
+	background-color: white;
+}
+
+.invitations td {
+	border-width: 1px;
+	padding: 2px;
+	border-style: solid;
+	border-color: lemonchiffon;
+	vertical-align: center;
+	background-color: lemonchiffon;
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#invitation_thumbnail {
+	background-color: white;
+	vertical-align: center;
+	margin-right: 0px;
+	text-align: right;
+	width: 40px;
+}
+
+#invitation_inviter {
+  font-size: 150%;
+}
+
+#invitation_event {
+  font-size: 150%;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.invitation_button {
+  width: 50px;
 }
 
 table.events {

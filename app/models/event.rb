@@ -3,6 +3,7 @@ class Event < ActiveRecord::Base
     
     belongs_to :user
     has_many :selections, :dependent => :destroy
+    has_many :attendances, :dependent => :destroy
     has_many :official_selections, :class_name => 'Selection', :conditions => {:official => true}
     has_many :unofficial_selections, :class_name => 'Selection', :conditions => {:official => false}
     has_many :accepted_invitations, :class_name => 'Attendance', :conditions => {:confirmed => true}

@@ -1,18 +1,25 @@
+<h1><%= @event.name %></h1>
+<h3>Offical Selections</h3>
 <% if not @official.empty? %>
-    <h3>Offical Selections</h3>
+    
     <div class="selections">
       <table class="selections">
           <%= render :partial => 'shared/selection', :collection => @official %>
       </table>
       <%= will_paginate @official,:param_name => 'official_page'  %>
     </div>
+<% else %>
+  <p>No selections have been made official</p>
 <% end %>
+<br>
+<h3>Unoffical Selections</h3>
 <% if not @unofficial.empty? %>
-    <h3>Unoffical Selections</h3>
     <div class="selections">
       <table class="selections">
           <%= render :partial => 'shared/selection', :collection => @unofficial %>
       </table>
       <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>
     </div>
+<% else %>
+  <p>No unofficial selections have been made. <%= link_to "add selection now", movies_search_path %></p>
 <% end %>

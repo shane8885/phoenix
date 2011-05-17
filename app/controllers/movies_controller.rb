@@ -8,14 +8,9 @@ class MoviesController < ApplicationController
       #TODO: handle case where movie not found, need to present an error
         @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
         if( user_signed_in? )
-            @selection = current_user.selections.build()
-            if( current_user.admin? )
-              #admin can see everything
-              @events = Event.all
-            else
-              #user just sees their events
-              @events = current_user.all_events
-            end
+          @selection = current_user.selections.build()
+          #user just sees their events
+          @events = current_user.all_events
         end
         
         if( @movie.class == Array and @movie.length == 0 )

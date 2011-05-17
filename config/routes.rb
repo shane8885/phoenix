@@ -14,7 +14,11 @@ Phoenix::Application.routes.draw do
   #devise user registration
   devise_for :users
   #additonal admin actions and user show action
-  resources :user
+  resources :user do
+    collection do
+      get 'search'
+    end
+  end
   
   get "movies/search"
 
