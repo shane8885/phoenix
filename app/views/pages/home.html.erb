@@ -13,8 +13,10 @@
         <li>Invite your friends
         <li>Launch the event
     </ul>
-</div>
-<div class="span-6 box">
-    <%= link_to "Sign up now!",new_user_registration_path, :class => "signup_button" %>
-</div>
+  </div>
+<% if not user_signed_in? %>
+  <div class="span-6 box">
+      <%= link_to "Sign up now!",new_user_registration_path, :class => "signup_button" %>
+  </div>
+<% end %>
 <%= image_tag('free_stamp.jpg',:alt => 'free', :height => 200 ) %>

@@ -31,6 +31,22 @@
     <td class="event_detail_name">Votes per attendee</td>
     <td><span class="event_detail_value"><%= @event.votes_per_attendee %></span></td>
   </tr>
+  <tr>
+    <td class="event_detail_name">Voting is</td>
+    <% if @event.open_for_voting? %>
+      <td><span class="open">Open</span></td>
+    <% else %>
+      <td><span class="closed">Closed</span></td>
+    <% end %>
+  </tr>
+  <tr>
+    <td class="event_detail_name">Selections are</td>
+    <% if @event.open_for_selections? %>
+      <td><span class="open">Open</span></td>
+    <% else %>
+      <td><span class="closed">Closed</span></td>
+    <% end %>
+  </tr>
   <% if current_user.invited_to?(@event) %>
   <tr>
     <td class="event_detail_name">Your Selections</td> 

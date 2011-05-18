@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
         if( user_signed_in? )
           @selection = current_user.selections.build()
           #user just sees their events
-          @events = current_user.all_events
+          @events = current_user.open_selection_events
         end
         
         if( @movie.class == Array and @movie.length == 0 )

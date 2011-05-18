@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-    attr_accessible :name, :description, :public, :maxmovies, :start, :selections_deadline, :votes_deadline
+    attr_accessible :name, :description, :public, :maxmovies, :start, :selections_deadline, :votes_deadline, :open_for_voting, :open_for_selections
     
     belongs_to :user
     has_many :selections, :dependent => :destroy

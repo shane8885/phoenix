@@ -10,14 +10,19 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :selections
   
+  # relationships with Attendance model
   has_many :all_invitations, :class_name => 'Attendance', :foreign_key => :attending_id
   has_many :open_invitations, :class_name => 'Attendance', :foreign_key => :attending_id, :conditions => {:confirmed => false}
   has_many :accepted_invitations, :class_name => 'Attendance', :foreign_key => :attending_id, :conditions => {:confirmed => true}
-  has_many :all_events, :class_name => 'Event', :through => :all_invitations, :source => :event
-  has_many :accepted_events, :class_name => 'Event', :through => :accepted_invitations, :source => :event
-  has_many :open_events, :class_name => 'Event', :through => :open_invitations, :source => :event
-  
   has_many :sentinvitations, :class_name => 'Attendance', :foreign_key => :inviting_id
+  
+  # relationships with Event model (through attendances)
+  has_many :all_events, :class_name => 'Event', :through => :all_invitations, :source => :event
+  has_many :open_selection_events, :class_name => 'Event', :through => :all_invitations, :source => :event, :conditions => {:open_for_selections => true}
+  has_many :accepted_invitation_events, :class_name => 'Event', :through => :accepted_invitations, :source => :event
+  has_many :open_invitation_events, :class_name => 'Event', :through => :open_invitations, :source => :event
+  
+  # relationships with other users
   has_many :invitees, :class_name => 'User', :through => :sentinvitations, :source => :attending
   
   validates_presence_of :username

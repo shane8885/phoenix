@@ -272,8 +272,19 @@ table.event_details {
 
 .event_quota {
   font-size: 125%;
-  padding-left: 10px;
   color: seagreen;
+}
+
+.open {
+  font-size: 125%;
+  padding: 3px 10px;
+  background: lightgreen;
+}
+
+.closed {
+  font-size: 125%;
+  padding: 3px 10px;
+  background: tomato;
 }
 
 .event_detail_name {
@@ -294,8 +305,6 @@ table.event_details {
 	vertical-align: center;
 	text-align: center;
 	display:block;
-	border-bottom: none;
-	border:1px outset #ccc;
 	font-family: Georgia, serif;
 	min-width: 60px;
 	max-width: 60px;
@@ -305,7 +314,7 @@ table.event_details {
 	font-size: .9em;
 	margin:0; 
 	padding:0;
-	background: #ff6;
+	background: lightblue;
 }
 .day { 
 	display:block; 
@@ -320,7 +329,7 @@ table.event_details {
 	font-size: .9em;
 	margin:0; 
 	padding:0;  
-	background:#ff6;
+	background: lightblue;
 }
 
 #event_buttons {

@@ -6,21 +6,27 @@ class SelectionsController < ApplicationController
   def create
     selection = Selection.new(params[:selection])
     event = Event.find(selection.event_id)
-    attendance = Attendance.find_by_event_id_and_attending_id(event.id,current_user.id)
-    attendance.selections_remaining -= 1
     
-    respond_to do |format|
-      # this will fail if selections_remaining has gone below 0
-      if attendance.save
-        if selection.save
-          flash[:notice] = 'Selection was successfully created.'
+    if( event.open_for_selections? )
+      attendance = Attendance.find_by_event_id_and_attending_id(event.id,current_user.id)
+      attendance.selections_remaining -= 1
+    
+      respond_to do |format|
+        # this will fail if selections_remaining has gone below 0
+        if attendance.save
+          if selection.save
+            flash[:notice] = 'Selection was successfully created.'
+          else
+            flash[:error] = 'Failed to create selection.'
+          end
         else
-          flash[:error] = 'Failed to create selection.'
+          flash[:error] = 'You have no selections remaining.'
         end
-      else
-        flash[:error] = 'You have no selections remaining.'
+        format.html { redirect_to event }
       end
-      format.html { redirect_to event }
+    else
+      flash[:error] = 'Event not open for selections.'
+      redirect_to root_path
     end
   end
 
@@ -44,10 +50,10 @@ class SelectionsController < ApplicationController
     
     respond_to do |format|
       if voting_ok and selection.update_attributes(params[:selection] )
-        format.html { redirect_to(event, :notice => 'Successfully updated selection.') }
+        format.html { redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.') }
         format.xml  { head :ok }
       else
-        format.html { redirect_to event }
+        format.html { redirect_to selections_event_path(event) }
       end
     end
   end

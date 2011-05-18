@@ -8,10 +8,12 @@
   </td>
   <td id="votes" width="60">Votes<br> <strong><font size="5"><%= selection.votes %></font></strong></td>
   <td id="row_buttons">
-    <% form_for selection do |f| %>
-      <%= f.hidden_field :votes, :value => selection.votes+1 %>
-      <%= hidden_field_tag :voting, :value => 1 %>
-      <%= f.submit "Vote", :class => "button_as_hyperlink" %>
+    <% if current_user.invited_to?(Event.find(selection.event_id)) %>
+      <% form_for selection do |f| %>
+        <%= f.hidden_field :votes, :value => selection.votes+1 %>
+        <%= hidden_field_tag :voting, :value => 1 %>
+        <%= f.submit "Vote", :class => "button_as_hyperlink" %>
+      <% end %>
     <% end %>
     <% if current_user.authorized?(selection.user_id) %>
       <%= link_to 'Remove',selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?' %>
