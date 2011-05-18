@@ -1,7 +1,7 @@
 <h1>Search Results</h1>
 <% unless @movies.empty? %>
     <%= will_paginate @movies %>
-    <table class="movies" summary="Movie search results">
+    <table class="phoenix_table" summary="Movie search results">
         <%= render :partial => 'shared/movie', :collection => @movies %>
     </table>
     <%= will_paginate @movies %>

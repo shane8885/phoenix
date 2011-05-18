@@ -7,7 +7,7 @@ Find by username <% form_tag search_user_index_path, :method => 'get' do %>
 <br>
 <% if not @users.nil? %>
   <%= will_paginate @users %>
-  <table :class="users">
+  <table class="phoenix_table">
     <%= render :partial => 'shared/user', :collection => @users %>
   </table>
   <%= will_paginate @users %>

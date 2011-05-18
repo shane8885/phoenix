@@ -6,7 +6,7 @@
 </table>
 <h3>My Events</h3>
 <% if not @user.events.empty? %>
-  <table class="events">
+  <table class="phoenix_table">
     <%= render :partial => 'shared/event', :collection => @user.events %>
   </table>
 <% else %>
@@ -14,7 +14,7 @@
 <% end %>
 <h3>Attending Events</h3>
 <% if not @user.accepted_events.empty? %>
-  <table class="events">
+  <table class="phoenix_table">
       <%= render :partial => 'shared/attending_event', :collection => @user.accepted_events %>
   </table>
 <% else %>
@@ -22,7 +22,7 @@
 <% end %>
 <h3>Invitations</h3>
 <% if not @user.open_invitations.empty? %>
-  <table class="invitations">
+  <table class="phoenix_table">
       <%= render :partial => 'shared/invitation', :collection => @user.open_invitations %>
   </table>
 <% else %>

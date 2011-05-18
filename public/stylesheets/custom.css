@@ -128,20 +128,19 @@ color: lightyellow;
   text-decoration: underline;
 }
 
-table.selections tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
-table.events tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
-table.movies tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
-table.invitations tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
+/* TABLE STYLING */
+
+table.phoenix_table tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
 table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
 
-table.selections {
-	border-width: 0px;
+table.phoenix_table {
+  border-width: 0px;
 	border-spacing: 6px 10px;
 	border-collapse: separate;
 	background-color: white;
 }
 
-table.selections td {
+table.phoenix_table td {
 	border-width: 0px;
 	padding: 2px;
 	border-style: solid;
@@ -154,13 +153,7 @@ table.selections td {
   border-radius: 5px;
 }
 
-table.selections td#votes {
-	background-color: lightblue;
-	vertical-align: center;
-	text-align: center;
-}
-
-table.selections td#selection_image {
+#row_image {
 	background-color: white;
 	vertical-align: center;
 	margin-right: 0px;
@@ -168,43 +161,36 @@ table.selections td#selection_image {
 	width: 40px;
 }
 
-table.selections td#selection_info {
+#row_buttons {
+	background-color: white;
+	vertical-align: center;
+	text-align: left;
+}
+
+#votes {
+	background-color: lightblue;
+	vertical-align: center;
+	text-align: center;
+}
+
+#selection_info {
   width: 250px;
   padding-left: 10px;
 }
 
-table.selections td#selection_buttons {
+#selection_buttons {
 	background-color: white;
 	vertical-align: center;
 	text-align: left;
 	width: 100px;
 }
 
-.movies {
-  border-width: 0px;
-	border-spacing: 6px 10px;
-	border-collapse: separate;
-	background-color: white;
-}
-
-.movies td {
-	border-width: 1px;
-	padding: 2px;
-	border-style: solid;
-	border-color: lemonchiffon;
-	vertical-align: center;
-	background-color: lemonchiffon;
-	-moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-
-td.movie_rating {
+#movie_rating_cell {
   width: 70px;
   text-align: center;
   background-color: lightblue;
 }
+
 #movie_rating {
   font-weight: bold;
   font-size: 200%;
@@ -237,34 +223,6 @@ td.movie_rating {
 	text-align: left;
 }
 
-.invitations {
-  border-width: 0px;
-	border-spacing: 6px 10px;
-	border-collapse: separate;
-	background-color: white;
-}
-
-.invitations td {
-	border-width: 1px;
-	padding: 2px;
-	border-style: solid;
-	border-color: lemonchiffon;
-	vertical-align: center;
-	background-color: lemonchiffon;
-	-moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-
-#invitation_thumbnail {
-	background-color: white;
-	vertical-align: center;
-	margin-right: 0px;
-	text-align: right;
-	width: 40px;
-}
-
 #invitation_inviter {
   font-size: 150%;
 }
@@ -275,36 +233,13 @@ td.movie_rating {
   font-style: italic;
 }
 
+#user_name {
+  font-size: 150%;
+  font-weight: bold;
+}
+
 .invitation_button {
   width: 50px;
-}
-
-table.events {
-	border-width: 0px;
-	border-spacing: 6px 10px;
-	border-collapse: separate;
-	background-color: white;
-}
-
-table.events td {
-	border-width: 1px;
-	padding: 2px;
-	border-style: solid;
-	border-color: lemonchiffon;
-	vertical-align: center;
-	background-color: lemonchiffon;
-	-moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-}
-
-table.events td#event_image {
-	background-color: white;
-	vertical-align: center;
-	margin-right: 0px;
-	text-align: right;
-	width: 40px;
 }
 
 table.event_details {
@@ -350,6 +285,11 @@ table.event_details {
   padding: 3px 10px;
 }
 
+.event_detail_quota {
+  background: lightblue;
+  padding: 3px 10px;
+}
+
 .date {
 	vertical-align: center;
 	text-align: center;
@@ -383,7 +323,7 @@ table.event_details {
 	background:#ff6;
 }
 
-table.events td#event_buttons {
+#event_buttons {
 	background-color: white;
 	vertical-align: center;
 	text-align: left;

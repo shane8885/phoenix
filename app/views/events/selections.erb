@@ -1,25 +1,31 @@
-<h1><%= @event.name %></h1>
-<h3>Offical Selections</h3>
+<h1><%= link_to(@event.name,@event) %></h1>
+<% if current_user.invited_to?(@event) %>
+  <table class="event_details"><tr>
+    <td class="event_detail_name">Your Selections</td> 
+    <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections remaining</span></td>
+  </tr>
+  <tr>  
+    <td class="event_detail_name">Your Votes</td>
+    <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</span></td>
+    </td>
+  </tr></table>
+<% end %>
+<h3>Official Selections</h3>
 <% if not @official.empty? %>
-    
-    <div class="selections">
-      <table class="selections">
-          <%= render :partial => 'shared/selection', :collection => @official %>
-      </table>
-      <%= will_paginate @official,:param_name => 'official_page'  %>
-    </div>
+    <table class="phoenix_table">
+        <%= render :partial => 'shared/selection', :collection => @official %>
+    </table>
+    <%= will_paginate @official,:param_name => 'official_page'  %>
 <% else %>
   <p>No selections have been made official</p>
 <% end %>
 <br>
 <h3>Unoffical Selections</h3>
 <% if not @unofficial.empty? %>
-    <div class="selections">
-      <table class="selections">
-          <%= render :partial => 'shared/selection', :collection => @unofficial %>
-      </table>
-      <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>
-    </div>
+    <table class="phoenix_table">
+        <%= render :partial => 'shared/selection', :collection => @unofficial %>
+    </table>
+    <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>
 <% else %>
   <p>No unofficial selections have been made. <%= link_to "add selection now", movies_search_path %></p>
 <% end %>

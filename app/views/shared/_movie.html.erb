@@ -7,7 +7,7 @@
         <span id="movie_release">     (<%= movie.released %>)</span><br>
         <span id="movie_overview"><%= truncate(movie.overview, :length => 200) %></span>
     </td>
-    <td class="movie_rating">
+    <td id="movie_rating_cell">
       Rating<br>
       <span id="movie_rating"><%= movie.rating %></span><br>
       ( <%= movie.votes %> votes )

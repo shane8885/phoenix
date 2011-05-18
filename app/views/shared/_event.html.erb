@@ -1,5 +1,5 @@
 <tr>
-  <td id="event_image"><%= image_tag( event_poster_url(event), :height => "60") %></td>
+  <td id="row_image"><%= image_tag( event_poster_url(event), :height => "60") %></td>
   <td><span class="event_name"><%= event.name %></span><br>
   <span class="event_description"><%= truncate(event.description, :length => 60) %></span></td>
   <td><span class="event_owner"><%= User.find(event.user_id).username %></span></td>
@@ -8,7 +8,7 @@
     <span class="day"><%= event.start.strftime("%d") %></span>
     <span class="year"><%= event.start.strftime("%Y") %></span>
   </td>
-  <td id="event_buttons">
+  <td id="row_buttons">
   <% if user_signed_in? %>
     <% if current_user.authorized?(event.user_id) or current_user.invited_to?(event) %>
       <%= link_to 'Show', event %>

@@ -1,20 +1,6 @@
 <h1><%= @movie.name %></h1>
 <div class="span-6">
     <%= insert_poster(@movie,300) %>
-    <% if user_signed_in? %>
-        Unofficial selection for
-        <% form_for @selection do |f| %>
-            <div class="field">
-                <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
-            </div>
-            <%= f.hidden_field :user_id %>
-            <%= f.hidden_field :movie_id, :value => @movie.id %>
-            <%= f.hidden_field :movie_name, :value => @movie.name %>
-            <%= f.hidden_field :running_time, :value => @movie.runtime %>
-            <%= f.hidden_field :poster, :value => get_poster_url(@movie) %>
-            <%= f.submit "Select" %>
-        <% end %>
-    <% end %>
 </div>
 <div class="span-10">
     <table>
@@ -45,6 +31,22 @@
         <tr>
             <td>Description</td>
             <td><%= @movie.overview %></td>
+        </tr>
+        <tr>
+          <td>Select For
+          <td>
+            <% if user_signed_in? %>
+              <% form_for @selection do |f| %>
+                <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
+                <%= f.hidden_field :user_id %>
+                <%= f.hidden_field :movie_id, :value => @movie.id %>
+                <%= f.hidden_field :movie_name, :value => @movie.name %>
+                <%= f.hidden_field :running_time, :value => @movie.runtime %>
+                <%= f.hidden_field :poster, :value => get_poster_url(@movie) %>
+                <%= f.submit "Select" %>
+              <% end %>
+            <% end %>
+          </td>
         </tr>
     </table>
 </div>

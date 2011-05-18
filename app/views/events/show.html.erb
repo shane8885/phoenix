@@ -12,33 +12,33 @@
     </td>
   </tr>
   <tr>
-    <td class="event_detail_name">Selections Deadline:</td>
+    <td class="event_detail_name">Selections Deadline</td>
     <td><span class="event_detail_value"><%= @event.selections_deadline %></span></td>
   </tr>
   <tr>
-    <td class="event_detail_name">Votes Deadline:</td>
+    <td class="event_detail_name">Votes Deadline</td>
     <td><span class="event_detail_value"><%= @event.votes_deadline %></span></td>
   </tr>
   <tr>
-    <td class="event_detail_name">Maxmovies:</td>
+    <td class="event_detail_name">Maxmovies</td>
     <td><span class="event_detail_value"><%= @event.maxmovies %></span></td>
   </tr>
   <tr>
-    <td class="event_detail_name">Selections per attendee:</td>
+    <td class="event_detail_name">Selections per attendee</td>
     <td><span class="event_detail_value"><%= @event.selections_per_attendee %></span></td>
   </tr>
   <tr>
-    <td class="event_detail_name">Votes per attendee:</td>
+    <td class="event_detail_name">Votes per attendee</td>
     <td><span class="event_detail_value"><%= @event.votes_per_attendee %></span></td>
   </tr>
   <% if current_user.invited_to?(@event) %>
   <tr>
-    <td class="event_detail_name">Selections</td> 
-    <td><span class="event_detail_value"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections remaining</span></td>
+    <td class="event_detail_name">Your Selections</td> 
+    <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections remaining</span></td>
   </tr>
   <tr>  
-    <td class="event_detail_name">Votes</td>
-    <td><span class="event_detail_value"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</span></td>
+    <td class="event_detail_name">Your Votes</td>
+    <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</span></td>
     </td>
   </tr>
   <% end %>

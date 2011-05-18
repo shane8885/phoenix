@@ -1,5 +1,5 @@
 <tr>
-  <td id="selection_image">
+  <td id="row_image">
     <%= link_to image_tag(selection.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => selection.movie_id %>
   </td>
   <td id="selection_info">
@@ -7,7 +7,7 @@
      Running Time: <strong><%= selection.running_time %></strong>
   </td>
   <td id="votes" width="60">Votes<br> <strong><font size="5"><%= selection.votes %></font></strong></td>
-  <td id="selection_buttons">
+  <td id="row_buttons">
     <% form_for selection do |f| %>
       <%= f.hidden_field :votes, :value => selection.votes+1 %>
       <%= hidden_field_tag :voting, :value => 1 %>

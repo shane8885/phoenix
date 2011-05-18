@@ -1,17 +1,17 @@
+<h1><%= link_to(@event.name,@event) %></h1>
+<h3>Confirmed Attendees</h3>
 <% if not @event.confirmed_attendees.empty? %>
-    <h3>Confirmed Attendees</h3>
-    <div class="attendees">
-        <table class="attendees_table">
-            <%= render :partial => 'shared/attendee', :collection => @event.confirmed_attendees %>
-        </table>
-    </div>
+    <table class="phoenix_table">
+        <%= render :partial => 'shared/attendee', :collection => @event.confirmed_attendees %>
+    </table>
+<% else %>
+  <p>No confirmed attendees</p>
 <% end %>
-
+<h3>Unconfirmed Attendees</h3>
 <% if not @event.unconfirmed_attendees.empty? %>
-    <h3>Unconfirmed Attendees</h3>
-    <div class="attendees">
-        <table class="attendees_table">
-            <%= render :partial => 'shared/attendee', :collection => @event.unconfirmed_attendees %>
-        </table>
-    </div>
+  <table class="phoenix_table">
+      <%= render :partial => 'shared/attendee', :collection => @event.unconfirmed_attendees %>
+  </table>
+<% else %>
+  <p>No unconfirmed attendees</p>
 <% end %>

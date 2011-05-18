@@ -1,6 +1,6 @@
 <tr>
   <% inviter = User.find(invitation.inviting_id) %>
-  <td id="invitation_thumbnail"><%= gravatar_image_tag(inviter.email,:alt => inviter.username,:class => 'small-gravatar') %></td>
+  <td id="row_image"><%= gravatar_image_tag(inviter.email,:alt => inviter.username,:class => 'small-gravatar') %></td>
   <td id="invitation_inviter"><%= inviter.username %> invites you to <span id="invitation_event"><%= Event.find(invitation.event_id).name %>!</span></td>
   <td><%= invitation.selections_remaining %> Selecionts</td>
   <td><%= invitation.votes_remaining %> Votes</td>
