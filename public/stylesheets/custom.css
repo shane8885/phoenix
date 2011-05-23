@@ -1,9 +1,10 @@
 body {
-  background:white;
+  background:#333;
 }
 
 #content {
   background:white;
+  margin: 10px;
 }
 
 a.signup_button {
@@ -18,9 +19,14 @@ a.signup_button {
     padding: 15px;
 }
 
+#mainview {
+  background: #white;
+  border-radius: 16px; /*w3c border radius*/
+  -webkit-border-radius: 16px; /* webkit border radius */
+}
 /* header styling */
 #header {
-  background:#333333;
+  background:#333;
   border-color: blue;
   border-style: solid;
   padding-top: 10px;
@@ -32,7 +38,6 @@ a.signup_button {
   font-weight: bold;
   color: white;
   text-shadow: 3px 3px 5px #959595;
-  padding-left: 10px;
 }
 
 #header a {
@@ -41,8 +46,23 @@ a.signup_button {
 }
 
 #sidebar {
-  background: #aaa;
+  background: none;
   min-height: 600px;
+  padding-top: 20px;
+}
+
+.logininfo {
+  color: white;
+  text-align: right;
+}
+
+.logininfo a{
+  text-decoration: none;
+  color: yellow;
+}
+
+.logininfo a:hover {
+  text-decoration: underline;
 }
 
 .action_link {
@@ -118,14 +138,6 @@ a.signup_button {
 
 .gradientbuttons li a:hover{
 color: lightyellow;
-}
-
-#logininfo a{
-  text-decoration: none;
-}
-
-#logininfo a:hover {
-  text-decoration: underline;
 }
 
 /* TABLE STYLING */
