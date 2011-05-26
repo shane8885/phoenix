@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event_id: 1
+  selection_id: 1
+  start: 2011-05-23 19:29:24
+
+two:
+  event_id: 1
+  selection_id: 1
+  start: 2011-05-23 19:29:24

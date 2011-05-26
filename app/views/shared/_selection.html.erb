@@ -3,22 +3,16 @@
     <%= link_to image_tag(selection.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => selection.movie_id %>
   </td>
   <td id="selection_info">
-     <strong><font size="2"><%= selection.movie_name %></font></strong><br>
+     <span id="selection_name"><%= selection.movie_name %></span><br>
      Running Time: <strong><%= selection.running_time %></strong>
   </td>
   <td id="votes" width="60">Votes<br> <strong><font size="5"><%= selection.votes %></font></strong></td>
   <td id="row_buttons">
     <% if current_user.invited_to?(Event.find(selection.event_id)) %>
-      <% form_for selection do |f| %>
-        <%= f.hidden_field :votes, :value => selection.votes+1 %>
-        <%= hidden_field_tag :voting, :value => 1 %>
-        <%= f.submit "Vote", :class => "button_as_hyperlink" %>
-      <% end %>
+      <%= link_to 'Add Vote',vote_selection_path(selection), :method => :put %><br>
     <% end %>
     <% if current_user.authorized?(selection.user_id) %>
       <%= link_to 'Remove',selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?' %>
     <% end %>
-  </td>
-  <!-- this extra column is just here to fill out the rest of the of the space -->
   </td>
 </tr>

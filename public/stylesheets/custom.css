@@ -148,7 +148,7 @@ table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:wh
 table.phoenix_table {
   border-width: 0px;
 	border-spacing: 6px 10px;
-	border-collapse: separate;
+  border-collapse: separate;
 	background-color: white;
 }
 
@@ -156,7 +156,7 @@ table.phoenix_table td {
 	border-width: 0px;
 	padding: 2px;
 	border-style: solid;
-	border-color: lemonchiffon;
+	border-color: gray;
 	vertical-align: center;
 	background-color: lemonchiffon;
 	-moz-border-radius: 5px;
@@ -188,6 +188,17 @@ table.phoenix_table td {
 #selection_info {
   width: 250px;
   padding-left: 10px;
+}
+
+#selection_name {
+  font-weight: bold;
+  font-size: 125%;
+  color: black;
+}
+
+#session_time {
+  text-align: center;
+  width: 100px;
 }
 
 #selection_buttons {
@@ -252,6 +263,7 @@ table.phoenix_table td {
 
 .invitation_button {
   width: 50px;
+  background: white;
 }
 
 table.event_details {
@@ -318,8 +330,7 @@ table.event_details {
 	text-align: center;
 	display:block;
 	font-family: Georgia, serif;
-	min-width: 60px;
-	max-width: 60px;
+	width: 60px;
 }
 .month {
 	display:block; 
@@ -334,7 +345,7 @@ table.event_details {
 	font-weight: bold;
 	margin:0; 
 	padding:0;  
-	background:#fff;
+	background:white;
 }
 .year { 
 	display:block; 
@@ -378,19 +389,6 @@ table.event_details {
 #errorExplanation ul li {
     font-size: 12px;
     list-style: square;
-}
-
-/* style a button to look like a link */
-.button_as_hyperlink {
-  background-color: transparent;
-  border: none;
-  color: #1f44ff;
-  text-decoration: underline;
-}
-
-.button_as_hyperlink:hover {
-  cursor: pointer;
-  color: #f544ff;
 }
 
 .menu{

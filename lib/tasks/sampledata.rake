@@ -8,6 +8,7 @@ namespace :db do
     make_events
     make_selections
     make_attendances
+    make_sessions
   end
 end
 
@@ -59,6 +60,14 @@ def make_attendances
         confirmed = true
       end
       Attendance.create(:attending_id => rand(100),:inviting_id => rand(100),:event_id => event.id,:selector => true,:confirmed => confirmed, :selections_remaining => event.selections_per_attendee, :votes_remaining => event.votes_per_attendee )
+    end
+  end
+end
+
+def make_sessions
+  Event.all.each do |event|
+    Selection.find_all_by_event_id(event.id).each do |selection|
+      Session.create!( :event_id => event.id, :selection_id => selection.id, :start => rand(100).days.from_now + rand(100).minutes )
     end
   end
 end

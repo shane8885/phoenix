@@ -1,13 +1,22 @@
 Phoenix::Application.routes.draw do
 
-  resources :attendances, :except => [:index, :show]
+  resources :attendances, :except => [:index, :show, :update] do
+    member do
+      put 'accept'
+    end
+  end
 
-  resources :selections, :except => [:index, :show]
+  resources :selections, :except => [:index, :show, :update] do
+    member do
+      put 'vote'
+    end
+  end
 
   resources :events do
     member do
       get 'selections'
       get 'attendees'
+      get 'schedule'
     end
   end
   

@@ -45,6 +45,16 @@ class EventsController < ApplicationController
     end
   end
   
+  def schedule
+    @event = Event.find(params[:id])
+    @sessions = @event.sessions
+    
+    # check that current user owns this event or that current user is admin
+    if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
+      action_not_permitted
+    end
+  end
+  
   # GET /events/new
   # GET /events/new.xml
   def new

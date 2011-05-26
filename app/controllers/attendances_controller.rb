@@ -1,16 +1,5 @@
 class AttendancesController < ApplicationController
   before_filter :authenticate_user!
-  
-  # GET /attendances
-  # GET /attendances.xml
-  def index
-    @attendances = Attendance.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @attendances }
-    end
-  end
 
   # POST /attendances
   # POST /attendances.xml
@@ -30,23 +19,14 @@ class AttendancesController < ApplicationController
       end
     end
   end
-
-  # PUT /attendances/1
-  # PUT /attendances/1.xml
-  def update
+  
+  # PUT /attendances/1/accept
+  def accept
     attendance = Attendance.find(params[:id])
-
-    respond_to do |format|
-      if attendance.update_attributes(params[:attendance])
-        format.html { redirect_to(current_user, :notice => 'Attendance was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => attendance.errors, :status => :unprocessable_entity }
-      end
-    end
+    attendance.update_attribute(:confirmed, true)
+    redirect_to(current_user, :notice => 'Attendance was successfully updated.')
   end
-
+  
   # DELETE /attendances/1
   # DELETE /attendances/1.xml
   def destroy
