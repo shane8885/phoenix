@@ -2,9 +2,8 @@
   <% inviter = User.find(invitation.inviting_id) %>
   <td id="row_image"><%= gravatar_image_tag(inviter.email,:alt => inviter.username,:class => 'small-gravatar') %></td>
   <td id="invitation_inviter"><%= inviter.username %> invites you to <span id="invitation_event"><%= Event.find(invitation.event_id).name %>!</span></td>
-  <td><%= invitation.selections_remaining %> Selecionts</td>
-  <td><%= invitation.votes_remaining %> Votes</td>
-  <td class="row_buttons">
+  <td>You'll get <%= invitation.selections_remaining %> Selections and <%= invitation.votes_remaining %> Votes</td>
+  <td id="row_buttons">
     <%= link_to 'Accept', accept_attendance_path(invitation), :method => :put %><br>
     <%= link_to 'Decline', invitation, :confirm => 'Are you sure you want to remove this invitation?', :method => :delete %>
   </td>
