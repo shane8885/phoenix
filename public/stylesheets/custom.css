@@ -46,7 +46,7 @@ a.signup_button {
 }
 
 #sidebar {
-  background: none;
+  background: white;
   min-height: 600px;
   padding-top: 20px;
 }
@@ -95,22 +95,22 @@ a.signup_button {
 .member_link {
   display: inline;
   text-align: center;
-  background: #333;
+  background: lightblue;
   border:1px solid gray;
   border-radius: 8px; /*w3c border radius*/
   -webkit-border-radius: 8px; /* webkit border radius */
   box-shadow: 3px 3px 4px rgba(0,0,0,.5); /* w3c box shadow */
   -webkit-box-shadow: 3px 3px 4px rgba(0,0,0,.5); /* webkit box shadow */
-  padding: 10px;
+  padding: 5px;
   text-decoration: none;
-  color: #ccc;
+  color: black;
   font-family: "Verdana", sans-serif;
   margin-bottom: 5px;
 }
 
 .member_link:hover {
   background: #ff6;
-  color: #000;
+  color: black;
   box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* w3c box shadow */
   -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* webkit box shadow */
 }
