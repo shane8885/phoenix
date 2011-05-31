@@ -1,5 +1,5 @@
 body {
-  background:#333;
+  background:white;
 }
 
 #content {
@@ -20,6 +20,7 @@ a.signup_button {
 }
 
 #mainview {
+  display: block;
   background: #white;
   border-radius: 16px; /*w3c border radius*/
   -webkit-border-radius: 16px; /* webkit border radius */
@@ -52,13 +53,13 @@ a.signup_button {
 }
 
 .logininfo {
-  color: white;
+  color: black;
   text-align: right;
 }
 
 .logininfo a{
   text-decoration: none;
-  color: yellow;
+  color: blue;
 }
 
 .logininfo a:hover {
