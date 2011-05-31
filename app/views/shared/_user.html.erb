@@ -1,5 +1,7 @@
 <tr>
-  <td id="row_image"><%= gravatar_image_tag(user.email,:alt => user.username,:class => 'small-gravatar') %>
+  <td id="row_image">
+    <%= gravatar_image_tag(user.email,:alt => user.username,:class => 'small-gravatar') %>
+  </td>
   <td id="user_name"><%= user.username %></td>
   <td>
   <% if @events.count > 0 %>

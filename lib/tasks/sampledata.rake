@@ -9,6 +9,7 @@ namespace :db do
     make_selections
     make_attendances
     make_sessions
+    make_comments
   end
 end
 
@@ -68,6 +69,15 @@ def make_sessions
   Event.all.each do |event|
     Selection.find_all_by_event_id(event.id).each do |selection|
       Session.create!( :event_id => event.id, :selection_id => selection.id, :start => rand(100).days.from_now + rand(100).minutes )
+    end
+  end
+end
+
+def make_comments
+  Event.all.each do |event|
+    rand(10).times do
+      user = User.find(rand(99))
+      EventComment.create!( :event_id => event.id, :user_id => user.id, :comment => Faker::Lorem.paragraph(1 + rand(15)))
     end
   end
 end

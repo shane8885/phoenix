@@ -21,7 +21,9 @@ Phoenix::Application.routes.draw do
       get 'schedule'
     end
   end
-  
+
+  resources :event_comments, :except => [:index,:show,:update]  
+    
   #devise user registration
   devise_for :users
   #additonal admin actions and user show action
