@@ -1,6 +1,8 @@
 <h1><%= link_to(@event.name,@event) %></h1>
 <h3>Sessions</h3>
-  <table class="phoenix_table">
-    <%= render :partial => 'shared/session', :collection => @sessions %>
-  </table>
-<br>
+<table class="phoenix_table">
+  <%= render :partial => 'shared/session', :collection => @sessions %>
+</table>
+<div class='member_buttons'>
+  <%= link_to 'Create Schedule', order_selections_event_path(@event), :class => 'member_link' %>
+</div>

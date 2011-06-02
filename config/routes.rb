@@ -19,6 +19,9 @@ Phoenix::Application.routes.draw do
       get 'selections'
       get 'attendees'
       get 'schedule'
+      get 'order_selections'
+      get 'selection_up'
+      get 'selection_down'
     end
   end
 

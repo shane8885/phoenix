@@ -120,6 +120,22 @@ class EventsController < ApplicationController
     end 
   end
   
+  def order_selections
+    rank = 1
+    @event = Event.find(params[:id])
+    @selections = @event.official_selections.sort_by &:schedule_priority
+  end
+  
+  def selection_up
+    @event = Event.find(params[:id])
+    redirect_to @event
+  end
+  
+  def selection_down
+    @event = Event.find(params[:id])
+    redirect_to @event
+  end
+  
   private 
     
     def action_not_permitted

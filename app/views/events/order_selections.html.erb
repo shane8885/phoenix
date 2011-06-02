@@ -1,0 +1,9 @@
+<h1><%= link_to(@event.name,@event) %></h1>
+<h3>Selections Schedule</h3>
+<% if not @selections.empty? %>
+  <table class="phoenix_table">
+    <%= render :partial => 'shared/order_selection', :collection => @selections %>
+  </table>
+<% else %>
+  <p>No official selections.</p>
+<% end %>
