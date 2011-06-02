@@ -9,6 +9,8 @@ Phoenix::Application.routes.draw do
   resources :selections, :except => [:index, :show, :update] do
     member do
       put 'vote'
+      put 'promote'
+      put 'demote'
     end
   end
 
@@ -17,9 +19,14 @@ Phoenix::Application.routes.draw do
       get 'selections'
       get 'attendees'
       get 'schedule'
+      get 'order_selections'
+      get 'selection_up'
+      get 'selection_down'
     end
   end
-  
+
+  resources :event_comments, :except => [:index,:show,:update]  
+    
   #devise user registration
   devise_for :users
   #additonal admin actions and user show action

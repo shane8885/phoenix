@@ -18,6 +18,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @official = @event.official_selections.paginate(:page => params[:official_page],:per_page => 10)
     @unofficial = @event.unofficial_selections.paginate(:page => params[:unofficial_page],:per_page => 10)
+    @comments = @event.event_comments
+    @newcomment = EventComment.new
     
     # check that current user owns this event or that current user is admin
     if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
@@ -116,6 +118,22 @@ class EventsController < ApplicationController
     else
       action_not_permitted
     end 
+  end
+  
+  def order_selections
+    rank = 1
+    @event = Event.find(params[:id])
+    @selections = @event.official_selections.sort_by &:schedule_priority
+  end
+  
+  def selection_up
+    @event = Event.find(params[:id])
+    redirect_to @event
+  end
+  
+  def selection_down
+    @event = Event.find(params[:id])
+    redirect_to @event
   end
   
   private 

@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
     has_many :not_accepted_invitations, :class_name => 'Attendance', :conditions => {:confirmed => false}
     has_many :confirmed_attendees, :class_name => 'User', :through => :accepted_invitations, :source => :attending
     has_many :unconfirmed_attendees, :class_name => 'User', :through => :not_accepted_invitations, :source => :attending
+    has_many :event_comments
     
     validates :name, :presence => true, :length => { :maximum => 30 }
     validates :maxmovies, :presence => true, :numericality => { :within => 1..1000 }

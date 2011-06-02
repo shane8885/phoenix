@@ -1,5 +1,5 @@
 class SelectionsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create,:destroy]
+  before_filter :authenticate_user!, :only => [:create,:destroy,:vote]
 
   # POST /selections
   # POST /selections.xml
@@ -41,12 +41,45 @@ class SelectionsController < ApplicationController
         redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
       else
         flash[:error] = 'Sorry, you used all your votes for this event.'
+        redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
       end
     else
       redirect_to(root_path)
     end
   end
 
+  # PUT /selections/1/promote
+  def promote
+    selection = Selection.find(params[:id])
+    event = Event.find(selection.event_id)
+    if current_user.authorized?(event.user_id)
+      if selection.update_attribute(:official, true)
+        redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
+      else
+        flash[:error] = 'Sorry, you used all your votes for this event.'
+        redirect_to(selections_event_path(event))
+      end
+    else
+      redirect_to(root_path)
+    end
+  end
+  
+  # PUT /selections/1/demote
+  def demote
+    selection = Selection.find(params[:id])
+    event = Event.find(selection.event_id)
+    if current_user.authorized?(event.user_id)
+      if selection.update_attribute(:official, false)
+        redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
+      else
+        flash[:error] = 'Sorry, you used all your votes for this event.'
+        redirect_to(selections_event_path(event))
+      end
+    else
+      redirect_to(root_path)
+    end
+  end
+  
   # DELETE /selections/1
   # DELETE /selections/1.xml
   def destroy
