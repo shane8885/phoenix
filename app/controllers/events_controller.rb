@@ -115,25 +115,45 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if current_user.authorized?(@event.user_id)
       @event.destroy
+      redirect_to events_path
     else
       action_not_permitted
     end 
   end
   
   def order_selections
-    rank = 1
     @event = Event.find(params[:id])
-    @selections = @event.official_selections.sort_by &:schedule_priority
+    @selections = @event.official_selections.sort_by &:position
   end
   
-  def selection_up
+  def schedule_parameters
     @event = Event.find(params[:id])
-    redirect_to @event
   end
   
-  def selection_down
+  def build_schedule
     @event = Event.find(params[:id])
-    redirect_to @event
+    date = @event.start
+    count = 0
+    mpw = params[:mpw].to_i
+    time = DateTime.civil(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i,params[:date][:hour].to_i,params[:date][:minute].to_i)
+    tmptime = time
+    # clear all session data for this event first
+    Session.delete_all(['event_id = ?',@event.id])
+    selections = @event.official_selections.sort_by &:position
+    selections.each do |s|
+      session = @event.sessions.build(:selection_id => s.id, :start => time)
+      session.save
+      count = count + 1
+      if( count == mpw )
+        time = tmptime + 1.week
+        tmptime = time
+        count = 0
+      else
+        time = time + s.running_time.minutes + 15.minutes
+      end
+    end
+    @sessions = @event.sessions
+    render 'schedule'
   end
   
   private 

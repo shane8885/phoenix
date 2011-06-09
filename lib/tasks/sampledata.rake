@@ -76,7 +76,7 @@ end
 def make_comments
   Event.all.each do |event|
     rand(10).times do
-      user = User.find(rand(99))
+      user = User.find(rand(99)+1)
       EventComment.create!( :event_id => event.id, :user_id => user.id, :comment => Faker::Lorem.paragraph(1 + rand(15)))
     end
   end

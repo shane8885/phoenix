@@ -1,52 +1,61 @@
 <h1><%= @movie.name %></h1>
 <div class="span-6">
-    <%= insert_poster(@movie,300) %>
+  <%= insert_poster(@movie,300) %>
+  <table>
+    <tr>
+        <td>Released</td>
+        <td><%= @movie.released %></td>
+    </tr>
+    <tr>
+        <td>Urls</td>
+        <td><%= link_to( 'TMDB', @movie.url ) %><br>
+            <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %></td>
+    </tr>
+    <tr>
+        <td>Popularity</td>
+        <td><%= @movie.popularity %></td>
+    </tr>
+    <tr>
+        <td>User Rating</td>
+        <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
+    </tr>
+    <tr>
+        <td>Classification</td>
+        <td><%= @movie.certification %></td>
+    </tr>
+    <tr>
+        <td>Running Time</td>
+        <td><%= @movie.runtime %> mins</td>
+    </tr>
+    <tr>
+        <td>Trailer</td>
+        <td><%= link_to( truncate(@movie.trailer,:length => 10),@movie.trailer) if @movie.trailer %></td>
+    </tr>
+    <tr>
+        <td>Revenue</td>
+        <td>$ <%= @movie.revenue if @movie.revenue %></td>
+    </tr>
+    <tr>
+  </table>
 </div>
 <div class="span-10">
-    <table>
-        <tr>
-            <td>Released</td>
-            <td><%= @movie.released %></td>
-        </tr>
-        <tr>
-            <td>Url</td>
-            <td><%= link_to @movie.url, @movie.url %></td>
-        </tr>
-        <tr>
-            <td>Popularity</td>
-            <td><%= @movie.popularity %></td>
-        </tr>
-        <tr>
-            <td>User Rating</td>
-            <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
-        </tr>
-        <tr>
-            <td>Classification</td>
-            <td><%= @movie.certification %></td>
-        </tr>
-        <tr>
-            <td>Running Time</td>
-            <td><%= @movie.runtime %> mins</td>
-        </tr>
-        <tr>
-            <td>Description</td>
-            <td><%= @movie.overview %></td>
-        </tr>
-        <tr>
-          <td>Select For
-          <td>
-            <% if user_signed_in? %>
-              <% form_for @selection do |f| %>
-                <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
-                <%= f.hidden_field :user_id %>
-                <%= f.hidden_field :movie_id, :value => @movie.id %>
-                <%= f.hidden_field :movie_name, :value => @movie.name %>
-                <%= f.hidden_field :running_time, :value => @movie.runtime %>
-                <%= f.hidden_field :poster, :value => get_poster_url(@movie) %>
-                <%= f.submit "Select" %>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-    </table>
+  <strong>Description</strong><br>
+  <p class="indent"><%= @movie.overview %></p>
+
+  <% if not @events.empty? %>
+    <div class="box">
+      <strong>Make Selection</strong><br>
+      <% if user_signed_in? %>
+        <% form_for @selection do |f| %>
+          <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
+          <%= f.hidden_field :user_id %>
+          <%= f.hidden_field :movie_id, :value => @movie.id %>
+          <%= f.hidden_field :movie_name, :value => @movie.name %>
+          <%= f.hidden_field :running_time, :value => @movie.runtime %>
+          <%= f.hidden_field :poster, :value => get_poster_url(@movie) %>
+          <%= f.submit "Select" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

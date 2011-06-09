@@ -12,6 +12,9 @@ Phoenix::Application.routes.draw do
       put 'promote'
       put 'demote'
     end
+    collection do
+      post 'sort'
+    end
   end
 
   resources :events do
@@ -20,8 +23,8 @@ Phoenix::Application.routes.draw do
       get 'attendees'
       get 'schedule'
       get 'order_selections'
-      get 'selection_up'
-      get 'selection_down'
+      get 'schedule_parameters'
+      get 'build_schedule'
     end
   end
 

@@ -92,5 +92,11 @@ class SelectionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-    
+  
+  def sort
+    params[:selections].each_with_index do |id,index|
+      Selection.update_all(['position=?',index+1],['id=?',id])
+    end
+    render :nothing => true
+  end
 end

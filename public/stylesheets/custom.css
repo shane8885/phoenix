@@ -180,7 +180,8 @@ table.phoenix_table td {
 #row_image {
 	background-color: white;
 	vertical-align: center;
-	margin-right: 0px;
+	padding:0px;
+	margin: 0px;
 	text-align: right;
 	width: 40px;
 }
@@ -218,6 +219,15 @@ table.phoenix_table td {
 	vertical-align: center;
 	text-align: left;
 	width: 100px;
+}
+
+#selections {
+}
+
+#selections li {
+   list-style-type:none;
+   padding:0;
+   margin:0;
 }
 
 #movie_rating_cell {
@@ -546,4 +556,18 @@ table.event_details {
 
 .small-gravatar {
   height: 30px;
+}
+
+#move_cell {
+  background-color: white;
+  width:20px;
+  padding:0px;
+}
+
+.handle {
+  cursor: move;
+}
+
+.indent {
+  padding-left:1em;
 }

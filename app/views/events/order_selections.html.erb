@@ -1,9 +1,29 @@
 <h1><%= link_to(@event.name,@event) %></h1>
-<h3>Selections Schedule</h3>
+<h3>Selections Order</h3>
+<p>Here you can change the order that your films will be scheduled. This is the first step in creating a new schedule. Simply grab the move icon corresponding the selection you want to reorder and drag it up or down the list, dropping it in it's final desitination. When you're happy with the order click the next button at the bottom.</p>
 <% if not @selections.empty? %>
-  <table class="phoenix_table">
-    <%= render :partial => 'shared/order_selection', :collection => @selections %>
-  </table>
+  <ul id="selections">
+    <% for s in @selections %>
+      <% content_tag_for :li, s do %>
+        <table class="phoenix_table"><tr>
+          <% event = Event.find(s.event_id) %>
+          <td id="move_cell"><%= image_tag('move.png', :height => 20, :class => 'handle') %></td>
+          <td id="row_image">
+            <%= link_to image_tag(s.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => s.movie_id %>
+          </td>
+          <td id="selection_info">
+             <span id="selection_name"><%= s.movie_name %></span><br>
+             Running Time: <strong><%= s.running_time %></strong>
+          </td>
+          <td id="votes" width="60">Votes<br> <strong><font size="5"><%= s.votes %></font></strong></td>
+        </tr></table>
+      <% end %>
+    <% end %>
+  </ul>
+  <%= sortable_element("selections", :url => sort_selections_path, :handle => 'handle' ) %>
+  <div class='member_buttons'>
+    <%= link_to 'Next', schedule_parameters_event_path(@event), :class => 'member_link' %>
+  </div>
 <% else %>
   <p>No official selections.</p>
 <% end %>
