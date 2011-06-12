@@ -1,5 +1,5 @@
 <tr>
-  <td id="row_image"><%= image_tag( event_poster_url(attending_event), :height => "60") %></td>
+  <td id="row_image"><%= image_tag attending_event.poster.url(:thumb) %></td>
   <td><span class="event_name"><%= attending_event.name %></span><br>
   <span class="event_description"><%= truncate(attending_event.description, :length => 60) %></span></td>
   <td><span class="event_quota">Selections: <%= Attendance.find_by_event_id_and_attending_id(attending_event.id,current_user.id).selections_remaining %></span><br>

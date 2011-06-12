@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 <table class="event_details">
   <tr>
-    <td class="event_big_name"><%= @event.name %></td>
+    <td class="event_big_name"><%= @event.name %><br>
+      <%= image_tag @event.poster.url(:small) %></td>
     <td class="event_description">
       <%= @event.description %>
     </td>

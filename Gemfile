@@ -10,6 +10,7 @@ gem 'dynamic_form', '1.1.3'
 gem 'bcrypt-ruby', '2.1.4'
 gem 'mail','2.2.15'
 gem 'faker', '0.3.1'
+gem "paperclip", '2.3.6'
 
 
 # Bundle edge Rails instead:

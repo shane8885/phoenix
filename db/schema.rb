@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110611021737) do
+ActiveRecord::Schema.define(:version => 20110612024951) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id"
@@ -51,6 +51,10 @@ ActiveRecord::Schema.define(:version => 20110611021737) do
     t.date     "votes_deadline"
     t.boolean  "open_for_selections",     :default => true
     t.boolean  "open_for_voting",         :default => true
+    t.string   "poster_file_name"
+    t.string   "poster_content_type"
+    t.integer  "poster_file_size"
+    t.datetime "poster_updated_at"
   end
 
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
