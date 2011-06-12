@@ -3,3 +3,14 @@
     <%= text_field_tag :search %>"
     <%= submit_tag "Search", :name => nil %>
 <% end %>
+<% if user_signed_in? %>
+  <div class="box span-12 push-1">
+    <h1>Making a Selection</h1>
+    <ul class="guide">
+      <li>Search for a movie
+      <li>Select the movie to bring up the movie information
+      <li>Select the event to select for
+      <li>Click "Select"
+    </ul>
+  </div>
+<% end %>

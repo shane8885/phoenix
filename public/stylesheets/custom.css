@@ -2,6 +2,16 @@ body {
   background:white;
 }
 
+h1 {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: x-large;
+}
+
+h3 {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+
 #content {
   background:white;
   margin: 10px;
@@ -34,7 +44,7 @@ a.signup_button {
 }
 
 #titlebanner {
-  font-family: "Verdana", sans-serif;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: 200%;
   font-weight: bold;
   color: white;
