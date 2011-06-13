@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 attr_accessible :name, :description, :public, :maxmovies, :start, :selections_deadline, :votes_deadline, :open_for_voting, :open_for_selections, :votes_per_attendee, :selections_per_attendee, :poster
-  has_attached_file :poster, :styles => { :thumb => "60x60>", :small => "150x150>", :medium => "300x300>" }
+  has_attached_file :poster, :styles => { :thumb => "60x60#", :small => "150x150>", :medium => "300x300>" }
   
   belongs_to :user
   has_many :selections, :dependent => :destroy

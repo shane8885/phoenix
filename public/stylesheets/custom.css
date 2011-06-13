@@ -12,6 +12,11 @@ h3 {
   font-size: large;
 }
 
+.largefont {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: large;
+}
+
 #content {
   background:white;
   margin: 10px;

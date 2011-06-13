@@ -1,16 +1,21 @@
-<h1>Find Movie</h1>
-<% form_tag '/movies/index', :method => 'get' do %>
-    <%= text_field_tag :search %>"
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
-<% if user_signed_in? %>
-  <div class="box span-12 push-1">
-    <h1>Making a Selection</h1>
-    <ul class="guide">
-      <li>Search for a movie
-      <li>Select the movie to bring up the movie information
-      <li>Select the event to select for
-      <li>Click "Select"
-    </ul>
-  </div>
-<% end %>
+<div class="push-4 last">
+  <% form_tag '/movies/index', :method => 'get' do %>
+      <span class="largefont">Find Movie</span>
+      <%= text_field_tag :search %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
+</div>
+<div class="span-18">
+  <hr>
+  <% if user_signed_in? %>
+    <div class="box span-12 push-1">
+      <h1>Making a Selection</h1>
+      <ul class="guide">
+        <li>Search for a movie
+        <li>Select the movie to bring up the movie information
+        <li>Select the event to select for
+        <li>Click "Select"
+      </ul>
+    </div>
+  <% end %>
+</div>
