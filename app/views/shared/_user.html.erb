@@ -1,6 +1,6 @@
 <tr>
   <td id="row_image">
-    <%= gravatar_image_tag(user.email,:alt => user.username,:class => 'small-gravatar') %>
+    <%= image_tag(user.avatar.url(:thumb)) %>
   </td>
   <td id="user_name"><%= user.username %></td>
   <td>

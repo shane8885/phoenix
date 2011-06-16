@@ -1,7 +1,6 @@
 <table><tr>
 <td width="100">
-  <%= gravatar_image_tag(@user.email, :alt => @user.username, :class => 'gravatar') %>
-  <%= link_to "change", "http://gravatar.com/emails", :target => '_blank' %></td>
+  <%= image_tag @user.avatar.url(:small) %>
 <td text-align='left'><h1><%= @user.username %></h1></td>
 </table>
 <h3>My Events</h3>

@@ -1,5 +1,5 @@
 <tr>
-  <td id="row_image"><%= gravatar_image_tag(attendee.email,:alt => attendee.username,:class => 'small-gravatar') %>
+  <td id="row_image"><%= image_tag(attendee.avatar.url(:thumb)) %>
   <td id="user_name"><%= attendee.username %></td>
   <td id="row_buttons">
   <% if current_user.authorized?(@event.user_id) %>

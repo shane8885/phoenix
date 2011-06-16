@@ -1,7 +1,7 @@
 <tr>
   <td id="row_image">
     <% user = User.find(comment.user_id) %>
-    <%= gravatar_image_tag(user.email,:alt => user.username,:class => 'small-gravatar') %><br>
+    <%= image_tag(user.avatar.url(:thumb)) %><br>
   </td>
   <td id="comment_info">
     <span id="user_name"><%= user.username %><br></span>

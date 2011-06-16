@@ -1,6 +1,6 @@
 <h2>Account details for <%= resource.username %></h2>
 
-<%= form_for(resource_name, resource, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource_name, resource, :url => registration_path(resource_name), :html => { :multipart => true, :method => :put }) do |f| %>
   <%= f.error_messages %>
 
   <p><%= f.label :email %></p>
@@ -14,7 +14,9 @@
 
   <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
   <p><%= f.password_field :current_password %></p>
-
+  <p><%= f.label :avatar %> <i>(select an image to be your avatar)</i></p>
+  <p><%= f.file_field :avatar %></p>
+  <hr>
   <p><%= f.submit "Update" %></p>
 <% end %>
 
