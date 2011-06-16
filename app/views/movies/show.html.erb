@@ -37,12 +37,7 @@
     </tr>
     <tr>
   </table>
-</div>
-<div class="span-10">
-  <strong>Description</strong><br>
-  <p class="indent"><%= @movie.overview %></p>
-
-  <% if not @events.empty? %>
+  <% if user_signed_in? and not @events.empty? %>
     <div class="box">
       <strong>Make Selection</strong><br>
       <% if user_signed_in? %>
@@ -58,4 +53,26 @@
       <% end %>
     </div>
   <% end %>
+</div>
+<div class="span-10">
+  <strong>Description</strong><br>
+  <p class="indent"><%= @movie.overview %></p>
+  <strong>Cast</strong><br>
+  <table class="cast">
+  <% @movie.cast.each do |actor| %>
+    <tr>
+      <td width="60">
+        <% if actor.profile == "" %>
+          <%= image_tag '/avatars/thumb/missing.png' %>
+        <% else %>
+          <%= image_tag actor.profile %>
+        <% end %>
+      </td>
+      <td>
+        <i><%= actor.job %></i><br>
+        <strong><%= link_to actor.name, actor.url %></strong> 
+        <%= (actor.character == '') ? '' : 'as '+actor.character %></td>
+    </tr>
+  <% end %>  
+  </table>
 </div>

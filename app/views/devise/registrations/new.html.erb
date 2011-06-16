@@ -13,7 +13,10 @@
 
   <p><%= f.label :password_confirmation %></p>
   <p><%= f.password_field :password_confirmation %></p>
-
+  
+  <p><%= f.label :avatar %> <i>(select an image to be your avatar)</i></p>
+  <p><%= f.file_field :avatar %></p>
+  <hr>
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 
