@@ -1,23 +1,24 @@
 <h2>Sign up</h2>
+<div class="box">
+  <%= form_for(resource_name, resource, :url => registration_path(resource_name)) do |f| %>
+    <%= f.error_messages %>
+    <p><%= f.label :username %></p>
+    <p><%= f.text_field :username %></p>
+    
+    <p><%= f.label :email %></p>
+    <p><%= f.text_field :email %></p>
 
-<%= form_for(resource_name, resource, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_messages %>
-  <p><%= f.label :username %></p>
-  <p><%= f.text_field :username %></p>
-  
-  <p><%= f.label :email %></p>
-  <p><%= f.text_field :email %></p>
+    <p><%= f.label :password %></p>
+    <p><%= f.password_field :password %></p>
 
-  <p><%= f.label :password %></p>
-  <p><%= f.password_field :password %></p>
+    <p><%= f.label :password_confirmation %></p>
+    <p><%= f.password_field :password_confirmation %></p>
+    
+    <p><%= f.label :avatar %> <i>(select an image to be your avatar)</i></p>
+    <p><%= f.file_field :avatar %></p>
+    <hr>
+    <p><%= f.submit "Sign up" %></p>
+  <% end %>
 
-  <p><%= f.label :password_confirmation %></p>
-  <p><%= f.password_field :password_confirmation %></p>
-  
-  <p><%= f.label :avatar %> <i>(select an image to be your avatar)</i></p>
-  <p><%= f.file_field :avatar %></p>
-  <hr>
-  <p><%= f.submit "Sign up" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+  <%= render :partial => "devise/shared/links" %>
+</div>

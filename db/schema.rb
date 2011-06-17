@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20110614090753) do
     t.datetime "updated_at"
     t.string   "poster"
     t.integer  "running_time", :default => 0
-    t.integer  "position"
+    t.integer  "position",     :default => 1
   end
 
   add_index "selections", ["event_id"], :name => "index_selections_on_event_id"

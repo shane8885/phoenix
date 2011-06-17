@@ -1,59 +1,62 @@
-<%= form_for(@event, :html => { :multipart => true }) do |f| %>
-  <%= f.error_messages %>
+<div class="box">
+  <%= form_for(@event, :html => { :multipart => true }) do |f| %>
+    <%= f.error_messages %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :public %><br />
-    <%= f.check_box :public %>
-  </div>
-  <div class="field">
-    <%= f.label :open_for_selections %><br />
-    <%= f.check_box :open_for_selections %>
-  </div>
-  <div class="field">
-    <%= f.label :open_for_voting %><br />
-    <%= f.check_box :open_for_voting %>
-  </div>
-  <div class="field">
-    <%= f.label :public %><br />
-    <%= f.check_box :public %>
-  </div>
-  <div class="field">
-    <%= f.label :selections_deadline %><br />
-    <%= f.date_select :selections_deadline %>
-  </div>
-  <div class="field">
-    <%= f.label :votes_deadline %><br />
-    <%= f.date_select :votes_deadline %>
-  </div>
-  <div class="field">
-    <%= f.label :start %><br />
-    <%= f.date_select :start %>
-  </div>
-  <div class="field">
-    <%= f.label :selections_per_attendee %><br />
-    <%= f.text_field :selections_per_attendee %>
-  </div>
-  <div class="field">
-    <%= f.label :votes_per_attendee %><br />
-    <%= f.text_field :votes_per_attendee %>
-  </div>
-  <div class="field">
-    <%= f.label :maxmovies %><br />
-    <%= f.text_field :maxmovies %>
-  </div>
-  <div>
-    <%= f.label :poster %><br />
-    <%= f.file_field :poster %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br />
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :public %><br />
+      <%= f.check_box :public %>
+    </div>
+    <div class="field">
+      <%= f.label :open_for_selections %><br />
+      <%= f.check_box :open_for_selections %>
+    </div>
+    <div class="field">
+      <%= f.label :open_for_voting %><br />
+      <%= f.check_box :open_for_voting %>
+    </div>
+    <div class="field">
+      <%= f.label :public %><br />
+      <%= f.check_box :public %>
+    </div>
+    <div class="field">
+      <%= f.label :selections_deadline %><br />
+      <%= f.date_select :selections_deadline %>
+    </div>
+    <div class="field">
+      <%= f.label :votes_deadline %><br />
+      <%= f.date_select :votes_deadline %>
+    </div>
+    <div class="field">
+      <%= f.label :start %><br />
+      <%= f.date_select :start %>
+    </div>
+    <div class="field">
+      <%= f.label :selections_per_attendee %><br />
+      <%= f.text_field :selections_per_attendee %>
+    </div>
+    <div class="field">
+      <%= f.label :votes_per_attendee %><br />
+      <%= f.text_field :votes_per_attendee %>
+    </div>
+    <div class="field">
+      <%= f.label :maxmovies %><br />
+      <%= f.text_field :maxmovies %>
+    </div>
+    <div>
+      <%= f.label :poster %><br />
+      <%= f.file_field :poster %>
+    </div>
+    <hr>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
