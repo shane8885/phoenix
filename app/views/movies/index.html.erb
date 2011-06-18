@@ -12,5 +12,7 @@
           <%= render :partial => 'shared/movie', :collection => @movies %>
       </table>
       <%= will_paginate @movies %>
+  <% else %>
+    <h3>Sorry, your search returned no results.</h3>
   <% end %>
 </div>

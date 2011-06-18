@@ -60,6 +60,14 @@
   </tr>
   <% end %>
 </table>
+<% unless @recent_selections.empty? %>
+<h3>Recent Selections</h3>
+  <% @recent_selections.each do |s| %>
+    <%= link_to image_tag(s.poster, :height => 80),:controller => 'movies', :action => 'show', :id => s.movie_id %>
+  <% end %>
+  <p><i>* Note that these selections may not be official<i></p>
+  <br>
+<% end %>
 <div class='member_buttons'>
   <%= link_to 'Selections', selections_event_path, :class => 'member_link' %>
   <%= link_to 'Attendees', attendees_event_path, :class => 'member_link' %>

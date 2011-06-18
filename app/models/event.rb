@@ -6,8 +6,9 @@ attr_accessible :name, :description, :public, :maxmovies, :start, :selections_de
   has_many :selections, :dependent => :destroy
   has_many :attendances, :dependent => :destroy
   has_many :sessions, :dependent => :destroy
-  has_many :official_selections, :class_name => 'Selection', :conditions => {:official => true}
-  has_many :unofficial_selections, :class_name => 'Selection', :conditions => {:official => false}
+  has_many :recent_selections, :class_name => 'Selection', :order => 'created_at DESC', :limit => 10
+  has_many :official_selections, :class_name => 'Selection', :order => 'votes DESC', :conditions => {:official => true}
+  has_many :unofficial_selections, :class_name => 'Selection', :order => 'votes DESC', :conditions => {:official => false}
   has_many :accepted_invitations, :class_name => 'Attendance', :conditions => {:confirmed => true}
   has_many :not_accepted_invitations, :class_name => 'Attendance', :conditions => {:confirmed => false}
   has_many :confirmed_attendees, :class_name => 'User', :through => :accepted_invitations, :source => :attending
