@@ -26,6 +26,9 @@ Phoenix::Application.routes.draw do
       get 'schedule_parameters'
       get 'build_schedule'
     end
+    collection do
+      get 'search'
+    end
   end
 
   resources :event_comments, :except => [:index,:show,:update]  

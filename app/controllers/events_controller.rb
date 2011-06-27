@@ -11,6 +11,14 @@ class EventsController < ApplicationController
       format.xml  { render :xml => @events }
     end
   end
+  
+  def search
+    if( params[:search])
+      @events = Event.find(:all, :conditions => { :name => params[:search] }).paginate(:page => params[:page], :per_page => 20)
+    else
+      @events = Event.all.paginate(:page => params[:page], :per_page => 20)
+    end
+  end
 
   # GET /events/1
   # GET /events/1.xml

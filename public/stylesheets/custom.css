@@ -54,6 +54,7 @@ a.signup_button {
   font-weight: bold;
   color: white;
   text-shadow: 3px 3px 5px #959595;
+  padding-left: 10px;
 }
 
 #header a {
@@ -93,13 +94,16 @@ a.signup_button {
   padding: 10px;
   text-decoration: none;
   color: #ccc;
-  font-family: "Verdana", sans-serif;
+  font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+  font-size:14px;
+	/*font-weight:bold;*/
+/*  font-family: "Verdana", sans-serif;*/
   margin-bottom: 5px;
 }
 
 .action_link:hover {
-  background: #ff6;
-  color: #000;
+  background: #2580a2;
+  color: #ccc;
   box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* w3c box shadow */
   -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,.5); /* webkit box shadow */
 }
@@ -158,13 +162,13 @@ color: lightyellow;
 
 /* TABLE STYLING */
 
-table.phoenix_table tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;}
+/* table.phoenix_table tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;} */
 table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
 
 table.phoenix_table {
   border-width: 0px;
 	border-spacing: 6px 10px;
-  border-collapse: separate;
+  border-collapse: collapse;
 	background-color: white;
 }
 
@@ -173,12 +177,12 @@ table.phoenix_table td {
 	padding: 2px;
 	border-style: solid;
 	border-color: gray;
+	background-color: #cce;
 	vertical-align: center;
-	background-color: lemonchiffon;
-	-moz-border-radius: 5px;
+	/*-moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 5px;*/
 }
 
 #comment_info {
@@ -248,7 +252,12 @@ table.phoenix_table td {
 #movie_rating_cell {
   width: 70px;
   text-align: center;
-  background-color: lightblue;
+}
+
+#movie_rating_box {
+  padding: 5px;
+  border-width: 2px;
+  background-color: lightgray;
 }
 
 #movie_rating {

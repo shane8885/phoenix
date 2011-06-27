@@ -1,0 +1,23 @@
+<div class="push-4 last">
+  <% form_tag search_events_path, :method => 'get' do %>
+      <span class="largefont">Find Event</span>
+      <%= text_field_tag :search %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
+  <%= link_to 'browse all', search_events_path %><br>
+</div>
+<div class="span-18 last">
+  <hr>
+  <% unless @events.empty? %>
+    <%= will_paginate @events %>
+    <table class="phoenix_table">
+      <%= render :partial => 'shared/event', :collection => @events %>
+    </table>
+    <%= will_paginate @events %>
+  <% else %>
+    <h3>Sorry, your search returned no results.</h3>
+  <% end %>
+  <br />
+
+  <%= link_to 'New Event', new_event_path %>
+</div>

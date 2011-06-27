@@ -1,13 +1,18 @@
-<h1>Users</h1>
-Find by username <% form_tag search_user_index_path, :method => 'get' do %>
-    <%= text_field_tag :search %>"
+<div class="push-4 last">
+  <% form_tag search_user_index_path, :method => 'get' do %>
+    <span class="largefont">Find User</span>
+    <%= text_field_tag :search %>
     <%= submit_tag "Search", :name => nil %>
-<% end %>
-<br>
-<% if not @users.nil? %>
-  <%= will_paginate @users %>
-  <table :class="users">
-    <%= render :partial => 'shared/user', :collection => @users %>
-  </table>
-  <%= will_paginate @users %>
-<% end %>
+  <% end %>
+  <%= link_to 'browse all', search_user_index_path %><br>
+</div>
+<div class="span-18 last">
+  <br>
+  <% if not @users.nil? %>
+    <%= will_paginate @users %>
+    <table class="phoenix_table">
+      <%= render :partial => 'shared/user', :collection => @users %>
+    </table>
+    <%= will_paginate @users %>
+  <% end %>
+</div>

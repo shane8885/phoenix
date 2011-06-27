@@ -8,9 +8,11 @@
         <span id="movie_overview"><%= truncate(movie.overview, :length => 200) %></span>
     </td>
     <td id="movie_rating_cell">
+      <div id="movie_rating_box">
       Rating<br>
       <span id="movie_rating"><%= movie.rating %></span><br>
       ( <%= movie.votes %> votes )
+      </div>
     </td>
     <td id="movie_buttons">
       <%= link_to "show", { :action => "show", :id => movie.id } %>
