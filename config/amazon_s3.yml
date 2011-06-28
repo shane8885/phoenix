@@ -1,0 +1,12 @@
+development:
+  bucket: garagefilmfestival-dev
+  access_key_id: AKIAIEM3OVY2TD47LBMA
+  secret_access_key: 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
+test:
+  bucket: garagefilmfestival-dev
+  access_key_id: AKIAIEM3OVY2TD47LBMA
+  secret_access_key: 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
+production:
+  bucket: garagefilmfestival
+  access_key_id: AKIAIEM3OVY2TD47LBMA
+  secret_access_key: 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

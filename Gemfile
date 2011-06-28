@@ -11,7 +11,7 @@ gem 'bcrypt-ruby', '2.1.4'
 gem 'mail','2.2.15'
 gem 'faker', '0.3.1'
 gem "paperclip", '2.3.6'
-
+gem 'aws-s3', '0.6.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

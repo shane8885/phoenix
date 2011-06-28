@@ -29,6 +29,10 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.9)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (2.1.4)
     bcrypt-ruby (2.1.4-x86-mingw32)
     builder (2.1.2)
@@ -86,12 +90,14 @@ GEM
     warden (0.10.7)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
+    xml-simple (1.1.0)
 
 PLATFORMS
   ruby
   x86-mingw32
 
 DEPENDENCIES
+  aws-s3 (= 0.6.2)
   bcrypt-ruby (= 2.1.4)
   devise (= 1.1.rc0)
   dynamic_form (= 1.1.3)
