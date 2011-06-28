@@ -9,7 +9,10 @@
     <tr>
         <td>Urls</td>
         <td><%= link_to( 'TMDB', @movie.url ) %><br>
-            <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %></td>
+            <% unless @movie.imdb_id.nil? %>
+              <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %>
+            <% end %>
+        </td> 
     </tr>
     <tr>
         <td>Popularity</td>
