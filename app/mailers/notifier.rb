@@ -15,4 +15,11 @@ class Notifier < ActionMailer::Base
     mail(:to => @attendee.email, 
          :subject => "Invite to #{@event.name}") 
   end
+  
+  def weekly_update(user)
+    @user = user
+    @user.events.each do |e|
+      
+    end
+  end
 end
