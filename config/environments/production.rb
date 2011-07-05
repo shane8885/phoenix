@@ -51,6 +51,8 @@ Phoenix::Application.configure do
     :user_name => "garagefilmfestival@gmx.com" ,
     :password => "festival"
   }
+  # redirect emails for now 
+  Mail.register_interceptor(DevelopmentMailInterceptor)
   
   # Enable threaded mode
   # config.threadsafe!
