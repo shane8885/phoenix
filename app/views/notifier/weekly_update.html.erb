@@ -6,7 +6,7 @@
   <body>
     <h1>Weekly Update for <%= @event.name %></h1>
     <p>
-      Hi <%= @user.username %>,
+      Hi <%= @user.username %>, here's the latest news for <%= @event.name %>, for more information go to the <%= link_to "website",root_url %>
     </p>
     <% unless @selections.empty? %>
       <h3>Recent Selections</h3>
