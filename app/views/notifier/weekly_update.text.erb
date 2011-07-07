@@ -1,7 +1,7 @@
 Weekly Update for @event.name
 -------------------------------
 
-Hi <% @user.username %>, here's the latest news for <%= event.name %>, for more information go to <% root_url %>
+Hi <% @user.username %>, here's the latest news for <%= @event.name %>, for more information go to <% root_url %>
 
 <% unless @selections.empty? %>
 Recent Selections
