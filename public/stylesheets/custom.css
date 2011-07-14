@@ -1,16 +1,20 @@
 body {
   background:white;
 }
-
-h1 {
+h1 { 
   font-family: Verdana, Arial, Helvetica, sans-serif;
-  font-size: x-large;
+  font-size: 24px; 
+  color: #cc0000;
+  text-shadow: 1px 1px 3px #959595;
 }
 
 h3 {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: large;
+  color: gray;
+  text-shadow: 1px 1px 3px #aaa;
 }
+
 
 .largefont {
   font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -163,12 +167,12 @@ color: lightyellow;
 /* TABLE STYLING */
 
 /* table.phoenix_table tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;} */
-table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
+/* table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;} */
 
 table.phoenix_table {
   border-width: 0px;
 	border-spacing: 6px 10px;
-  border-collapse: collapse;
+  border-collapse: separate;
 	background-color: white;
 }
 
@@ -211,10 +215,17 @@ table.phoenix_table td {
 	text-align: left;
 }
 
+#votes_cell {
+  width: 60px;
+}
+
 #votes {
 	background-color: lightblue;
 	vertical-align: center;
 	text-align: center;
+	width: 60px;
+	margin: 5px;
+	background-color: lightgray;
 }
 
 #selection_info {
@@ -594,4 +605,11 @@ table.event_details {
 
 .indent {
   padding-left:1em;
+}
+
+.guide {
+  font-size: large; 
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: gray;
+  text-shadow: 1px 1px 3px #bbb;
 }

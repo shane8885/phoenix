@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
  
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :avatar
-  has_attached_file :avatar, :styles => { :thumb => "40x40#", :small => "150x150>", :medium => "300x300>" }, :storage => :s3, :s3_credentials => "#{RAILS_ROOT}/config/amazon_s3.yml",
+  has_attached_file :avatar, :styles => { :thumb => "40x40#", :small => "150x150>", :medium => "300x300>" }, :storage => :s3, :s3_credentials => "#{::Rails.root.to_s}/config/amazon_s3.yml",
     :path => "user/:attachment/:style/:id.:extension"
   
   has_many :events
