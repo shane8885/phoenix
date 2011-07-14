@@ -1,0 +1,18 @@
+Weekly Update for @event.name
+-------------------------------
+
+Hi <% @user.username %>, here's the latest news for <%= @event.name %>, for more information go to <% root_url %>
+
+<% unless @selections.empty? %>
+Recent Selections
+  <% @selections.each do |s| %>
+  - <%= s.movie_name %>, selected by <%= User.find(s.user_id).username %>
+  <% end %>     
+<% end %>
+<% unless @sessions.empty? %>
+Upcoming Movie Sessions
+  <% @sessions.each do |s| %>
+  - <%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %>
+  <% end %>
+<% end %>
+Enjoy the movies!

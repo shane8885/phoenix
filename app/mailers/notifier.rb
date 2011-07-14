@@ -15,4 +15,13 @@ class Notifier < ActionMailer::Base
     mail(:to => @attendee.email, 
          :subject => "Invite to #{@event.name}") 
   end
+  
+  def weekly_update(user,event)
+    @user = user
+    @event = event
+    @sessions = @event.sessions.where('start < ?',1.week.from_now)
+    @selections = @event.selections.where('created_at > ?',1.week.ago)
+    mail(:to => @user.email, 
+         :subject => "Weekly Update")
+  end
 end

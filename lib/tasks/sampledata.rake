@@ -48,7 +48,7 @@ def make_selections
       end
       movie = rand(10000)
       running_time = rand(180)
-      Selection.create(:event_id => event.id, :movie_id => movie,:movie_name => "#{movie}",:votes => rand(50),:official => official,:user_id => rand(100),:poster => 'no_poster.jpg', :running_time => running_time )
+      Selection.create(:event_id => event.id, :movie_id => movie,:movie_name => "#{movie}",:votes => rand(50),:official => official,:user_id => rand(99)+1,:poster => 'no_poster.jpg', :running_time => running_time )
     end
   end 
 end

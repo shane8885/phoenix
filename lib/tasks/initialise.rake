@@ -8,7 +8,7 @@ end
 
 def make_admin
   admin = User.create!(:username => "admin",
-               :email => "admin@localhost.com",
+               :email => "garagefilmfestival@gmx.com",
                :password => "gr33nb3r3t",
                :password_confirmation => "gr33nb3r3t")
   admin.toggle!(:admin)
