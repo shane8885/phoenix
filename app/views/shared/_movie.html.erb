@@ -3,7 +3,7 @@
       <%= link_to insert_poster(movie,100), :action => "show", :id => movie.id %>
     </td>
     <td class="movie_info">
-        <span id="movie_title"><%= movie.name %></span>
+        <span id="movie_title"><%= link_to movie.name, :action => "show", :id => movie.id %></span>
         <span id="movie_release">     (<%= movie.released %>)</span><br>
         <span id="movie_overview"><%= truncate(movie.overview, :length => 200) %></span>
     </td>

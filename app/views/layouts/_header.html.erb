@@ -23,20 +23,24 @@
 				<li><%= link_to "Find", movies_search_path %></li>
 		  </ul>
 	  </li>
-		<li><%= link_to "My Festival", "#" %>
-        <ul>
-          <% if user_signed_in? %>
+	  <% if user_signed_in? %>
+		  <li><%= link_to "My Festival", "/user/#{current_user.id}" %>
+          <ul>
             <li><%= link_to "MyHome", "/user/#{current_user.id}" %></li>
             <li><%= link_to "Account", edit_user_registration_path %></li>
             <li><%= link_to "Events", events_path %></li>
             <li><%= link_to "Users", search_user_index_path %></li>
-          <% else %>
-            <li><%= link_to "Sign in", new_user_session_path %></li>
-            <li><%= link_to "Sign up", new_user_registration_path %></li>
-          <% end %>
+          </ul>
+      </li>
+    <% else %>
+      <li><%= link_to "My Festival", new_user_session_path %>
+        <ul>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
         </ul>
-    </li>
-		<li><%= link_to "Help", "#" %></li>
+      </li>
+    <% end %>
+		<li><%= link_to "Help", "/pages/help" %></li>
 		<li><%= link_to "Contact", "/pages/contact" %></li>
 		<li><%= link_to "About", "/pages/about" %></li>
 	</ul>
