@@ -164,31 +164,6 @@ a.signup_button {
 color: lightyellow;
 }
 
-/* TABLE STYLING */
-
-/* table.phoenix_table tbody tr:nth-child(even) td, tbody tr.even td {background:lemonchiffon;} */
-/* table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;} */
-
-table.phoenix_table {
-  border-width: 0px;
-	border-spacing: 6px 10px;
-  border-collapse: separate;
-	background-color: white;
-}
-
-table.phoenix_table td {
-	border-width: 0px;
-	padding: 2px;
-	border-style: solid;
-	border-color: gray;
-	background-color: #cce;
-	vertical-align: center;
-	/*-moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;*/
-}
-
 #comment_info {
   width: 100px;
 }
@@ -226,6 +201,8 @@ table.phoenix_table td {
 	width: 60px;
 	margin: 5px;
 	background-color: lightgray;
+	padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #selection_info {
@@ -612,4 +589,66 @@ table.event_details {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   color: gray;
   text-shadow: 1px 1px 3px #bbb;
+}
+
+/* TABLE STYLING */
+
+table.phoenix_table tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
+table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
+
+.phoenix_table {
+ font-size: 95%;
+ font-family: 'Lucida Grande', Helvetica, verdana, sans-serif;
+ background-color:#fff;
+ border-collapse: collapse;
+ width: 100%;
+ line-height: 1.2em;
+}
+caption {
+ font-size: 30px;
+ font-weight: bold;
+ color: #002084;
+ text-align: left;
+ padding: 10px 0px;
+ margin-bottom: 2px;
+ text-transform: capitalize;
+}
+thead th {
+ border-right: 2px solid #fff;
+ color:#fff;
+ text-align:center;
+ padding:2px;
+ height:25px;
+ background-color: #004080;
+}
+tfoot {
+ color:#002084;
+ padding:2px;
+ text-transform:uppercase;
+ font-size:1.2em; 
+ font-weigth: bold;
+ margin-top:6px;
+ border-top: 6px solid #004080;
+ border-bottom: 6px solid #004080;
+}
+tbody tr {
+ background-color:#fff;
+ border-bottom: 2px solid #c0c0c0;
+}
+tbody td {
+ color:#002084;
+ padding:5px;
+ text-align:left;
+}
+tbody th {
+ text-align:left;
+ padding: 2px;
+}
+tbody td a, tbody th a {
+ color:#002084;
+ text-decoration:underline;
+ font-weight:normal; 
+}
+tbody td a:hover, tbody th a:hover {
+ text-decoration:none;
 }
