@@ -3,7 +3,7 @@
   <td id="user_name"><%= attendee.username %></td>
   <td id="row_buttons">
   <% if current_user.authorized?(@event.user_id) %>
-    <%= link_to 'Remove',attendee, :method => :delete, :confirm => 'Are you sure you want to remove this attendee?' %>
+    <%= link_to 'Remove',Attendance.find_by_event_id_and_attending_id(@event.id,attendee.id), :method => :delete, :confirm => 'Are you sure you want to remove this attendee?' %>
   <% end %>
   </td>
 </tr>

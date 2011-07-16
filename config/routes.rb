@@ -25,6 +25,7 @@ Phoenix::Application.routes.draw do
       get 'order_selections'
       get 'schedule_parameters'
       get 'build_schedule'
+      get 'update_attendees'
     end
     collection do
       get 'search'

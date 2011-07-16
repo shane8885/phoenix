@@ -24,4 +24,12 @@ class Notifier < ActionMailer::Base
     mail(:to => @user.email, 
          :subject => "Weekly Update")
   end
+  
+  def schedule_update(user,event)
+    @event = event
+    @user = user
+    @sessions = @event.sessions
+    mail(:to => @user.email,
+         :subject => "Schedule Update")
+  end
 end

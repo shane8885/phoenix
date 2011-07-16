@@ -163,6 +163,14 @@ class EventsController < ApplicationController
     render 'schedule'
   end
   
+  def update_attendees
+    event = Event.find(params[:id])
+    event.attendances.each do |a|
+      Notifier.schedule_update(User.find(a.attending_id),event).deliver
+    end
+    redirect_to schedule_event_path,:notice => 'Successfully sent schedule update to event attendees.'
+  end
+  
   private 
     
     def action_not_permitted

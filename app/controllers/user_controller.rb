@@ -18,14 +18,13 @@ class UserController < ApplicationController
     @user = User.find(params[:id])
     if current_user.authorized?(@user.id)
       @user.destroy
+      respond_to do |format|
+        format.html { redirect_to(user_index_path, :notice => 'Successfully deleted user') }
+        format.xml  { head :ok }
+      end
     else
       action_not_permitted
     end 
-    
-    respond_to do |format|
-      format.html { redirect_to(user_index_path, :notice => 'Successfully deleted user') }
-      format.xml  { head :ok }
-    end
   end
   
   def show

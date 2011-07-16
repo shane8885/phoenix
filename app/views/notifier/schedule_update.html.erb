@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Schedule Update for <%= @event.name %></h1>
+    <p>
+      Hi <%= @user.username %>, the schedule for <%= @event.name %> has been updated, for more information go to the <%= link_to "website",root_url %>
+    </p>
+    <% unless @sessions.empty? %>
+      <h3><%= @event.name %> Schedule</h3>
+      <ul>
+      <% @sessions.each do |s| %>
+        <li><%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %>
+      <% end %>
+      </ul>
+    <% end %>
+    <p>Enjoy the movies!</p>
+  </body>
+</html>

@@ -60,7 +60,7 @@ def make_attendances
       if rand(2) == 0
         confirmed = true
       end
-      Attendance.create(:attending_id => rand(99)+1,:inviting_id => rand(99)+1,:event_id => event.id,:selector => true,:confirmed => confirmed, :selections_remaining => event.selections_per_attendee, :votes_remaining => event.votes_per_attendee )
+      Attendance.create(:attending_id => rand(99)+1,:inviting_id => event.user_id,:event_id => event.id,:selector => true,:confirmed => confirmed, :selections_remaining => event.selections_per_attendee, :votes_remaining => event.votes_per_attendee )
     end
   end
 end

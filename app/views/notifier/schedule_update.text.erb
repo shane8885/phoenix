@@ -1,0 +1,12 @@
+Schedule Update for @event.name
+-------------------------------
+
+Hi <% @user.username %>, the schedule for <%= @event.name %> has been updated, for more information go to <% root_url %>
+
+<% unless @sessions.empty? %>
+<%= @event.name %> Schedule
+  <% @sessions.each do |s| %>
+  - <%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %>
+  <% end %>
+<% end %>
+Enjoy the movies!
