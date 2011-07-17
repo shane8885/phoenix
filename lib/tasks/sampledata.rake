@@ -68,7 +68,7 @@ end
 def make_sessions
   Event.all.each do |event|
     Selection.find_all_by_event_id(event.id).each do |selection|
-      Session.create!( :event_id => event.id, :selection_id => selection.id, :start => rand(100).days.from_now + rand(100).minutes )
+      MovieSession.create!( :event_id => event.id, :selection_id => selection.id, :start => rand(100).days.from_now + rand(100).minutes )
     end
   end
 end

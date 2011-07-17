@@ -43,6 +43,8 @@ Phoenix::Application.routes.draw do
     end
   end
   
+  resources :movie_sessions, :only => [:update,:edit]
+  
   get "movies/search"
 
   get "movies/show"

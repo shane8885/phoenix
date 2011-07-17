@@ -12,7 +12,7 @@
       <h3><%= @event.name %> Schedule</h3>
       <ul>
       <% @sessions.each do |s| %>
-        <li><%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %>
+        <li><%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %> (venue: <%= s.venue %>)
       <% end %>
       </ul>
     <% end %>

@@ -12,7 +12,7 @@ Recent Selections
 <% unless @sessions.empty? %>
 Upcoming Movie Sessions
   <% @sessions.each do |s| %>
-  - <%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %>
+  - <%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %> (venue: <%= s.venue %>)
   <% end %>
 <% end %>
 Enjoy the movies!

@@ -56,7 +56,7 @@ class EventsController < ApplicationController
   
   def schedule
     @event = Event.find(params[:id])
-    @sessions = @event.sessions
+    @sessions = @event.movie_sessions
     
     # check that current user owns this event or that current user is admin
     if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
@@ -145,10 +145,10 @@ class EventsController < ApplicationController
     time = DateTime.civil(params[:date][:year].to_i,params[:date][:month].to_i,params[:date][:day].to_i,params[:date][:hour].to_i,params[:date][:minute].to_i)
     tmptime = time
     # clear all session data for this event first
-    Session.delete_all(['event_id = ?',@event.id])
+    MovieSession.delete_all(['event_id = ?',@event.id])
     selections = @event.official_selections.sort_by &:position
     selections.each do |s|
-      session = @event.sessions.build(:selection_id => s.id, :start => time)
+      session = @event.movie_sessions.build(:selection_id => s.id, :start => time)
       session.save
       count = count + 1
       if( count == mpw )
@@ -159,7 +159,7 @@ class EventsController < ApplicationController
         time = time + s.running_time.minutes + 15.minutes
       end
     end
-    @sessions = @event.sessions
+    @sessions = @event.movie_sessions
     render 'schedule'
   end
   

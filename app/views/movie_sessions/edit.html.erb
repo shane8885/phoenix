@@ -1,0 +1,21 @@
+<h1><%= link_to @event.name,@event %></h1>
+
+<div class="box">
+  <span class="largefont">Session for <%= @selection.movie_name %></span>
+  <%= form_for(@session) do |f| %>
+    <%= f.error_messages %>
+    <div class="field">
+      <%= f.label :start %><br />
+      <%= f.datetime_select :start %>
+    </div>
+    <div class="field">
+      <%= f.label :venue %><br />
+      <%= f.text_field :venue %>
+    </div>
+    <hr>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Back",schedule_event_path(@event) %>

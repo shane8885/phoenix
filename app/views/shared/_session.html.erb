@@ -8,9 +8,17 @@
      <strong><font size="2"><%= session.selection.movie_name %></font></strong><br>
      Running Time: <strong><%= session.selection.running_time %></strong>
   </td>
+  <td>
+    Venue: <strong><%= session.venue %></strong>
+  </td>
    <td class="date">
     <span class="month"><%= session.start.strftime("%b") %></span>
     <span class="day"><%= session.start.strftime("%d") %></span>
     <span class="year"><%= session.start.strftime("%Y") %></span>
+  </td>
+  <td id="row_buttons">
+    <% if current_user.authorized?(Event.find(session.event_id).user_id) %>
+      <%= link_to 'Edit',edit_movie_session_path(session) %>
+    <% end %>
   </td>
 </tr>
