@@ -8,17 +8,19 @@
     <%= link_to "Find Movie", movies_search_path, :class => "action_link" %>
     <%= link_to "Invite User", search_user_index_path, :class => "action_link" %>
   <% else %>
-    <h3 class="caps">Sign in</h3>
-    <div class="box">
-      <%= form_for("user", :url => user_session_path) do |f| %>
-        <%= f.label :username %>
-        <%= f.text_field :username, :size => 12 %>
-        <%= f.label :password %>
-        <%= f.password_field :password, :size => 12 %>
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
-        <%= f.submit 'Sign in' %><br>
-        <%= link_to "Forgot your password?", new_password_path('user') %>
+    <% if request.request_uri != "/users/sign_in" %>
+      <h3 class="caps">Sign in</h3>
+      <div class="box">
+        <%= form_for("user", :url => user_session_path) do |f| %>
+          <%= f.label :username %>
+          <%= f.text_field :username, :size => 12 %>
+          <%= f.label :password %>
+          <%= f.password_field :password, :size => 12 %>
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+          <%= f.submit 'Sign in' %><br>
+          <%= link_to "Forgot your password?", new_password_path('user') %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
