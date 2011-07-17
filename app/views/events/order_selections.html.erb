@@ -7,7 +7,7 @@
       <% content_tag_for :li, s do %>
         <table class="phoenix_table"><tr>
           <% event = Event.find(s.event_id) %>
-          <td id="move_cell"><%= image_tag('move.png', :height => 20, :class => 'handle') %></td>
+          <td id="move_cell"><%= image_tag('Move.png', :height => 20, :class => 'handle') %></td>
           <td id="row_image">
             <%= link_to image_tag(s.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => s.movie_id %>
           </td>
