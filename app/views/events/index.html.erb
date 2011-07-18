@@ -1,7 +1,9 @@
 <h1>Listing events</h1>
 
 <table class="phoenix_table">
-  <%= render :partial => 'shared/event', :collection => @events %>
+  <tbody>
+    <%= render :partial => 'shared/event', :collection => @events %>
+  </tbody>
 </table>
 
 <br />

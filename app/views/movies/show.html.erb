@@ -2,43 +2,45 @@
 <div class="span-6">
   <%= insert_poster(@movie,300) %>
   <table>
-    <tr>
-        <td>Released</td>
-        <td><%= @movie.released %></td>
-    </tr>
-    <tr>
-        <td>Urls</td>
-        <td><%= link_to( 'TMDB', @movie.url ) %><br>
-            <% unless @movie.imdb_id.nil? %>
-              <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %>
-            <% end %>
-        </td> 
-    </tr>
-    <tr>
-        <td>Popularity</td>
-        <td><%= @movie.popularity %></td>
-    </tr>
-    <tr>
-        <td>User Rating</td>
-        <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
-    </tr>
-    <tr>
-        <td>Classification</td>
-        <td><%= @movie.certification %></td>
-    </tr>
-    <tr>
-        <td>Running Time</td>
-        <td><%= @movie.runtime %> mins</td>
-    </tr>
-    <tr>
-        <td>Trailer</td>
-        <td><%= link_to( truncate(@movie.trailer,:length => 10),@movie.trailer) if @movie.trailer %></td>
-    </tr>
-    <tr>
-        <td>Revenue</td>
-        <td>$ <%= @movie.revenue if @movie.revenue %></td>
-    </tr>
-    <tr>
+    <tbody>
+      <tr>
+          <td>Released</td>
+          <td><%= @movie.released %></td>
+      </tr>
+      <tr>
+          <td>Urls</td>
+          <td><%= link_to( 'TMDB', @movie.url ) %><br>
+              <% unless @movie.imdb_id.nil? %>
+                <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %>
+              <% end %>
+          </td> 
+      </tr>
+      <tr>
+          <td>Popularity</td>
+          <td><%= @movie.popularity %></td>
+      </tr>
+      <tr>
+          <td>User Rating</td>
+          <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
+      </tr>
+      <tr>
+          <td>Classification</td>
+          <td><%= @movie.certification %></td>
+      </tr>
+      <tr>
+          <td>Running Time</td>
+          <td><%= @movie.runtime %> mins</td>
+      </tr>
+      <tr>
+          <td>Trailer</td>
+          <td><%= link_to( truncate(@movie.trailer,:length => 10),@movie.trailer) if @movie.trailer %></td>
+      </tr>
+      <tr>
+          <td>Revenue</td>
+          <td>$ <%= @movie.revenue if @movie.revenue %></td>
+      </tr>
+      <tr>
+    </tbody>
   </table>
   <% if user_signed_in? and not @events.empty? %>
     <div class="box">
@@ -62,20 +64,22 @@
   <p class="indent"><%= @movie.overview %></p>
   <strong>Credits</strong><br>
   <table class="cast">
-  <% @movie.cast.each do |actor| %>
-    <tr>
-      <td width="60">
-        <% if actor.profile == "" %>
-          <%= image_tag '/avatars/thumb/missing.png' %>
-        <% else %>
-          <%= image_tag actor.profile %>
-        <% end %>
-      </td>
-      <td>
-        <i><%= actor.job %></i><br>
-        <strong><%= link_to actor.name, actor.url %></strong> 
-        <%= (actor.character == '') ? '' : 'as '+actor.character %></td>
-    </tr>
-  <% end %>  
+    <tbody>
+      <% @movie.cast.each do |actor| %>
+        <tr>
+          <td width="60">
+            <% if actor.profile == "" %>
+              <%= image_tag '/avatars/thumb/missing.png' %>
+            <% else %>
+              <%= image_tag actor.profile %>
+            <% end %>
+          </td>
+          <td>
+            <i><%= actor.job %></i><br>
+            <strong><%= link_to actor.name, actor.url %></strong> 
+            <%= (actor.character == '') ? '' : 'as '+actor.character %></td>
+        </tr>
+      <% end %>  
+    </tbody>
   </table>
 </div>

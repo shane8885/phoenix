@@ -1,7 +1,7 @@
 <% event = Event.find(accepted_invite.event_id)%>
 <tr>
   <td id="row_image"><%= image_tag event.poster.url(:thumb) %></td>
-  <td><span class="event_name"><%= event.name %></span><br>
+  <td><span class="event_name"><%= link_to event.name,event %></span><br>
   <span class="event_description"><%= truncate(event.description, :length => 60) %></span></td>
   <td><span class="event_quota">Selections: <%= accepted_invite.selections_remaining %></span><br>
   <span class="event_quota">Votes: <%= accepted_invite.votes_remaining %></span></td>

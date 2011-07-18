@@ -5,18 +5,20 @@
   <ul id="selections">
     <% for s in @selections %>
       <% content_tag_for :li, s do %>
-        <table class="phoenix_table"><tr>
-          <% event = Event.find(s.event_id) %>
-          <td id="move_cell"><%= image_tag('Move.png', :height => 20, :class => 'handle') %></td>
-          <td id="row_image">
-            <%= link_to image_tag(s.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => s.movie_id %>
-          </td>
-          <td id="selection_info">
-             <span id="selection_name"><%= s.movie_name %></span><br>
-             Running Time: <strong><%= s.running_time %></strong>
-          </td>
-          <td id="votes" width="60">Votes<br> <strong><font size="5"><%= s.votes %></font></strong></td>
-        </tr></table>
+        <table class="phoenix_table">
+          <tbody><tr>
+            <% event = Event.find(s.event_id) %>
+            <td id="move_cell"><%= image_tag('Move.png', :height => 20, :class => 'handle') %></td>
+            <td id="row_image">
+              <%= link_to image_tag(s.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => s.movie_id %>
+            </td>
+            <td id="selection_info">
+               <span id="selection_name"><%= s.movie_name %></span><br>
+               Running Time: <strong><%= s.running_time %></strong>
+            </td>
+            <td id="votes" width="60">Votes<br> <strong><font size="5"><%= s.votes %></font></strong></td>
+          </tbody></tr>
+        </table>
       <% end %>
     <% end %>
   </ul>

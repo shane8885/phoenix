@@ -6,7 +6,9 @@
 <h3>My Events</h3>
 <% if not @user.events.empty? %>
   <table class="phoenix_table">
-    <%= render :partial => 'shared/event', :collection => @user.events %>
+    <tbody>
+      <%= render :partial => 'shared/event', :collection => @user.events %>
+    </tbody>
   </table>
 <% else %>
   <p>You are not the owner of any events</p>
@@ -14,7 +16,9 @@
 <h3>Attending Events</h3>
 <% if not @user.accepted_invitations.empty? %>
   <table class="phoenix_table">
+    <tbody>
       <%= render :partial => 'shared/accepted_invite', :collection => @user.accepted_invitations %>
+    </tbody>
   </table>
 <% else %>
   <p>You're not attending any events.</p>
@@ -22,7 +26,9 @@
 <h3>Invitations</h3>
 <% if not @user.open_invitations.empty? %>
   <table class="phoenix_table">
+    <tbody>
       <%= render :partial => 'shared/invitation', :collection => @user.open_invitations %>
+    </tbody>
   </table>
 <% else %>
   <p>You have no invitations.</p>

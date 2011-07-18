@@ -10,7 +10,9 @@
   <% unless @movies.empty? %>
       <%= will_paginate @movies %>
       <table class="phoenix_table" summary="Movie search results">
+        <tbody>
           <%= render :partial => 'shared/movie', :collection => @movies %>
+        </tbody>
       </table>
       <%= will_paginate @movies %>
   <% else %>

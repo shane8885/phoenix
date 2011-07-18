@@ -1,11 +1,13 @@
 <h1><%= link_to(@event.name,@event) %></h1>
 <h3>Sessions</h3>
 <table class="phoenix_table">
+  <tbody>
   <% if not @sessions.empty? %>
     <%= render :partial => 'shared/session', :collection => @sessions %>
   <% else %>
-    No schedule has been created as yet. only the event owner can create the schedule and that can only happen once official selections have been made. Contact the event owner for details.
+    <tr><td>No schedule has been created as yet. only the event owner can create the schedule and that can only happen once official selections have been made. Contact the event owner for details.</td></tr>
   <% end %>
+  </tbody>
 </table>
 <div class='member_buttons'>
   <% if current_user.authorized?(@event.user_id)%>

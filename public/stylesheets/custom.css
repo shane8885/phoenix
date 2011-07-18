@@ -655,7 +655,7 @@ tbody th {
 }
 tbody td a, tbody th a {
  color:#002084;
- text-decoration:underline;
+ text-decoration:none;
  font-weight:normal; 
 }
 tbody td a:hover, tbody th a:hover {

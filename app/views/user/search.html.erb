@@ -11,7 +11,9 @@
   <% if not @users.nil? %>
     <%= will_paginate @users %>
     <table class="phoenix_table">
-      <%= render :partial => 'shared/user', :collection => @users %>
+      <tbody>
+        <%= render :partial => 'shared/user', :collection => @users %>
+      </tbody>
     </table>
     <%= will_paginate @users %>
   <% end %>

@@ -82,7 +82,9 @@
 <% end %>
 <% if not @comments.empty? %>
   <table class="comment_table">
-    <%= render :partial => 'shared/comment', :collection => @comments %>
+    <tbody>
+      <%= render :partial => 'shared/comment', :collection => @comments %>
+    </tbody>
   </table>
 <% end %>
 
