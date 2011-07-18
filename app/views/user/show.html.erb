@@ -12,9 +12,9 @@
   <p>You are not the owner of any events</p>
 <% end %>
 <h3>Attending Events</h3>
-<% if not @user.accepted_invitation_events.empty? %>
+<% if not @user.accepted_invitations.empty? %>
   <table class="phoenix_table">
-      <%= render :partial => 'shared/attending_event', :collection => @user.accepted_invitation_events %>
+      <%= render :partial => 'shared/accepted_invite', :collection => @user.accepted_invitations %>
   </table>
 <% else %>
   <p>You're not attending any events.</p>

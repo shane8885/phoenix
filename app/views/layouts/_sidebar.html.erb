@@ -6,7 +6,7 @@
     <%= link_to "Create Event", new_event_path, :class => "action_link" %>
     <%= link_to "Find Event", search_events_path, :class => "action_link" %>
     <%= link_to "Find Movie", movies_search_path, :class => "action_link" %>
-    <%= link_to "Invite User", search_user_index_path, :class => "action_link" %>
+    <%= link_to "Find User", search_user_index_path, :class => "action_link" %>
   <% else %>
     <% if request.request_uri != "/users/sign_in" %>
       <h3 class="caps">Sign in</h3>
