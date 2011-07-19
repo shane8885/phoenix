@@ -4,7 +4,7 @@
     <%= link_to image_tag(selection.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => selection.movie_id %>
   </td>
   <td id="selection_info">
-     <span id="selection_name"><%= selection.movie_name %></span><br>
+     <span id="selection_name"><%= link_to selection.movie_name,:controller => 'movies', :action => 'show', :id => selection.movie_id %></span><br>
      Running Time: <strong><%= selection.running_time %></strong>
   </td>
   <td id="votes_cell"><div id="votes"><strong><font size="5"><%= selection.votes %></font></strong><br>Votes</div></td>
