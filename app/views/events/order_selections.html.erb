@@ -13,10 +13,12 @@
               <%= link_to image_tag(s.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => s.movie_id %>
             </td>
             <td id="selection_info">
-               <span id="selection_name"><%= s.movie_name %></span><br>
-               Running Time: <strong><%= s.running_time %></strong>
+               <span id="selection_name"><%= link_to s.movie_name,:controller => 'movies', :action => 'show', :id => s.movie_id %></span>
             </td>
-            <td id="votes" width="60">Votes<br> <strong><font size="5"><%= s.votes %></font></strong></td>
+            <td>Selected by: <strong><%= User.find(s.user_id).username %></strong><br>
+               Running Time: <strong><%= s.running_time %> mins</strong>
+             </td>
+            <td id="votes_cell"><div id="votes"><strong><font size="5"><%= s.votes %></font></strong><br>Votes</div></td>
           </tbody></tr>
         </table>
       <% end %>
