@@ -8,9 +8,13 @@
     <p>
       <%= @inviter.username %> has invited you to a movie event.<br/>
     </p>
-    <p>
-      To login to the site and accept the invitation, go <%= link_to "here", new_user_session_url %>.
-    </p>
+    <h3>How to respond</h3>
+    <ol>
+      <li>Sign in <%= link_to "here", new_user_session_url %>.
+      <li>Go to you home page form the "My Home" button on the sidebar or through the "My Festival" menu.
+      <li>In the "Invitations" section just click "accept" or "decline" alongside the inviation.
+    </ol>
     <p>Enjoy the festival!</p>
+    <p>Cheers,<br>GarageFilmFestival.org</p>
   </body>
 </html>
