@@ -23,8 +23,12 @@ class AttendancesController < ApplicationController
   # PUT /attendances/1/accept
   def accept
     attendance = Attendance.find(params[:id])
-    attendance.update_attribute(:confirmed, true)
-    redirect_to(current_user, :notice => 'Attendance was successfully updated.')
+    if current_user.authorized?(attendance.attending_id)
+      attendance.update_attribute(:confirmed, true)
+      redirect_to(User.find(attendance.attending_id), :notice => 'Attendance was successfully updated.')
+    else
+      action_not_permitted
+    end
   end
   
   # DELETE /attendances/1
