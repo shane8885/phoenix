@@ -26,7 +26,7 @@
 	  <% if user_signed_in? %>
 		  <li><%= link_to "My Festival", "/user/#{current_user.id}" %>
           <ul>
-            <li><%= link_to "MyHome", "/user/#{current_user.id}" %></li>
+            <li><%= link_to "MyHome", current_user %></li>
             <li><%= link_to "Account", edit_user_registration_path %></li>
             <li><%= link_to "Events", events_path %></li>
             <li><%= link_to "Users", search_user_index_path %></li>

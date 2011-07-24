@@ -1,12 +1,18 @@
 <div class="span-4 last box" id="sidebar">
   <% if user_signed_in? %>
     <h3 class="caps">actions</h3>
-    <%= link_to "My Home", "/user/#{current_user.id}", :class => "action_link" %>
+    <%= link_to "My Home", current_user, :class => "action_link" %>
     <hr />
     <%= link_to "Create Event", new_event_path, :class => "action_link" %>
     <%= link_to "Find Event", search_events_path, :class => "action_link" %>
     <%= link_to "Find Movie", movies_search_path, :class => "action_link" %>
-    <%= link_to "Find User", search_user_index_path, :class => "action_link" %>
+    <%= link_to "Find User", search_user_index_path, :class => "action_link" %><br>
+    <h3 class="caps">quick links</h3>
+    <ul>
+      <% current_user.all_events.each do |event| %>
+        <li><%= link_to event.name,event,:class => "quicklink" %><br>
+      <% end %>
+    </ul>
   <% else %>
     <% if request.request_uri != "/users/sign_in" %>
       <h3 class="caps">Sign in</h3>

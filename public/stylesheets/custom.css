@@ -15,6 +15,10 @@ h3 {
   text-shadow: 1px 1px 3px #aaa;
 }
 
+ul {
+  list-style-image: url('/images/list_marker.gif');
+  font-size: 100%;
+}
 
 .largefont {
   font-family: Verdana, Arial, Helvetica, sans-serif;
