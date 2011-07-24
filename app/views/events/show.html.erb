@@ -55,12 +55,20 @@
   <% end %>
 </table>
 <% unless @recent_selections.empty? %>
-<h3>Recent Selections</h3>
+  <h3>Recent Selections</h3>
   <% @recent_selections.each do |s| %>
     <%= link_to image_tag(s.poster, :height => 80),:controller => 'movies', :action => 'show', :id => s.movie_id %>
   <% end %>
-  <p><i>* Note that these selections may not be official<i></p>
-  <br>
+  <br><%= link_to "#{@event.selections.length} total selections", selections_event_path %>
+<% end %>
+<% unless @event.confirmed_attendees.empty? %>
+  <h3>Confirmed Attendees</h3>
+  <% @event.confirmed_attendees.each do |u| %>
+    <%= image_tag(u.avatar.url(:thumb) ) %>
+  <% end %>
+  <% unless @event.unconfirmed_attendees.empty? %>
+    <br><%= link_to "#{@event.unconfirmed_attendees.length} unconfirmed attendees", attendees_event_path %>
+  <% end %>
 <% end %>
 <div class='member_buttons'>
   <%= link_to 'Selections', selections_event_path, :class => 'member_link' %>
