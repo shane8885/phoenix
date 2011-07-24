@@ -177,7 +177,12 @@ color: lightyellow;
   width: 100px;
 }
 
-.comment_text {
+#comment_text {
+  font-style: normal;
+  color: #222;
+}
+
+.comment_textarea {
   width: 80%;
   height: 40px;
   margin-left: 10px;
@@ -197,6 +202,7 @@ color: lightyellow;
 	background-color: white;
 	vertical-align: center;
 	text-align: left;
+	font-style: normal;
 }
 
 #votes_cell {

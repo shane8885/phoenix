@@ -73,7 +73,7 @@
 <% form_for (@newcomment) do |f| %>
   <div>
     <%= f.label "Make a comment" %><br>
-    <%= f.text_area :comment, :class => "comment_text" %>
+    <%= f.text_area :comment, :class => "comment_textarea" %>
     <%= f.hidden_field :event_id, :value => @event.id %>
   </div>
   <div class="actions">
@@ -81,7 +81,7 @@
   </div>
 <% end %>
 <% if not @comments.empty? %>
-  <table class="comment_table">
+  <table class="phoenix_table">
     <tbody>
       <%= render :partial => 'shared/comment', :collection => @comments %>
     </tbody>

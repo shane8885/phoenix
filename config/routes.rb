@@ -45,6 +45,8 @@ Phoenix::Application.routes.draw do
   
   resources :movie_sessions, :only => [:update,:edit]
   
+  resources :event_comments, :only => [:update, :edit, :destroy]
+  
   get "movies/search"
 
   get "movies/show"

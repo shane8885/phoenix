@@ -7,7 +7,13 @@
     <span id="user_name"><%= user.username %><br></span>
     <%= time_ago_in_words(comment.created_at) %> ago
   </td>
-  <td>
+  <td id="comment_text">
     <%= comment.comment %></td>
+  </td>
+  <td id="row_buttons">
+    <% if current_user.authorized?(comment.user_id) %>
+      <%= link_to 'Edit',edit_event_comment_path(comment) %><br>
+      <%= link_to 'Destroy', comment, :confirm => 'Are you sure you want to remove this comment?', :method => :delete %>
+    <% end %>
   </td>
 </tr>

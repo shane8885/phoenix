@@ -1,0 +1,17 @@
+<h1><%= link_to @event.name,@event %></h1>
+
+<div class="box">
+  <span class="largefont">Update Comment</span>
+  <%= form_for(@comment) do |f| %>
+    <%= f.error_messages %>
+    <div class="field">
+      <%= f.label :comment %><br />
+      <%= f.text_area :comment %>
+    </div>
+    <hr>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Back",@event %>
