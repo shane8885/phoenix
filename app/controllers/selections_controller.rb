@@ -35,13 +35,18 @@ class SelectionsController < ApplicationController
     event = Event.find(selection.event_id)
     if current_user.invited_to?(event)
       attendance = Attendance.find_by_event_id_and_attending_id(event.id,current_user.id)
+      attendance.votes_remaining -= 1
       # this will fail if votes_remaining has gone below 0
-      if attendance.update_attribute(:votes_remaining, attendance.votes_remaining-1)
-        selection.update_attribute(:votes, selection.votes+1)
-        redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
+      if attendance.save
+        if selection.update_attribute(:votes, selection.votes+1)
+          redirect_to(selections_event_path(event), :notice => "Successfully registered vote.")
+        else
+          flash[:error] = 'Sorry, something went wrong in registering your vote.'
+          redirect_to selections_event_path(event)
+        end
       else
         flash[:error] = 'Sorry, you used all your votes for this event.'
-        redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
+        redirect_to selections_event_path(event)
       end
     else
       redirect_to(root_path)
@@ -54,9 +59,9 @@ class SelectionsController < ApplicationController
     event = Event.find(selection.event_id)
     if current_user.authorized?(event.user_id)
       if selection.update_attribute(:official, true)
-        redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
+        redirect_to(selections_event_path(event), :notice => 'Successfully promoted selection.')
       else
-        flash[:error] = 'Sorry, you used all your votes for this event.'
+        flash[:error] = 'Sorry, something went wrong while updating this selection.'
         redirect_to(selections_event_path(event))
       end
     else
@@ -70,9 +75,9 @@ class SelectionsController < ApplicationController
     event = Event.find(selection.event_id)
     if current_user.authorized?(event.user_id)
       if selection.update_attribute(:official, false)
-        redirect_to(selections_event_path(event), :notice => 'Successfully updated selection.')
+        redirect_to(selections_event_path(event), :notice => 'Successfully demoted selection.')
       else
-        flash[:error] = 'Sorry, you used all your votes for this event.'
+        flash[:error] = 'Sorry, something went wrong while updating this selection.'
         redirect_to(selections_event_path(event))
       end
     else
