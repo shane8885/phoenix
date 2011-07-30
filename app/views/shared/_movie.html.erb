@@ -1,6 +1,6 @@
 <tr>
     <td id="movie_thumbnail">
-      <%= link_to insert_poster(movie,100), :action => "show", :id => movie.id %>
+      <%= link_to insert_thumbnail(movie,100), :action => "show", :id => movie.id %>
     </td>
     <td class="movie_info">
         <span id="movie_title"><%= link_to movie.name, :action => "show", :id => movie.id %></span>
