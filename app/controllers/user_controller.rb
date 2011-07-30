@@ -29,6 +29,9 @@ class UserController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @selections = @user.selections.limit(12)
+    @votes = @user.votes.limit(12)
+    
     if not current_user.authorized?(@user.id)
       action_not_permitted
     end

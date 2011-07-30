@@ -33,6 +33,18 @@
 <% else %>
   <p>You have no invitations.</p>
 <% end %>
+<% unless @selections.empty? %>
+  <h3>My Selections</h3>
+  <% @selections.each do |s| %>
+    <%= link_to image_tag(s.poster, :height => 80),:controller => 'movies', :action => 'show', :id => s.movie_id %>
+  <% end %>
+<% end %>
+<% unless @votes.empty? %>
+  <h3>My Votes</h3>
+  <% @votes.each do |v| %>
+    <%= link_to image_tag(v.selection.poster, :height => 80),:controller => 'movies', :action => 'show', :id => v.selection.movie_id %>
+  <% end %>
+<% end %>
 <div class='member_buttons'>
   <%= link_to "Edit My Account", edit_user_registration_path, :class => 'member_link' %>
 </div>
