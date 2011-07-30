@@ -1,7 +1,8 @@
 <tr>
   <td id="row_image"><%= image_tag event.poster.url(:thumb) %></td>
-  <td><span class="event_name"><%= link_to event.name,event %></span><br>
-  <span class="event_description"><%= truncate(event.description, :length => 60) %></span></td>
+  <td>
+    <span class="event_name"><%= event_name(event) %></span><br>
+    <span class="event_description"><%= truncate(event.description, :length => 60) %></span></td>
   <td><span class="event_owner"><%= User.find(event.user_id).username %></span></td>
   <td class="date">
     <span class="month"><%= event.start.strftime("%b") %></span>

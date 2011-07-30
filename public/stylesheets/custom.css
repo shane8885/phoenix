@@ -235,6 +235,15 @@ color: lightyellow;
   color: black;
 }
 
+#selection_name a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#selection_name a:hover {
+  text-decoration: none;
+}
+
 #session_time {
   text-align: center;
   width: 100px;
@@ -275,6 +284,15 @@ color: lightyellow;
 #movie_title {
   font-weight: bold;
   font-size: 150%;
+}
+
+#movie_title a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#movie_title a:hover {
+  text-decoration: none;
 }
 
 #movie_overview{
@@ -331,6 +349,17 @@ table.event_details {
   font-weight: bold;
   padding-left: 10px;
 }
+
+.event_name a {
+  font-weight: bold;
+  text-decoration: none
+}
+
+.event_name a:hover {
+  font-weight: bold;
+  text-decoration: none
+}
+
 .event_big_name {
   font-size: 200%;
   font-weight: bold;
@@ -664,10 +693,10 @@ tbody th {
  padding: 2px;
 }
 tbody td a, tbody th a {
- color:#002084;
- text-decoration:none;
+ color:darkblue;
+ text-decoration:underline;
  font-weight:normal; 
 }
 tbody td a:hover, tbody th a:hover {
- text-decoration:none;
+ text-decoration:underline;
 }
