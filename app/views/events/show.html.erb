@@ -74,7 +74,9 @@
   <%= link_to 'Selections', selections_event_path, :class => 'member_link' %>
   <%= link_to 'Attendees', attendees_event_path, :class => 'member_link' %>
   <%= link_to 'Schedule', schedule_event_path, :class => 'member_link' %>
-  <%= link_to 'Edit', edit_event_path(@event), :class => 'member_link' %>
+  <% if current_user.authorized?(@event.user_id) %>
+    <%= link_to 'Edit', edit_event_path(@event), :class => 'member_link' %>
+  <% end %>
 </div>
 <br>
 <hr />
