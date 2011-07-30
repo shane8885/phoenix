@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :selections
   has_many :event_comments
+  has_many :votes
   
   # relationships with Attendance model
   has_many :all_invitations, :class_name => 'Attendance', :foreign_key => :attending_id

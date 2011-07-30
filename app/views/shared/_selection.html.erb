@@ -11,10 +11,16 @@
     Running Time: <strong><%= selection.running_time %> mins</strong>
   </td>
   <td id="votes_cell"><div id="votes"><strong><font size="5"><%= selection.votes %></font></strong><br>Votes</div></td>
+  <% if current_user.invited_to?(event) %>		
+    <td>
+      <% form_for(@vote) do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :selection_id, :value => selection.id %>
+        <%= f.submit "Vote" %>
+      <% end %><br>
+    </td>
+  <% end %>
   <td id="row_buttons">
-    <% if current_user.invited_to?(event) %>
-      <%= link_to 'Add Vote',vote_selection_path(selection), :method => :put %><br>
-    <% end %>
     <% if current_user.authorized?(event.user_id) %>
       <%= link_to 'Remove',selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?' %><br>
       <% if not selection.official %>
