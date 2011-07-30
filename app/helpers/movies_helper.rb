@@ -29,4 +29,17 @@ module MoviesHelper
     end
   end
   
+  def get_thumb_url(movie)
+    if movie.posters.nil? or movie.posters.first.nil?
+      'no_poster.jpg'
+    else
+      movie.posters.each do |p|
+        if p.size == "thumb"
+          return p.url
+        end
+      end
+    end
+    #catch all in case we don't find a thumbnail
+    'no_poster.jpg'
+  end
 end
