@@ -36,6 +36,7 @@ class EventsController < ApplicationController
 
   def selections
     @event = Event.find(params[:id])
+    @vote = Vote.new
     @official = @event.official_selections.paginate(:page => params[:official_page],:per_page => 10)
     @unofficial = @event.unofficial_selections.paginate(:page => params[:unofficial_page],:per_page => 10)
     
