@@ -12,7 +12,7 @@ class VotesController < ApplicationController
       # this will fail if votes_remaining has gone below 0
       if attendance.save
         if selection.update_attribute(:votes, selection.votes+1) and vote.save
-          redirect_to selections_event_path(event),:notice => "Successfully registered vote."
+          redirect_to selection,:notice => "Successfully registered vote."
         else
           flash[:error] = 'Sorry, something went wrong while registering you vote.'
           redirect_to selections_event_path(event)

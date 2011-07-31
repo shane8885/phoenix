@@ -1,10 +1,10 @@
 <tr>
   <% event = Event.find(selection.event_id) %>
   <td id="row_image">
-    <%= link_to image_tag(selection.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => selection.movie_id %>
+    <%= link_to image_tag(selection.poster, :alt => "no image", :height => "50"),selection %>
   </td>
   <td id="selection_info">
-     <span id="selection_name"><%= link_to selection.movie_name,:controller => 'movies', :action => 'show', :id => selection.movie_id %></span>
+     <span id="selection_name"><%= link_to selection.movie_name,selection %></span>
   </td>
   <td>
     Selected by: <strong><%= User.find(selection.user_id).username %></strong><br>

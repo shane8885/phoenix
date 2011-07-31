@@ -1,5 +1,7 @@
 class SelectionsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:create,:destroy,:vote]
+  before_filter :authenticate_user!
+  
+  Tmdb.api_key = "9027009be089788945e1c7aa516338a2"
 
   # POST /selections
   # POST /selections.xml
@@ -30,6 +32,21 @@ class SelectionsController < ApplicationController
     end
   end
 
+  def show
+    @selection = Selection.find(params[:id])
+    if current_user.authorized?(@selection.user_id) or current_user.invited_to?(@selection.event)
+      @movie = TmdbMovie.find(:id => @selection.movie_id, :expand_results => true, :limit => 1)
+      @vote = Vote.new
+      
+      if( @movie.class == Array and @movie.length == 0 )
+        flash[:error] = 'Sorry, Could not find movie, this was unexpected'
+        redirect_to(root_path)
+      end
+    else
+      action_not_permitted
+    end
+  end
+  
   # PUT /selections/1/promote
   def promote
     selection = Selection.find(params[:id])
@@ -42,7 +59,7 @@ class SelectionsController < ApplicationController
         redirect_to(selections_event_path(event))
       end
     else
-      redirect_to(root_path)
+      action_not_permitted
     end
   end
   
@@ -58,7 +75,7 @@ class SelectionsController < ApplicationController
         redirect_to(selections_event_path(event))
       end
     else
-      redirect_to(root_path)
+      action_not_permitted
     end
   end
   
@@ -81,4 +98,11 @@ class SelectionsController < ApplicationController
     end
     render :nothing => true
   end
+  
+  private 
+    
+    def action_not_permitted
+      redirect_to(root_path, :notice => 'Not authorized to perform that action.')
+    end
+    
 end

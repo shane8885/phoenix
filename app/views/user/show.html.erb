@@ -4,7 +4,7 @@
 <td text-align='left'><h1><%= @user.username %></h1></td>
 </table>
 <h3>My Events</h3>
-<% if not @user.events.empty? %>
+<% unless @user.events.empty? %>
   <table class="phoenix_table">
     <tbody>
       <%= render :partial => 'shared/event', :collection => @user.events %>
@@ -24,7 +24,7 @@
   <p>You're not attending any events.</p>
 <% end %>
 <h3>Invitations</h3>
-<% if not @user.open_invitations.empty? %>
+<% unless @user.open_invitations.empty? %>
   <table class="phoenix_table">
     <tbody>
       <%= render :partial => 'shared/invitation', :collection => @user.open_invitations %>
@@ -33,17 +33,21 @@
 <% else %>
   <p>You have no invitations.</p>
 <% end %>
+<h3>My Selections</h3>
 <% unless @selections.empty? %>
-  <h3>My Selections</h3>
   <% @selections.each do |s| %>
-    <%= link_to image_tag(s.poster, :height => 80),:controller => 'movies', :action => 'show', :id => s.movie_id %>
+    <%= link_to image_tag(s.poster, :height => 80, :alt => s.movie_name, :title => s.movie_name), s %>
   <% end %>
+<% else %>
+  <p>You have not made any selections.</p>
 <% end %>
+<h3>My Votes</h3>
 <% unless @votes.empty? %>
-  <h3>My Votes</h3>
   <% @votes.each do |v| %>
     <%= link_to image_tag(v.selection.poster, :height => 80),:controller => 'movies', :action => 'show', :id => v.selection.movie_id %>
   <% end %>
+<% else %>
+  <p>You have not registered any votes.</p>
 <% end %>
 <div class='member_buttons'>
   <%= link_to "Edit My Account", edit_user_registration_path, :class => 'member_link' %>

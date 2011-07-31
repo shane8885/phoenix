@@ -1,0 +1,75 @@
+<h1>Selection for <%= link_to(@selection.event.name,@selection.event) %></h1>
+<div class="span-6">
+  <%= insert_poster(@movie,300) %>
+  <table>
+    <tbody>
+      <tr>
+          <td>Released</td>
+          <td><%= @movie.released %></td>
+      </tr>
+      <tr>
+          <td>Urls</td>
+          <td><%= link_to( 'TMDB', @movie.url ) %><br>
+              <% unless @movie.imdb_id.nil? %>
+                <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %>
+              <% end %>
+          </td> 
+      </tr>
+      <tr>
+          <td>Popularity</td>
+          <td><%= @movie.popularity %></td>
+      </tr>
+      <tr>
+          <td>User Rating</td>
+          <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
+      </tr>
+      <tr>
+          <td>Classification</td>
+          <td><%= @movie.certification %></td>
+      </tr>
+      <tr>
+          <td>Running Time</td>
+          <td><%= @movie.runtime %> mins</td>
+      </tr>
+      <tr>
+          <td>Trailer</td>
+          <td><%= link_to( truncate(@movie.trailer,:length => 10),@movie.trailer) if @movie.trailer %></td>
+      </tr>
+      <tr>
+          <td>Revenue</td>
+          <td>$ <%= @movie.revenue if @movie.revenue %></td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+</div>
+<div class="span-10">
+  <strong>Title</strong>
+  <p><%= @movie.name %></p>
+  <strong>Description</strong><br>
+  <p class="indent"><%= @movie.overview %></p>
+  <strong>Selected by</strong><br>
+  <table>
+    <tr>
+      <td id="row_image"><%= image_tag(@selection.user.avatar.url(:thumb)) %></td>
+      <td id="user_name"><%= @selection.user.username %></td>
+    </tr>
+  </table>
+  <strong>Who's voting for it</strong><br>
+  <% if @selection.registered_votes.empty? %>
+    <p class="indent">No votes</p>
+  <% else %>
+    <% @selection.registered_votes.each do |v| %>
+      <%= image_tag(v.user.avatar.url(:thumb), :alt => "#{v.user.username}", :title => "#{v.user.username}"  ) %>
+    <% end %>
+  <% end %>
+  <% form_for(@vote) do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :selection_id, :value => @selection.id %>
+    <%= f.submit "Add Vote" %>
+  <% end %><br>
+  <br><hr>
+  <%= link_to 'Movie credits',:controller => 'movies', :action => 'show', :id => @selection.movie_id %> | 
+  <%= link_to 'Event home',@selection.event %> |
+  <%= link_to 'Event selections', selections_event_path(@selection.event) %>
+</div>
