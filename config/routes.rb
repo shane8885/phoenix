@@ -8,7 +8,7 @@ Phoenix::Application.routes.draw do
     end
   end
 
-  resources :selections, :except => [:index, :update] do
+  resources :selections, :except => [:index] do
     member do
       put 'promote'
       put 'demote'

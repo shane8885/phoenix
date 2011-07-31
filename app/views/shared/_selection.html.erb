@@ -23,6 +23,7 @@
   <td id="row_buttons">
     <% if current_user.authorized?(event.user_id) %>
       <%= link_to 'Remove',selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?' %><br>
+      <%= link_to 'Edit', edit_selection_path(selection) %><br>
       <% if not selection.official %>
         <%= link_to 'Promote',promote_selection_path(selection), :method => :put %>
       <% else %>

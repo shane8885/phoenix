@@ -1,0 +1,23 @@
+<h1><%= link_to @selection.event.name,@selection.event %></h1>
+
+<div class="box">
+  <span class="largefont">Update Selection</span>
+  <%= form_for(@selection) do |f| %>
+    <%= f.error_messages %>
+    <strong>Movie</strong><br>
+    <%= @selection.movie_name %>
+    <div class="field">
+      <%= f.label :votes %><br />
+      <%= f.number_field :votes %>
+    </div>
+    <div class="field">
+      <%= f.label :official %><br />
+      <%= f.check_box :official %>
+    </div>
+    <hr>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Back",selections_event_path(@selection.event) %>

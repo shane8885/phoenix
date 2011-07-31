@@ -32,6 +32,28 @@ class SelectionsController < ApplicationController
     end
   end
 
+  def edit
+    @selection = Selection.find(params[:id])
+    
+    unless current_user.authorized?(@selection.event.user_id)  
+      action_not_permitted
+    end
+  end
+  
+  def update
+    @selection = Selection.find(params[:id])
+    
+    if current_user.authorized?(@selection.event.user_id)
+      if @selection.update_attributes(params[:selection])
+        redirect_to @selection, :notice => 'Successfully updated selection.'
+      else
+        redirect_to @selection, :notice => "Sorry, couldn't update this selection."
+      end
+    else
+      action_not_permitted
+    end
+  end
+  
   def show
     @selection = Selection.find(params[:id])
     if current_user.authorized?(@selection.user_id) or current_user.invited_to?(@selection.event)
