@@ -15,8 +15,32 @@ class AttendancesController < ApplicationController
         Notifier.invite_email(attendance).deliver
         format.html { redirect_to(event, :notice => 'Invitation was successfully created.') }
       else
-        format.html { redirect_to(event, :notice => 'Could not create invitation.') }
+        flash[:error] = 'Sorry, Could not create invitation.'
+        format.html { redirect_to(event) }
       end
+    end
+  end
+  
+  def edit
+    @attendance = Attendance.find(params[:id])
+    
+    unless current_user.authorized?(@attendance.event.user_id)  
+      action_not_permitted
+    end
+  end
+  
+  def update
+    @attendance = Attendance.find(params[:id])
+    
+    if current_user.authorized?(@attendance.event.user_id)  
+      if @attendance.update_attributes(params[:attendance])  
+        redirect_to @attendance.event,:notice => 'Successfully updated attendance.'
+      else
+        flash[:error] = 'Sorry, could not update attendance.'
+        redirect_to @attendance.event
+      end
+    else
+      action_not_permitted
     end
   end
   

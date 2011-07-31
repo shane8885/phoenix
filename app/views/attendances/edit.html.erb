@@ -1,6 +1,29 @@
-<h1>Editing attendance</h1>
+<h1><%= link_to @attendance.event.name,@attendance.event %></h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @attendance %> |
-<%= link_to 'Back', attendances_path %>
+<div class="box">
+  <span class="largefont">Update Attendance</span>
+  <%= form_for(@attendance) do |f| %>
+    <%= f.error_messages %>
+    <strong>Invited by</strong><br>
+    <%= @attendance.inviting.username %><br>
+    <strong>Invitee</strong><br>
+    <%= @attendance.attending.username %>
+    <div class="field">
+      <%= f.label :votes_remaining %><br />
+      <%= f.number_field :votes_remaining %>
+    </div>
+    <div class="field">
+      <%= f.label :selections_remaining %><br />
+      <%= f.number_field :selections_remaining %>
+    </div>
+    <div class="field">
+      <%= f.label :confirmed %><br />
+      <%= f.check_box :confirmed %>
+    </div>
+    <hr>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+<%= link_to "Back",attendees_event_path(@attendance.event) %>

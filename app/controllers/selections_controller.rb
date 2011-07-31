@@ -47,7 +47,8 @@ class SelectionsController < ApplicationController
       if @selection.update_attributes(params[:selection])
         redirect_to @selection, :notice => 'Successfully updated selection.'
       else
-        redirect_to @selection, :notice => "Sorry, couldn't update this selection."
+        flash[:error] = "Sorry, could not update this selection."
+        redirect_to @selection
       end
     else
       action_not_permitted
