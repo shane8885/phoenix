@@ -45,7 +45,7 @@
 </div>
 <div class="span-10">
   <strong>Title</strong>
-  <p><%= @movie.name %></p>
+  <p class="indent"><%= @movie.name %></p>
   <strong>Description</strong><br>
   <p class="indent"><%= @movie.overview %></p>
   <strong>Selected by</strong><br>
@@ -55,14 +55,13 @@
       <td id="user_name"><%= @selection.user.username %></td>
     </tr>
   </table>
-  <strong>Who's voting for it</strong><br>
-  <% if @selection.registered_votes.empty? %>
-    <p class="indent">No votes</p>
-  <% else %>
+  <strong><%= pluralize(@selection.votes,'Vote') %></strong><br>
+  <% unless @selection.registered_votes.empty? %>
     <% @selection.registered_votes.each do |v| %>
       <%= image_tag(v.user.avatar.url(:thumb), :alt => "#{v.user.username}", :title => "#{v.user.username}"  ) %>
     <% end %>
   <% end %>
+  <br>
   <% form_for(@vote) do |f| %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.hidden_field :selection_id, :value => @selection.id %>

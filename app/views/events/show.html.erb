@@ -46,11 +46,11 @@
   <% if current_user.invited_to?(@event) %>
   <tr>
     <td class="event_detail_name">Your Selections</td> 
-    <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections remaining</span><span id="selections_allocation"> what is this?</span></td>
+    <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining,'selection') %> remaining</span><span id="selections_allocation"> what is this?</span></td>
   </tr>
   <tr>  
     <td class="event_detail_name">Your Votes</td>
-    <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</span><span id="votes_allocation"> what is this?</span></td>
+    <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining,'vote') %> left</span><span id="votes_allocation"> what is this?</span></td>
   </tr>
   <% end %>
 </table>

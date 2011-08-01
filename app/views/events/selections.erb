@@ -4,11 +4,11 @@
     <tbody>
       <tr>
         <td class="event_detail_name">Your Selections</td> 
-        <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining %> selections remaining</span></td>
+        <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining,'selection') %> remaining</span></td>
       </tr>
       <tr>  
         <td class="event_detail_name">Your Votes</td>
-        <td><span class="event_detail_quota"><%= Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining %> votes left</span></td>
+        <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining,'vote') %> left</span></td>
       </tr>
       <tr>
         <td class="event_detail_name">Voting is</td>
