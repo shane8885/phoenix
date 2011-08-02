@@ -12,25 +12,13 @@
     </td>
   </tr>
   <tr>
-    <td class="event_detail_name">Selections Deadline</td>
-    <td><span class="event_detail_value"><%= @event.selections_deadline %></span></td>
-  </tr>
-  <tr>
-    <td class="event_detail_name">Votes Deadline</td>
-    <td><span class="event_detail_value"><%= @event.votes_deadline %></span></td>
-  </tr>
-  <tr>
-    <td class="event_detail_name">Selections per attendee</td>
-    <td><span class="event_detail_value"><%= @event.selections_per_attendee %></span></td>
-  </tr>
-  <tr>
-    <td class="event_detail_name">Votes per attendee</td>
-    <td><span class="event_detail_value"><%= @event.votes_per_attendee %></span></td>
+    <td class="event_detail_name">Attendee allocations</td>
+    <td><span class="event_detail_value"><%= @event.selections_per_attendee %> Selections, <%= @event.votes_per_attendee %> Votes</span></td>
   </tr>
   <tr>
     <td class="event_detail_name">Voting is</td>
     <% if @event.open_for_voting? %>
-      <td><span class="open">Open</span></td>
+      <td><span class="open">Open</span> closing <%= @event.votes_deadline %></td>
     <% else %>
       <td><span class="closed">Closed</span></td>
     <% end %>
@@ -38,7 +26,7 @@
   <tr>
     <td class="event_detail_name">Selections are</td>
     <% if @event.open_for_selections? %>
-      <td><span class="open">Open</span></td>
+      <td><span class="open">Open</span> closing <%= @event.selections_deadline %></td>
     <% else %>
       <td><span class="closed">Closed</span></td>
     <% end %>

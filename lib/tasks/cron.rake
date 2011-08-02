@@ -9,4 +9,13 @@ task :cron => :environment do
       end
     end
   end
+  #update event flags
+  Event.all.each do |e|
+    if e.selections_deadline < Date.today
+      e.update_attribute(:open_for_selections,false)
+    end
+    if e.votes_deadline < Date.today
+      e.update_attribute(:open_for_voting,false)
+    end
+  end
 end
