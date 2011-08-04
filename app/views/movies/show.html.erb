@@ -33,7 +33,7 @@
       </tr>
       <tr>
           <td>Trailer</td>
-          <td><%= link_to( truncate(@movie.trailer,:length => 10),@movie.trailer) if @movie.trailer %></td>
+          <td><%= link_to( image_tag('youtube_icon_small.gif'),@movie.trailer ) if @movie.trailer %></td>
       </tr>
       <tr>
           <td>Revenue</td>
