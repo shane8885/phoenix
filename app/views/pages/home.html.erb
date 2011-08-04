@@ -26,7 +26,7 @@
   <% unless @recent_movies.empty? %>
   <h3>Latest Movies</h3>
     <% @recent_movies.each do |m| %>
-      <%= link_to insert_poster(m,90),:controller => 'movies', :action => 'show', :id => m.id %>
+      <%= link_to insert_thumbnail(m,90),:controller => 'movies', :action => 'show', :id => m.id %>
     <% end %>
   <% end %>
 </div>
