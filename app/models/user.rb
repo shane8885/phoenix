@@ -9,13 +9,13 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :thumb => "40x40#", :small => "150x150>", :medium => "300x300>" }, :storage => :s3, :s3_credentials => "#{::Rails.root.to_s}/config/amazon_s3.yml",
     :path => "user/:attachment/:style/:id.:extension"
   
-  has_many :events
-  has_many :selections
-  has_many :event_comments
-  has_many :votes
+  has_many :events, :dependent => :destroy
+  has_many :selections, :dependent => :destroy
+  has_many :event_comments, :dependent => :destroy
+  has_many :votes, :dependent => :destroy
   
   # relationships with Attendance model
-  has_many :all_invitations, :class_name => 'Attendance', :foreign_key => :attending_id
+  has_many :all_invitations, :class_name => 'Attendance', :foreign_key => :attending_id, :dependent => :destroy
   has_many :open_invitations, :class_name => 'Attendance', :foreign_key => :attending_id, :conditions => {:confirmed => false}
   has_many :accepted_invitations, :class_name => 'Attendance', :foreign_key => :attending_id, :conditions => {:confirmed => true}
   has_many :sentinvitations, :class_name => 'Attendance', :foreign_key => :inviting_id
