@@ -32,11 +32,9 @@
 <h3>Official Selections</h3>
 <p class="indent">The official selections for an event are the ones that will make it into the event schedule.</p>
 <% if not @official.empty? %>
-  <%= will_paginate @official,:param_name => 'official_page'  %>
   <table class="phoenix_table">
     <%= render :partial => 'shared/selection', :collection => @official %>
   </table>
-  <%= will_paginate @official,:param_name => 'official_page'  %>
 <% else %>
   <p>No selections have been made official</p>
 <% end %>
@@ -44,11 +42,9 @@
 <h3>Unoffical Selections</h3>
 <p class="indent">The unofficial selections for an event will not make it into the event schedule. Only the event owner can promote an unofficial selection to official status.</p>
 <% if not @unofficial.empty? %>
-  <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>
   <table class="phoenix_table">
     <%= render :partial => 'shared/selection', :collection => @unofficial %>
   </table>
-  <%= will_paginate @unofficial,:param_name => 'unofficial_page'  %>
 <% else %>
   <p>No unofficial selections have been made. <%= link_to "add selection now", movies_search_path %></p>
 <% end %>

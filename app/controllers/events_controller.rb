@@ -37,8 +37,8 @@ class EventsController < ApplicationController
   def selections
     @event = Event.find(params[:id])
     @vote = Vote.new
-    @official = @event.official_selections.paginate(:page => params[:official_page],:per_page => 10)
-    @unofficial = @event.unofficial_selections.paginate(:page => params[:unofficial_page],:per_page => 10)
+    @official = @event.official_selections
+    @unofficial = @event.unofficial_selections
     
     # check that current user owns this event or that current user is admin
     if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
