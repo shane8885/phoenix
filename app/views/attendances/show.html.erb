@@ -1,30 +1,35 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Event:</b>
-  <%= @attendance.event_id %>
-</p>
-
-<p>
-  <b>Attending:</b>
-  <%= @attendance.attending_id %>
-</p>
-
-<p>
-  <b>Inviting:</b>
-  <%= @attendance.inviting_id %>
-</p>
-
-<p>
-  <b>Confirmed:</b>
-  <%= @attendance.confirmed %>
-</p>
-
-<p>
-  <b>Selector:</b>
-  <%= @attendance.selector %>
-</p>
-
-
-<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
-<%= link_to 'Back', attendances_path %>
+<h1><%= @attendance.attending.username %>@<%= @attendance.event.name %></h1>
+<table>
+<tr>
+  <td width="100">
+    <%= image_tag @attendance.attending.avatar.url(:small) %>
+  <td text-align='left'>
+    <h1><%= @attendance.attending.username %></h1>
+    Confirmed: <%= @attendance.confirmed ? "yes" : "no" %>
+  </td>
+</tr>
+</table>
+<div class="span-10 push-1 last">
+  <strong>Selections</strong><br>
+  <% unless @selections.empty? %>
+    <p>
+    <% @selections.each do |s| %>
+      <%= link_to image_tag(s.poster, :alt => s.movie_name, :title => s.movie_name, :height => 80),s %>
+    <% end %>
+    </p>
+  <% else %>
+    <p class="indent"><%= link_to 'Make a selection now',movies_search_path %></p>
+  <% end %>
+  <strong>Votes</strong><br>
+  <% unless @votes.empty? %>
+    <p>
+    <% @votes.each do |s| %>
+      <%= link_to image_tag(s.poster, :alt => s.movie_name, :title => s.movie_name, :height => 80),s %>
+    <% end %>
+    </p>
+  <% else %>
+    <p class="indent">No votes</p>
+  <% end %>
+  <%= link_to 'Back to event', event_path(@attendance.event) %> | 
+  <%= link_to 'Event attendees', attendees_event_path(@attendance.event) %>
+</div>

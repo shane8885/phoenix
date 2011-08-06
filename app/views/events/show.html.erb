@@ -51,11 +51,11 @@
 <% end %>
 <% unless @event.confirmed_attendees.empty? %>
   <h3>Confirmed Attendees</h3>
-  <% @event.confirmed_attendees.each do |u| %>
-    <%= image_tag(u.avatar.url(:thumb), :alt => "#{u.username}", :title => "#{u.username}" ) %>
+  <% @event.accepted_invitations.each do |a| %>
+    <%= link_to( image_tag(a.attending.avatar.url(:thumb), :alt => "#{a.attending.username}", :title => "#{a.attending.username}" ),a ) %>
   <% end %>
-  <% unless @event.unconfirmed_attendees.empty? %>
-    <br><%= link_to "#{@event.unconfirmed_attendees.length} unconfirmed attendees", attendees_event_path %>
+  <% unless @event.not_accepted_invitations.empty? %>
+    <br><%= link_to "#{@event.not_accepted_invitations.length} unconfirmed attendees", attendees_event_path %>
   <% end %>
 <% end %>
 <div class='member_buttons'>

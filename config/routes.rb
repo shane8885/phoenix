@@ -2,7 +2,7 @@ Phoenix::Application.routes.draw do
 
   resources :votes, :only => [:create]
   
-  resources :attendances, :except => [:index, :show] do
+  resources :attendances, :except => [:index] do
     member do
       put 'accept'
     end

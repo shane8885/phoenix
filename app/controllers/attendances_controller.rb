@@ -70,6 +70,21 @@ class AttendancesController < ApplicationController
     end    
   end
   
+  def show
+    @attendance = Attendance.find(params[:id])
+    if current_user.authorized?(@attendance.attending_id) or current_user.invited_to?(@attendance.event)
+      @selections = Selection.where(:user_id => @attendance.attending_id,:event_id => @attendance.event_id)
+      @votes = []
+      @attendance.attending.votes.each do |v|
+        if @attendance.event.selections.include?(v.selection)
+          @votes << v.selection
+        end
+      end
+    else
+      action_not_permitted
+    end
+  end
+  
   private 
   
     def action_not_permitted

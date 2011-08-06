@@ -1,7 +1,7 @@
 <tr>
   <td id="row_image"><%= image_tag(attendee.avatar.url(:thumb)) %>
-  <td id="user_name"><%= attendee.username %></td>
   <% attendance = Attendance.find_by_event_id_and_attending_id(@event.id,attendee.id) %>
+  <td id="user_name"><%= link_to attendee.username,attendance %></td>
   <td>
     <span class="event_quota">Selections Remaining: <%= attendance.selections_remaining %></span><br>
     <span class="event_quota">Votes Remaining: <%= attendance.votes_remaining %></span>
