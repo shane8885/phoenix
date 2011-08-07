@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   
   def home
       @title = "Home"
-      @recent_movies = TmdbMovie.browse(:order_by => "release",:order => "desc", :release_min => 1.year.ago.to_i,:release_max => Time.now.to_i, :page => 1, :per_page => 10, :language => "en", :expand_results => false)
+      @recent_movies = TmdbMovie.browse(:order_by => "release",:order => "desc", :release_min => 1.year.ago.to_i,:release_max => Time.now.to_i, :page => 1, :per_page => 10, :language => "en", :certifications => "G,PG,PG-13,R", :expand_results => false)
   end
 
   def contact
