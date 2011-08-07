@@ -10,19 +10,31 @@
     </p>
     <% unless @selections.empty? %>
       <h3>Recent Selections</h3>
-      <ul>
+      <p><%= @event.name %> has <%= @event.official_selections.count %> official selections and <%= @event.unofficial_selections.count %> unofficial selections. The following were selected in the last week.</p>
+      <table border="1">
+      <tr align="left"><th /><th>Movie</th><th>Selected By</th></tr>
       <% @selections.each do |s| %>
-        <li><%= s.movie_name %>, selected by <%= User.find(s.user_id).username %>
+        <tr>
+          <td><%= image_tag s.poster, :alt => "no image", :height => "50" %></td>
+          <td><%= s.movie_name %></td>
+          <td><%= s.user.username %></td>
+        </tr>
       <% end %>
-      </ul>
+      </table>
     <% end %>
     <% unless @sessions.empty? %>
       <h3>Upcoming Movie Sessions</h3>
-      <ul>
+      <table border="1">
+      <tr><th /><th>Time</th><th>Movie</th><th>Venue</th></tr>
       <% @sessions.each do |s| %>
-        <li><%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %> (venue: <%= s.venue %>)
+        <tr>
+          <td><%= image_tag s.selection.poster,:alt => "no image", :height => "50" %></td>
+          <td><%= s.start.strftime("%a %d %b, %I:%M %P") %></td> 
+          <td><%= Selection.find(s.selection_id).movie_name %></td>
+          <td><%= s.venue %></td>
+        </tr>
       <% end %>
-      </ul>
+      </table>
     <% end %>
     <p>Enjoy the movies!</p>
   </body>
