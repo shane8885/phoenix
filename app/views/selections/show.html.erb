@@ -48,6 +48,8 @@
   <p class="indent"><%= @movie.name %></p>
   <strong>Description</strong><br>
   <p class="indent"><%= @movie.overview %></p>
+  <strong>Status</strong>
+  <p class="indent"><%= @selection.official ? "Official Selection" : "Unofficial Selection" %></p>
   <strong>Selected by</strong><br>
   <table>
     <tr>
