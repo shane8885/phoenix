@@ -11,7 +11,7 @@
     </tbody>
   </table>
 <% else %>
-  <p>You are not the owner of any events</p>
+  <p class="indent"><%= link_to 'create an event now',new_event_path %></p>
 <% end %>
 <h3>Attending Events</h3>
 <% if not @user.accepted_invitations.empty? %>
@@ -21,7 +21,7 @@
     </tbody>
   </table>
 <% else %>
-  <p>You're not attending any events.</p>
+  <p class="indent">You're not attending any events.</p>
 <% end %>
 <h3>Invitations</h3>
 <% unless @user.open_invitations.empty? %>
@@ -31,7 +31,7 @@
     </tbody>
   </table>
 <% else %>
-  <p>You have no invitations.</p>
+  <p class="indent">You have no invitations.</p>
 <% end %>
 <h3>My Selections</h3>
 <% unless @selections.empty? %>
@@ -39,7 +39,7 @@
     <%= link_to image_tag(s.poster, :height => 80, :alt => s.movie_name, :title => s.movie_name), s %>
   <% end %>
 <% else %>
-  <p>You have not made any selections.</p>
+  <p class="indent">You have not made any selections.</p>
 <% end %>
 <h3>My Votes</h3>
 <% unless @votes.empty? %>
@@ -47,7 +47,7 @@
     <%= link_to image_tag(v.selection.poster, :height => 80),:controller => 'movies', :action => 'show', :id => v.selection.movie_id %>
   <% end %>
 <% else %>
-  <p>You have not registered any votes.</p>
+  <p class="indent">You have not registered any votes.</p>
 <% end %>
 <div class='member_buttons'>
   <%= link_to "Edit My Account", edit_user_registration_path, :class => 'member_link' %>
