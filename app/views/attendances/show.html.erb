@@ -10,7 +10,7 @@
 </tr>
 </table>
 <div class="span-16 push-1 last">
-  <strong>Selections</strong><br>
+  <strong>Selections ( <%= @attendance.selections_remaining %> left )</strong><br>
   <% unless @selections.empty? %>
     <p>
     <% @selections.each do |s| %>
@@ -20,7 +20,7 @@
   <% else %>
     <p class="indent">No Selections</p>
   <% end %>
-  <strong>Votes</strong><br>
+  <strong>Votes ( <%= @attendance.votes_remaining %> left )</strong><br>
   <% unless @votes.empty? %>
     <p>
     <% @votes.each do |s| %>
