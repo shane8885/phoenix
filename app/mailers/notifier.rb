@@ -32,4 +32,23 @@ class Notifier < ActionMailer::Base
     mail(:to => @user.email,
          :subject => "Schedule Update")
   end
+  
+  def selections_closed(user,event)
+    @event = event
+    @user = user
+    mail(:to => @user.email,
+         :subject => "Selections Closed")
+  end
+  
+  def voting_closed(user,event)
+    @event = event
+    @user = user
+    @votecount = 0
+    @event.selections.each do |s|
+      @votecount += s.votes
+    end
+    mail(:to => @user.email,
+         :subject => "Voting Closed")
+  end
+  
 end

@@ -11,11 +11,17 @@ task :cron => :environment do
   end
   #update event flags
   Event.all.each do |e|
-    if e.selections_deadline < Date.today
+    if e.selections_deadline < Date.today and e.open_for_selections
       e.update_attribute(:open_for_selections,false)
+      e.confirmed_attendees.each do |u|
+        Notifier.selections_closed(u,e).deliver
+      end
     end
-    if e.votes_deadline < Date.today
+    if e.votes_deadline < Date.today and e.open_for_voting
       e.update_attribute(:open_for_voting,false)
+      e.confirmed_attendees.each do |u|
+        Notifier.voting_closed(u,e).deliver
+      end
     end
   end
 end

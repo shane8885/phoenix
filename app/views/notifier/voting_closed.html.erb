@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Voting closed for <%= @event.name %>!</h1>
+    <p>A total of <%= @votecount %> votes were registered. To see the full list of selections and votes go to <%= link_to "#{@event.name} selections",selections_event_url(@event) %>.</p>
+    <p>The festival will kick off on <%= @event.start.strftime('%A %e %B') %>.</p>
+    <p>Enjoy the movies!</p>
+  </body>
+</html>
