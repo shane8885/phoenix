@@ -19,7 +19,7 @@ class SelectionsController < ApplicationController
           if selection.save
             flash[:notice] = 'Selection was successfully created.'
           else
-            flash[:error] = 'Failed to create selection.'
+            flash[:error] = 'Failed to add selection. It may already exist.'
           end
         else
           flash[:error] = 'You have no selections remaining.'
