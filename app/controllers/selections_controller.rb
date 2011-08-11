@@ -14,9 +14,10 @@ class SelectionsController < ApplicationController
       attendance.selections_remaining -= 1
     
       respond_to do |format|
-        # this will fail if selections_remaining has gone below 0
-        if attendance.save
+        # check they haven't used all their selections
+        if attendance.selections_remaining >= 0
           if selection.save
+            attendance.save
             flash[:notice] = 'Selection was successfully created.'
           else
             flash[:error] = 'Failed to add selection. It may already exist.'
