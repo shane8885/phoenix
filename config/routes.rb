@@ -1,6 +1,6 @@
 Phoenix::Application.routes.draw do
 
-  resources :votes, :only => [:create]
+  resources :votes, :only => [:create,:destroy]
   
   resources :attendances, :except => [:index] do
     member do
@@ -27,6 +27,7 @@ Phoenix::Application.routes.draw do
       get 'schedule_parameters'
       get 'build_schedule'
       get 'update_attendees'
+      get 'voting'
     end
     collection do
       get 'search'

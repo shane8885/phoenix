@@ -1,0 +1,11 @@
+<tr>
+  <td id="row_image"><%= image_tag(vote.user.avatar.url(:thumb)) %>
+  <td><%= vote.user.username %></td>
+  <td><%= vote.selection.movie_name %></td>
+  <td><%= vote.created_at.strftime('%d %b %Y, %I:%M %p') %></td>
+  <td id="row_buttons">
+    <% if current_user.authorized?(vote.user_id) %>
+      <%= link_to 'Remove', vote, :method => :delete %>
+    <% end %>
+  </td>
+</tr>

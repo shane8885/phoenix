@@ -1,0 +1,11 @@
+<h1>Voting for <%= @event.name %></h1>
+<% if not @votes.empty? %>
+  <table class="phoenix_table">
+    <tbody>
+      <%= render :partial => 'shared/vote', :collection => @votes %>
+    </tbody>
+  </table>
+<% else %>
+<p class="indent">No votes have been registered.</p>
+<% end %>
+<%= link_to 'Event home',@event %>

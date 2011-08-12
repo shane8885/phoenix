@@ -26,5 +26,34 @@ class VotesController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
+  def destroy
+    vote = Vote.find(params[:id])  
+    event = vote.selection.event
+    if current_user.authorized?(vote.user_id)
+      attendance = Attendance.find_by_event_id_and_attending_id(event.id,vote.user_id)
+      # update the attendance allocation
+      attendance.update_attribute(:votes_remaining,attendance.votes_remaining+1)
+      # update the selectio vote count
+      if vote.selection.votes > 0
+        vote.selection.update_attribute(:votes,vote.selection.votes-1)
+      end
+      # destroy
+      if vote.destroy
+        redirect_to voting_event_path(event),:notice => 'Successfully removed vote'
+      else
+        flash[:error] = 'Sorry, something went wrong while trying to remove your vote.'
+        redirect_to voting_event_path(event)
+      end
+    else
+      action_not_permitted
+    end 
+  end
+  
+  private 
+    
+    def action_not_permitted
+      redirect_to(root_path, :notice => 'Not authorized to perform that action.')
+    end
+  
 end

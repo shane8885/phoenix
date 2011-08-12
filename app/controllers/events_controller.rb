@@ -172,6 +172,19 @@ class EventsController < ApplicationController
     redirect_to schedule_event_path,:notice => 'Successfully sent schedule update to event attendees.'
   end
   
+  def voting
+    @event = Event.find(params[:id])
+    @votes = []
+    @event.selections.each do |s|
+      s.registered_votes.each do |v|
+        @votes << v
+      end
+    end  
+    if not @votes.empty?
+      @votes.sort! { |a,b| b.created_at <=> a.created_at }
+    end
+  end
+  
   private 
     
     def action_not_permitted
