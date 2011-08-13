@@ -30,7 +30,7 @@ class VotesController < ApplicationController
   def destroy
     vote = Vote.find(params[:id])  
     event = vote.selection.event
-    if current_user.authorized?(vote.user_id)
+    if current_user.authorized?(vote.user_id) and event.open_for_voting
       attendance = Attendance.find_by_event_id_and_attending_id(event.id,vote.user_id)
       # update the attendance allocation
       attendance.update_attribute(:votes_remaining,attendance.votes_remaining+1)
