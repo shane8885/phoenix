@@ -29,6 +29,9 @@
     </tbody>
   </table>
 <% end %>
+<% if not @event.selections.empty? %>
+  <p><%= image_tag 'tick.jpg' %> indicates you have voted for that selection. You are welcome to vote multiple times.</p>
+<% end %>
 <h3>Official Selections</h3>
 <p class="indent">The official selections for an event are the ones that will make it into the event schedule.</p>
 <% if not @official.empty? %>
