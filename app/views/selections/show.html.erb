@@ -50,7 +50,7 @@
   <p class="indent"><%= @movie.overview %></p>
   <strong>Status</strong>
   <p class="indent"><%= @selection.official ? "Official Selection" : "Unofficial Selection" %></p>
-  <strong>Selected by</strong>  (<%= @selection.created_at.strftime('%d/%m/%y') %>)<br>
+  <strong>Selected by</strong> (<%= @selection.created_at.strftime('%d %b %Y') %>)<br>
   <table>
     <tr>
       <td id="row_image"><%= link_to image_tag(@selection.user.avatar.url(:thumb)), Attendance.find_by_event_id_and_attending_id(@selection.event_id,@selection.user_id) %></td>
