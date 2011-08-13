@@ -64,11 +64,13 @@
     <% end %>
   <% end %>
   <br>
-  <% form_for(@vote) do |f| %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :selection_id, :value => @selection.id %>
-    <%= f.submit "Add Vote" %>
-  <% end %><br>
+  <% if @selection.event.open_for_voting %>
+    <% form_for(@vote) do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :selection_id, :value => @selection.id %>
+      <%= f.submit "Add Vote" %>
+    <% end %><br>
+  <% end %>
   <br><hr>
   <%= link_to 'Movie credits',:controller => 'movies', :action => 'show', :id => @selection.movie_id %> | 
   <%= link_to 'Event home',@selection.event %> |

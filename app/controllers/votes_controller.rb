@@ -6,7 +6,7 @@ class VotesController < ApplicationController
     selection = vote.selection
     event = selection.event
     
-    if current_user.invited_to?(event)
+    if current_user.invited_to?(event) and event.open_for_voting
       attendance = Attendance.find_by_event_id_and_attending_id(event.id,current_user.id)
       attendance.votes_remaining -= 1
       # this will fail if votes_remaining has gone below 0
@@ -21,16 +21,15 @@ class VotesController < ApplicationController
         flash[:error] = 'Sorry, you used all you votes.'
         redirect_to selections_event_path(event)
       end
-      
     else
-      redirect_to root_path
+      action_not_permitted
     end
   end
   
   def destroy
     vote = Vote.find(params[:id])  
     event = vote.selection.event
-    if current_user.authorized?(vote.user_id)
+    if current_user.authorized?(vote.user_id) and event.open_for_voting
       attendance = Attendance.find_by_event_id_and_attending_id(event.id,vote.user_id)
       # update the attendance allocation
       attendance.update_attribute(:votes_remaining,attendance.votes_remaining+1)
