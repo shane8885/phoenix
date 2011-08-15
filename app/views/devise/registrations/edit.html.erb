@@ -14,6 +14,10 @@
 
     <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></p>
     <p><%= f.password_field :current_password %></p>
+    
+    <p><%= f.label :allow_notifications %> <i>(I wish to receive event updates via email?)</i></p>
+    <p><%= f.check_box :allow_notifications %>
+    
     <p><%= f.label :avatar %> <i>(select an image to be your avatar)</i></p>
     <p><%= f.file_field :avatar %></p>
     <hr>

@@ -13,6 +13,9 @@
 
     <p><%= f.label :password_confirmation %></p>
     <p><%= f.password_field :password_confirmation %></p>
+
+    <p><%= f.label :allow_notifications %> <i>(I wish to receive event updates via email?)</i></p>
+    <p><%= f.check_box :allow_notifications %>
     
     <p><%= f.label :avatar %> <i>(select an image to be your avatar)</i></p>
     <p><%= f.file_field :avatar %></p>
