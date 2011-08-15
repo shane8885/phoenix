@@ -19,8 +19,8 @@ class Notifier < ActionMailer::Base
   def weekly_update(user,event)
     @user = user
     @event = event
-    @sessions = @event.movie_sessions.where('start < ?',1.week.from_now)
-    @selections = @event.selections.where('created_at > ?',1.week.ago)
+    @sessions = @event.movie_sessions.where('start > ? and start < ?',Time.now.utc,Time.now.utc + 1.week)
+    @selections = @event.selections.where('created_at > ?',Time.now.utc - 1.week)
     mail(:to => @user.email, 
          :subject => "Weekly Update")
   end

@@ -6,15 +6,21 @@
   <body>
     <h1>Schedule Update for <%= @event.name %></h1>
     <p>
-      Hi <%= @user.username %>, the schedule for <%= @event.name %> has been updated, for more information go to the <%= link_to "website",root_url %>
+      Hi <%= @user.username %>, the schedule for <%= @event.name %> has been updated, for more information go to the <%= link_to "#{@event.name} schedule page",schedule_event_path(@event) %>
     </p>
     <% unless @sessions.empty? %>
       <h3><%= @event.name %> Schedule</h3>
-      <ul>
+      <table border="1">
+      <tr><th /><th>Time</th><th>Movie</th><th>Venue</th></tr>
       <% @sessions.each do |s| %>
-        <li><%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %> (venue: <%= s.venue %>)
+        <tr>
+          <td><%= image_tag s.selection.poster,:alt => "no image", :height => "50" %></td>
+          <td><%= s.start.strftime("%a %d %b, %I:%M %P") %></td> 
+          <td><%= s.selection.movie_name %></td>
+          <td><%= s.venue %></td>
+        </tr>
       <% end %>
-      </ul>
+      </table>
     <% end %>
     <p>Enjoy the movies!</p>
   </body>

@@ -30,7 +30,7 @@
         <tr>
           <td><%= image_tag s.selection.poster,:alt => "no image", :height => "50" %></td>
           <td><%= s.start.strftime("%a %d %b, %I:%M %P") %></td> 
-          <td><%= Selection.find(s.selection_id).movie_name %></td>
+          <td><%= s.selection.movie_name %></td>
           <td><%= s.venue %></td>
         </tr>
       <% end %>
