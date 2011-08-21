@@ -71,7 +71,7 @@
 </div>
 <br>
 <hr />
-<% form_for (@newcomment) do |f| %>
+<% form_for @newcomment,:remote => true,:html => { :id => 'comment_form' } do |f| %>
   <div>
     <%= f.label "Make a comment" %><br>
     <%= f.text_area :comment, :class => "comment_textarea" %>
@@ -82,7 +82,7 @@
   </div>
 <% end %>
 <% if not @comments.empty? %>
-  <table class="phoenix_table">
+  <table id="event_comments" class="phoenix_table">
     <tbody>
       <%= render :partial => 'shared/comment', :collection => @comments %>
     </tbody>
