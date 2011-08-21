@@ -16,6 +16,7 @@ attr_accessible :name, :description, :public, :maxmovies, :start, :selections_de
   has_many :not_accepted_invitations, :class_name => 'Attendance', :conditions => {:confirmed => false}
   has_many :confirmed_attendees, :class_name => 'User', :through => :accepted_invitations, :source => :attending
   has_many :unconfirmed_attendees, :class_name => 'User', :through => :not_accepted_invitations, :source => :attending
+  has_many :all_attendees, :class_name => 'User', :through => :attendances, :source => :attending
   
   validates :name, :presence => true, :length => { :maximum => 30 }
   validates :maxmovies, :presence => true, :numericality => { :within => 1..1000 }
