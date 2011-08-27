@@ -45,6 +45,7 @@ Phoenix::Application.routes.draw do
     end
   end
   
+  resources :reviews, :only => [:create,:update,:new, :edit]
   resources :movie_sessions, :only => [:update,:edit]
   
   resources :event_comments, :only => [:update, :edit, :destroy]

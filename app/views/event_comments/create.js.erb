@@ -1,0 +1,2 @@
+$("#event_comments").prepend('<%= escape_javascript(render(:partial => '/shared/comment',:object=> @comment)) %>');
+$("#comment_form")[0].reset();

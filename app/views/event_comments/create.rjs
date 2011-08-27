@@ -1,2 +1,0 @@
-page.insert_html :top,:event_comments,:partial => '/shared/comment',:object=> @comment
-page[:comment_form].reset

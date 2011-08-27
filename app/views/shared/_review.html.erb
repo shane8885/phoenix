@@ -1,0 +1,19 @@
+<tr>
+  <td id="row_image">
+    <%= image_tag(review.user.avatar.url(:thumb)) %><br>
+  </td>
+  <td id="comment_info">
+    <span id="user_name"><%= review.user.username %><br></span>
+    <%= time_ago_in_words(review.created_at) %> ago
+  </td>
+  <td id="comment_text">
+    <strong><%= review.sumamry %></td></strong><br />
+    <%= review.review %>
+  </td>
+  <td id="row_buttons">
+    <% if current_user.authorized?(review.user_id) %>
+      <%= link_to 'Edit',edit_review_path(review) %><br>
+      <%= link_to 'Destroy', review, :confirm => 'Are you sure you want to remove this review?', :method => :delete %>
+    <% end %>
+  </td>
+</tr>

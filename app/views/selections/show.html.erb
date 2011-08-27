@@ -16,11 +16,7 @@
           </td> 
       </tr>
       <tr>
-          <td>Popularity</td>
-          <td><%= @movie.popularity %></td>
-      </tr>
-      <tr>
-          <td>User Rating</td>
+          <td>TMDB User Rating</td>
           <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
       </tr>
       <tr>
@@ -57,7 +53,21 @@
       <td id="user_name"><%= @selection.user.username %></td><td>
     </tr>
   </table>
+  <strong>Average attendee rating</strong><br>
+    <%= get_star(1) %>
+    <%= get_star(2) %>
+    <%= get_star(3) %>
+    <%= get_star(4) %>
+    <%= get_star(5) %>
+    <%= get_star(6) %>
+    <%= get_star(7) %>
+    <%= get_star(8) %>
+    <%= get_star(9) %>
+    <%= get_star(10) %><br>
+    <p class="indent"><%= @selection.average_rating %> (<%= pluralize(@selection.reviews.count,'review') %>)
+    <%= myreview %><br></p>
   <strong><%= pluralize(@selection.votes,'Vote') %></strong><br>
+  
   <% unless @selection.registered_votes.empty? %>
     <% @selection.registered_votes.each do |v| %>
       <%= link_to image_tag(v.user.avatar.url(:thumb), :alt => "#{v.user.username}", :title => "#{v.user.username}"), Attendance.find_by_event_id_and_attending_id(@selection.event_id,v.user_id) %>

@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :selections, :dependent => :destroy
   has_many :event_comments, :dependent => :destroy
   has_many :votes, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
+  has_many :reviewed_selections, :class_name => 'Selection', :through => :reviews, :source => :selection
   
   # relationships with Attendance model
   has_many :all_invitations, :class_name => 'Attendance', :foreign_key => :attending_id, :dependent => :destroy

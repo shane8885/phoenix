@@ -188,6 +188,6 @@ class EventsController < ApplicationController
   private 
     
     def action_not_permitted
-      redirect_to(root_path, :notice => 'Not authorized to perform that action.')
+      redirect_to(root_path, :alert => 'Not authorized to perform that action.')
     end
 end

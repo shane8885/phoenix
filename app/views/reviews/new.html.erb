@@ -1,0 +1,38 @@
+<% content_for(:scripts) do %>
+<%= javascript_include_tag 'rating' %>
+<% end %>
+<h1>Review for <%= link_to @selection.movie_name,@selection %></h1>
+<div class="box">
+<%= form_for(@review, :html => { :class => 'rating_form' }) do |f| %>
+      <%= f.label :rating %><br />
+      <%= f.label("rating_1", content_tag(:span, '1'), {:class=>"rating", :id=>"1"}) %>
+      <%= radio_button_tag("review[rating]", 1, @rating == 1, :class => 'rating_button') %>
+      <%= f.label("rating_2", content_tag(:span, '2'), {:class=>"rating", :id=>"2"}) %>
+      <%= radio_button_tag("review[rating]", 2, @rating == 2, :class => 'rating_button') %>
+      <%= f.label("rating_3", content_tag(:span, '3'), {:class=>"rating", :id=>"3"}) %>
+      <%= radio_button_tag("review[rating]", 3, @rating == 3, :class => 'rating_button') %>
+      <%= f.label("rating_4", content_tag(:span, '4'), {:class=>"rating", :id=>"4"}) %>
+      <%= radio_button_tag("review[rating]", 4, @rating == 4, :class => 'rating_button') %>
+      <%= f.label("rating_5", content_tag(:span, '5'), {:class=>"rating", :id=>"5"}) %>
+      <%= radio_button_tag("review[rating]", 5, @rating == 5, :class => 'rating_button') %>
+      <%= f.label("rating_6", content_tag(:span, '6'), {:class=>"rating", :id=>"6"}) %>
+      <%= radio_button_tag("review[rating]", 6, @rating == 6, :class => 'rating_button') %>
+      <%= f.label("rating_7", content_tag(:span, '7'), {:class=>"rating", :id=>"7"}) %>
+      <%= radio_button_tag("review[rating]", 7, @rating == 7, :class => 'rating_button') %>
+      <%= f.label("rating_8", content_tag(:span, '8'), {:class=>"rating", :id=>"8"}) %>
+      <%= radio_button_tag("review[rating]", 8, @rating == 8, :class => 'rating_button') %>
+      <%= f.label("rating_9", content_tag(:span, '9'), {:class=>"rating", :id=>"9"}) %>
+      <%= radio_button_tag("review[rating]", 9, @rating == 9, :class => 'rating_button') %>
+      <%= f.label("rating_10", content_tag(:span, '10'), {:class=>"rating", :id=>"10"}) %>
+      <%= radio_button_tag("review[rating]", 10, @rating == 10, :class => 'rating_button') %>
+      <br /><br />
+      <%= f.label :summary %><br />
+      <%= f.text_field :summary %><br />
+      <%= f.label :review %><br />
+      <%= f.text_area :review %>
+      <%= f.hidden_field :selection_id, :value => @selection.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <hr>
+      <%= f.submit "Submit Review" %>
+<% end %>
+</div>
