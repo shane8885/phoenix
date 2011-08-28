@@ -7,7 +7,8 @@
     <%= time_ago_in_words(review.created_at) %> ago
   </td>
   <td id="comment_text">
-    <strong><%= review.sumamry %></td></strong><br />
+    <span class="largefont"><%= review.summary %></span><br />
+    <%= get_stars(:small => true) %></br>
     <%= review.review %>
   </td>
   <td id="row_buttons">

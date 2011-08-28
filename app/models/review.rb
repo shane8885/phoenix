@@ -8,5 +8,7 @@ class Review < ActiveRecord::Base
   validates :rating, :presence => true, :numericality => { :within => 1..10 }
   validates :selection_id,:presence => true
   validates :user_id, :presence => true
+  validates :summary, :length => { :maximum => 55 }
+  validates :review, :length => { :maximum => 2000 }
   
 end

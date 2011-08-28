@@ -123,6 +123,16 @@ class SelectionsController < ApplicationController
     render :nothing => true
   end
   
+  def add_review
+    @selection = Selection.find(params[:id])
+    @review = Review.new
+    @rating = 0
+  end
+  
+  def list_reviews
+    @selection = Selection.find(params[:id])
+  end
+  
   private 
     
     def action_not_permitted

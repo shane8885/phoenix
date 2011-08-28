@@ -1,0 +1,13 @@
+<h1>Reviews for <%= @selection.movie_name %>@<%= @selection.event.name %></h1>
+
+<% if not @selection.reviews.empty? %>
+  <table class="phoenix_table">
+    <tbody>
+      <%= render :partial => 'shared/review', :collection => @selection.reviews %>
+    </tbody>
+  </table>
+<% else %>
+    <p class="indent">There are no reviews for this selection. <%= link_to 'Review it now','#' %></p>
+<% end %>
+<%= link_to 'Back to selection',@selection %> | <%= link_to 'Back to event',@selection.event %>
+

@@ -53,19 +53,12 @@
       <td id="user_name"><%= @selection.user.username %></td><td>
     </tr>
   </table>
-  <strong>Average attendee rating</strong><br>
-    <%= get_star(1) %>
-    <%= get_star(2) %>
-    <%= get_star(3) %>
-    <%= get_star(4) %>
-    <%= get_star(5) %>
-    <%= get_star(6) %>
-    <%= get_star(7) %>
-    <%= get_star(8) %>
-    <%= get_star(9) %>
-    <%= get_star(10) %><br>
-    <p class="indent"><%= @selection.average_rating %> (<%= pluralize(@selection.reviews.count,'review') %>)
-    <%= myreview %><br></p>
+  <strong>Attendee reviews</strong><br>
+    <%= get_stars() %><br>
+    <p class="indent">
+      <%= @selection.average_rating %> (<%= link_to pluralize(@selection.reviews.count,'review'),list_reviews_selection_path(@selection) %>)
+    | <%= myreview %><br>
+    </p>
   <strong><%= pluralize(@selection.votes,'Vote') %></strong><br>
   
   <% unless @selection.registered_votes.empty? %>
