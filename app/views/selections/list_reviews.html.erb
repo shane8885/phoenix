@@ -7,7 +7,7 @@
     </tbody>
   </table>
 <% else %>
-    <p class="indent">There are no reviews for this selection. <%= link_to 'Review it now','#' %></p>
+    <p class="indent">There are no reviews for this selection. <%= link_to 'Review it now',add_review_selection_path(@selection) %></p>
 <% end %>
 <%= link_to 'Back to selection',@selection %> | <%= link_to 'Back to event',@selection.event %>
 
