@@ -1,6 +1,6 @@
 <tr>
   <td id="row_image">
-    <%= link_to image_tag(session.selection.poster, :alt => "no image", :height => "50"),:controller => 'movies', :action => 'show', :id => session.selection.movie_id %>
+    <%= link_to image_tag(session.selection.poster, :alt => "no image", :height => "50"),session.selection %>
   </td>
  
   <td id="session_time"><%= session.start.strftime("%I:%M %P") %></td>
