@@ -7,8 +7,7 @@ module SelectionsHelper
     end
   end
   
-  def get_stars(opts={})
-    s = Selection.find(params[:id])
+  def get_stars(s,opts={})
     height = 25
     html = ''
     if opts[:small]

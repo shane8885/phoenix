@@ -6,9 +6,10 @@
   <td id="session_time"><%= session.start.strftime("%I:%M %P") %></td>
   <td id="selection_info">
      <strong><font size="2"><%= session.selection.movie_name %></font></strong><br>
-     Running Time: <strong><%= session.selection.running_time %></strong>
+     <%= get_stars(session.selection,:small => true) %>
   </td>
   <td>
+    Running Time: <strong><%= session.selection.running_time %></strong><br />
     Venue: <strong><%= session.venue %></strong>
   </td>
    <td class="date">
