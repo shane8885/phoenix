@@ -29,4 +29,20 @@ module SelectionsHelper
     end
     html.html_safe
   end
+  
+  def get_stars_for_review(r,opts={})
+    height = 25
+    html = ''
+    if opts[:small]
+      height = 15
+    end
+    for i in (1..10)
+      if i <= r.rating
+        html << image_tag('star-bright.png',:height => height)
+      else
+        html << image_tag('star-dim.png',:height => height)
+      end
+    end
+    html.html_safe
+  end
 end
