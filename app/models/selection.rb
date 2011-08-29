@@ -18,7 +18,8 @@ class Selection < ActiveRecord::Base
             rating = rating + review.rating
         end
         total = self.reviews.size
-        rating.to_f / total.to_f
+        avg = rating.to_f / total.to_f
+        avg.round(1)
       else
         0
       end
