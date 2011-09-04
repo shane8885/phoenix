@@ -1,4 +1,7 @@
-<h1><%= link_to(@event.name,@event) %></h1>
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @event %>
+<% end %>
+<h1><%= @event.name %></h1>
 <h3>Schedule Settings</h3>
 <div class="box">
   <% form_tag build_schedule_event_path(@event), :method => 'get' do %>

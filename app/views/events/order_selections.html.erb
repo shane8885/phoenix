@@ -1,4 +1,7 @@
-<h1><%= link_to(@event.name,@event) %></h1>
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @event %>
+<% end %>
+<h1><%= @event.name %></h1>
 <h3>Selections Order</h3>
 <p>Here you can change the order that your films will be scheduled. This is the first step in creating a new schedule. Simply grab the move icon corresponding the selection you want to reorder and drag it up or down the list, dropping it in it's final desitination. When you're happy with the order click the next button at the bottom.</p>
 <% if not @selections.empty? %>

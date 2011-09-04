@@ -1,6 +1,7 @@
 <table><tr>
 <td width="100">
   <%= image_tag @user.avatar.url(:small) %>
+  <%= link_to "Edit account", edit_user_registration_path %>
 <td text-align='left'><h1><%= @user.username %></h1></td>
 </table>
 <h3>My Events</h3>
@@ -49,6 +50,3 @@
 <% else %>
   <p class="indent">You have not registered any votes.</p>
 <% end %>
-<div class='member_buttons'>
-  <%= link_to "Edit My Account", edit_user_registration_path, :class => 'member_link' %>
-</div>

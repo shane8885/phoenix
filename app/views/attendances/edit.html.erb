@@ -1,3 +1,6 @@
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @attendance.event %>
+<% end %>
 <h1><%= link_to @attendance.event.name,@attendance.event %></h1>
 
 <div class="box">

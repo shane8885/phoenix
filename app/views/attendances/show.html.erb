@@ -1,3 +1,6 @@
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @attendance.event %>
+<% end %>
 <h1><%= @attendance.attending.username %>@<%= @attendance.event.name %></h1>
 <table>
 <tr>

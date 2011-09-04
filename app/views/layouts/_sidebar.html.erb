@@ -1,21 +1,24 @@
 <div class="span-4 last box" id="sidebar">
+  <div class="sidebarmenu">
   <% if user_signed_in? %>
-    <h3 class="caps">actions</h3>
-    <%= link_to "My Home", current_user, :class => "action_link" %>
-    <hr />
-    <%= link_to "Create Event", new_event_path, :class => "action_link" %>
-    <%= link_to "Find Event", search_events_path, :class => "action_link" %>
-    <%= link_to "Find Movie", movies_search_path, :class => "action_link" %>
-    <%= link_to "Find User", search_user_index_path, :class => "action_link" %><br>
-    <h3 class="caps">quick links</h3>
+    <h3 class="headerbar">actions</h3>
     <ul>
+      <li><%= link_to "My Home", current_user %>
+      <li><%= link_to "Create Event", new_event_path %>
+      <li><%= link_to "Find Event", search_events_path %>
+      <li><%= link_to "Find Movie", movies_search_path %>
+      <li><%= link_to "Find User", search_user_index_path %>
+    </ul>
+    <h3 class="headerbar">quick links</h3>
+    <ul class="sidebarmenu">
       <% current_user.all_events.each do |event| %>
-        <li><%= link_to event.name,event,:class => "quicklink" %><br>
+        <li><%= link_to event.name,event,:class => "quicklink" %>
       <% end %>
     </ul>
+    <%= yield :sidebar %>
   <% else %>
     <% if request.request_uri != "/users/sign_in" %>
-      <h3 class="caps">Sign in</h3>
+      <h3 class="headerbar">Sign in</h3>
       <div class="box">
         <%= form_for("user", :url => user_session_path) do |f| %>
           <%= f.label :username %>
@@ -30,4 +33,5 @@
       <% end %>
     </div>
   <% end %>
+  </div>
 </div>

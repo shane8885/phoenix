@@ -1,94 +1,94 @@
-<table class="event_details">
-  <tr>
-    <td class="event_big_name"><%= @event.name %><br>
-      <%= image_tag @event.poster.url(:small) %></td>
-    <td class="event_description">
-      <%= @event.description %>
-    </td>
-    <td class="date">
-      <span class="month"><%= @event.start.strftime("%b") %></span>
-      <span class="day"><%= @event.start.strftime("%d") %></span>
-      <span class="year"><%= @event.start.strftime("%Y") %></span>
-    </td>
-  </tr>
-  <tr>
-    <td class="event_detail_name">Attendee allocations</td>
-    <td><span class="event_detail_value"><%= @event.selections_per_attendee %> Selections, <%= @event.votes_per_attendee %> Votes</span></td>
-  </tr>
-  <tr>
-    <td class="event_detail_name">Voting is</td>
-    <% if @event.open_for_voting? %>
-      <td><span class="open">Open</span> closing <%= @event.votes_deadline %></td>
-    <% else %>
-      <td><span class="closed">Closed</span></td>
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @event %>
+<% end %>
+<h1><%= @event.name %></h1>
+<div class="span-4">
+  <%= image_tag @event.poster.url(:small) %>
+  <span class="event_detail_value"><%= @event.start.strftime('%A %e %B') %></span>
+</div>
+<div class="span-14 last">
+  <table class="event_details">
+    <tr>
+      <td colspan="2" class="event_description">
+        <%= @event.description %>
+      </td>
+    </tr>
+    <tr>
+      <td class="event_detail_name">Attendee allocations</td>
+      <td><span class="event_detail_value"><%= @event.selections_per_attendee %> Selections, <%= @event.votes_per_attendee %> Votes</span></td>
+    </tr>
+    <tr>
+      <td class="event_detail_name">Voting is</td>
+      <% if @event.open_for_voting? %>
+        <td><span class="open">Open</span> closing <%= @event.votes_deadline %></td>
+      <% else %>
+        <td><span class="closed">Closed</span></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td class="event_detail_name">Selections are</td>
+      <% if @event.open_for_selections? %>
+        <td><span class="open">Open</span> closing <%= @event.selections_deadline %></td>
+      <% else %>
+        <td><span class="closed">Closed</span></td>
+      <% end %>
+    </tr>
+    <% if current_user.invited_to?(@event) %>
+    <tr>
+      <td class="event_detail_name">Your Selections</td> 
+      <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining,'selection') %> remaining</span><span id="selections_allocation"> what is this?</span></td>
+    </tr>
+    <tr>  
+      <td class="event_detail_name">Your Votes</td>
+      <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining,'vote') %> left</span><span id="votes_allocation"> what is this?</span></td>
+    </tr>
     <% end %>
-  </tr>
-  <tr>
-    <td class="event_detail_name">Selections are</td>
-    <% if @event.open_for_selections? %>
-      <td><span class="open">Open</span> closing <%= @event.selections_deadline %></td>
-    <% else %>
-      <td><span class="closed">Closed</span></td>
-    <% end %>
-  </tr>
-  <% if current_user.invited_to?(@event) %>
-  <tr>
-    <td class="event_detail_name">Your Selections</td> 
-    <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining,'selection') %> remaining</span><span id="selections_allocation"> what is this?</span></td>
-  </tr>
-  <tr>  
-    <td class="event_detail_name">Your Votes</td>
-    <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining,'vote') %> left</span><span id="votes_allocation"> what is this?</span></td>
-  </tr>
-  <% end %>
-</table>
-<% unless @recent_selections.empty? %>
+  </table>
+</div>
+<hr />
+<div class="span-18 last">
   <h3>Recent Selections</h3>
-  <% @recent_selections.each do |s| %>
-    <%= link_to image_tag(s.poster, :alt => s.movie_name, :title => s.movie_name, :height => 80),s %>
-  <% end %>
-  <br><%= link_to "#{@event.selections.length} total selections", selections_event_path %>
-<% end %>
-<% unless @event.confirmed_attendees.empty? %>
-  <h3>Confirmed Attendees</h3>
-  <% @event.accepted_invitations.each do |a| %>
-    <% if a.attending %>
-      <%= link_to( image_tag(a.attending.avatar.url(:thumb), :alt => "#{a.attending.username}", :title => "#{a.attending.username}" ),a ) %>
+  <% unless @recent_selections.empty? %>
+    <% @recent_selections.each do |s| %>
+      <%= link_to image_tag(s.poster, :alt => s.movie_name, :title => s.movie_name, :height => 80),s %>
     <% end %>
+    <br><%= link_to "#{@event.selections.length} total selections", selections_event_path %>
+  <% else %>
+    <p class="indent"><%= link_to 'Make a selection now',movies_search_path %></p>
   <% end %>
-  <% unless @event.not_accepted_invitations.empty? %>
-    <br><%= link_to "#{@event.not_accepted_invitations.length} unconfirmed attendees", attendees_event_path %>
+  <h3>Confirmed Attendees</h3>
+  <% unless @event.confirmed_attendees.empty? %>
+    <% @event.accepted_invitations.each do |a| %>
+      <% if a.attending %>
+        <%= link_to( image_tag(a.attending.avatar.url(:thumb), :alt => "#{a.attending.username}", :title => "#{a.attending.username}" ),a ) %>
+      <% end %>
+    <% end %>
+    <% unless @event.not_accepted_invitations.empty? %>
+      <br><%= link_to "#{@event.not_accepted_invitations.length} unconfirmed attendees", attendees_event_path %>
+    <% end %>
+  <% else %>
+    <p class="indent"><%= link_to 'Invite someone now',search_user_index_path %></p>
   <% end %>
-<% end %>
-<div class='member_buttons'>
-  <%= link_to 'Selections', selections_event_path, :class => 'member_link' %>
-  <%= link_to 'Attendees', attendees_event_path, :class => 'member_link' %>
-  <%= link_to 'Schedule', schedule_event_path, :class => 'member_link' %>
-  <%= link_to 'Voting Log', voting_event_path, :class => 'member_link' %>
-  <% if current_user.authorized?(@event.user_id) %>
-    <%= link_to 'Edit', edit_event_path, :class => 'member_link' %>
+  <br>
+  <hr />
+  <% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
+    <div>
+      <%= f.label "Make a comment" %><br>
+      <%= f.text_area :comment, :class => "comment_textarea" %>
+      <%= f.hidden_field :event_id, :value => @event.id %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add Comment" %>
+    </div>
+  <% end %>
+  <% if not @comments.empty? %>
+    <table id="event_comments" class="phoenix_table">
+      <tbody>
+        <%= render :partial => 'shared/comment', :collection => @comments %>
+      </tbody>
+    </table>
   <% end %>
 </div>
-<br>
-<hr />
-<% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
-  <div>
-    <%= f.label "Make a comment" %><br>
-    <%= f.text_area :comment, :class => "comment_textarea" %>
-    <%= f.hidden_field :event_id, :value => @event.id %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Add Comment" %>
-  </div>
-<% end %>
-<% if not @comments.empty? %>
-  <table id="event_comments" class="phoenix_table">
-    <tbody>
-      <%= render :partial => 'shared/comment', :collection => @comments %>
-    </tbody>
-  </table>
-<% end %>
-
 <div id='votes_tip' style="display:none; margin: 5px; background-color: lightblue; padding: 5px; max-width: 400px; border-width: 2px; border-color: blue;">
   <strong>Votes Allocation</strong>
   <p>Each event allocates a certain number of votes to each attendee. The attendee can then award their votes to any unofficial or offical selection. Go to the selections page to make your votes.</p>

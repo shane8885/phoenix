@@ -1,4 +1,7 @@
-<h1>Editing event</h1>
-
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @event %>
+<% end %>
+<h1><%= @event.name %></h1>
+<h3>Update Event Settings</h3>
 <%= render 'form' %>
 

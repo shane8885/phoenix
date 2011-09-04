@@ -1,4 +1,7 @@
-<h1>Selection for <%= link_to(@selection.event.name,@selection.event) %></h1>
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @selection.event %>
+<% end %>
+<h1>Selection for <%= @selection.event.name %></h1>
 <div class="span-6">
   <%= insert_poster(@movie,300) %>
   <table>

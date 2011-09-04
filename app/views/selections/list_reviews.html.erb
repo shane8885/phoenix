@@ -1,3 +1,6 @@
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @selection.event %>
+<% end %>
 <h1>Reviews for <%= @selection.movie_name %>@<%= @selection.event.name %></h1>
 
 <% if not @selection.reviews.empty? %>

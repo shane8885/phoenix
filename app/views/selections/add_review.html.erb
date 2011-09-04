@@ -1,7 +1,11 @@
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @selection.event %>
+<% end %>
 <% content_for(:scripts) do %>
 <%= javascript_include_tag 'rating' %>
 <% end %>
-<h1>Review for <%= link_to @selection.movie_name,@selection %></h1>
+<h1>Review for <%= @selection.movie_name %></h1>
+<%= link_to 'back to selection',@selection %>
 <div class="box">
 <%= form_for(@review, :html => { :class => 'rating_form' }) do |f| %>
       <%= f.error_messages %>

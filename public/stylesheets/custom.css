@@ -15,11 +15,6 @@ h3 {
   text-shadow: 1px 1px 3px #aaa;
 }
 
-#sidebar ul {
-  list-style-image: url('/images/list_marker.gif');
-  font-size: 100%;
-}
-
 .largefont {
   font-family: Verdana, Arial, Helvetica, sans-serif;
   font-size: large;
@@ -229,18 +224,18 @@ color: lightyellow;
   padding-left: 10px;
 }
 
-#selection_name {
+.selection_name {
   font-weight: bold;
   font-size: 125%;
   color: black;
 }
 
-#selection_name a {
+.selection_name a {
   font-weight: bold;
   text-decoration: none;
 }
 
-#selection_name a:hover {
+.selection_name a:hover {
   text-decoration: none;
 }
 
@@ -708,3 +703,48 @@ form.rating_form label.rating span { display: none; }
 form.rating_form label.rating { background-image: url(../images/star-dim.png); }
 form.rating_form label.rating.bright { background-image: url(../images/star-bright.png); }
 form.rating_form label.rating.glow { background-image: url(../images/star-glow.png); }
+
+/* SIDEBAR */
+.sidebarmenu{
+width: 175px; /*width of menu*/
+}
+
+.sidebarmenu .headerbar{
+font: bold 13px Verdana;
+color: white;
+background: #333 url(media/arrowstop.gif) no-repeat 8px 6px; /*last 2 values are the x and y coordinates of bullet image*/
+margin-bottom: 0; /*bottom spacing between header and rest of content*/
+text-transform: uppercase;
+padding: 7px 0 7px 31px; /*31px is left indentation of header text*/
+}
+
+.sidebarmenu ul{
+list-style-type: none;
+margin: 0;
+padding: 0;
+margin-bottom: 0; /*bottom spacing between each UL and rest of content*/
+}
+
+.sidebarmenu ul li{
+padding-bottom: 2px; /*bottom spacing between menu items*/
+}
+
+.sidebarmenu ul li a{
+font: normal 12px Arial;
+color: black;
+background: #E9E9E9;
+display: block;
+padding: 5px 0;
+line-height: 17px;
+padding-left: 8px; /*link text is indented 8px*/
+text-decoration: none;
+}
+
+.sidebarmenu ul li a:visited{
+color: black;
+}
+
+.sidebarmenu ul li a:hover{ /*hover state CSS*/
+color: white;
+background: #2580a2;
+}

@@ -5,7 +5,7 @@
  
   <td id="session_time"><%= session.start.strftime("%I:%M %P") %></td>
   <td id="selection_info">
-     <strong><font size="2"><%= session.selection.movie_name %></font></strong><br>
+     <span class="selection_name"><%= link_to session.selection.movie_name,session.selection %></span><br />
      <%= get_stars(session.selection,:small => true) %>
   </td>
   <td>
