@@ -166,7 +166,7 @@ class EventsController < ApplicationController
   
   def update_attendees
     event = Event.find(params[:id])
-    if not event.movie_sessions.where('start > ?',Time.now.utc).isempty?
+    if not event.movie_sessions.where('start > ?',Time.now.utc).empty?
       event.all_attendees.each do |u|
         Notifier.schedule_update(u,event).deliver
       end
