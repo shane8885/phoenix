@@ -28,7 +28,7 @@ class Notifier < ActionMailer::Base
   def schedule_update(user,event)
     @event = event
     @user = user
-    @sessions = @event.movie_sessions
+    @sessions = @event.movie_sessions.where('start > ?',Time.now.utc)
     mail(:to => @user.email,
          :subject => "Schedule Update")
   end

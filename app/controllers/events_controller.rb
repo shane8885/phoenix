@@ -166,10 +166,14 @@ class EventsController < ApplicationController
   
   def update_attendees
     event = Event.find(params[:id])
-    event.all_attendees.each do |u|
-      Notifier.schedule_update(u,event).deliver
+    if not event.movie_sessions.where('start > ?',Time.now.utc).isempty?
+      event.all_attendees.each do |u|
+        Notifier.schedule_update(u,event).deliver
+      end
+      redirect_to schedule_event_path,:notice => 'Successfully sent schedule update to event attendees.'
+    else
+      redirect_to schedule_event_path,:alert => 'Update was not sent, you have no upcoming sessions.'
     end
-    redirect_to schedule_event_path,:notice => 'Successfully sent schedule update to event attendees.'
   end
   
   def voting
