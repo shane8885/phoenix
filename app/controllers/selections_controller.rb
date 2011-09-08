@@ -117,7 +117,7 @@ class SelectionsController < ApplicationController
   end
   
   def sort
-    params[:selections].each_with_index do |id,index|
+    params[:selection].each_with_index do |id,index|
       Selection.update_all(['position=?',index+1],['id=?',id])
     end
     render :nothing => true
