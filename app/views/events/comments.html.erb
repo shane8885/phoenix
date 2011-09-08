@@ -1,0 +1,20 @@
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @event %>
+<% end %>
+<h1><%= @event.name %></h1>
+<h3>Comments</h3>
+<% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
+  <div>
+    <%= f.text_area :comment, :class => "comment_textarea" %>
+    <%= f.hidden_field :event_id, :value => @event.id %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Comment" %>
+  </div>
+<% end %>
+<br />
+<table id="event_comments" class="phoenix_table">
+  <tbody>
+    <%= render :partial => 'shared/comment', :collection => @comments %>
+  </tbody>
+</table>

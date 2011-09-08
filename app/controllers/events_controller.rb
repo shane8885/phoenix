@@ -25,10 +25,19 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @recent_selections = @event.recent_selections
-    @comments = @event.event_comments
+    @comments = @event.event_comments.limit(10)
     @newcomment = EventComment.new
     
     # check that current user owns this event or that current user is admin
+    if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
+      action_not_permitted
+    end 
+  end
+  
+  def comments
+    @event = Event.find(params[:id])
+    @comments = @event.event_comments
+    @newcomment = EventComment.new
     if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
       action_not_permitted
     end 
