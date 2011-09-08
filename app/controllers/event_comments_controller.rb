@@ -39,7 +39,14 @@ class EventCommentsController < ApplicationController
     if current_user.authorized?(@comment.user_id)
       @comment.destroy
       redirect_to event, :notice => 'Comment was successfully destroyed.'
+    else
+      action_not_permitted
     end
   end
   
+   private 
+    
+    def action_not_permitted
+      redirect_to(root_path, :alert => 'Not authorized to perform that action.')
+    end
 end
