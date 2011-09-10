@@ -67,9 +67,9 @@ end
 
 def make_sessions
   Event.all.each do |event|
-    starttime = rand(100).days.from_now + rand(100).minutes
-    endtime = start + 90.minutes
     Selection.find_all_by_event_id(event.id).each do |selection|
+      starttime = rand(100).days.from_now + rand(100).minutes
+      endtime = starttime + 90.minutes
       MovieSession.create!( :event_id => event.id, :selection_id => selection.id, :start => starttime, :end => endtime )
     end
   end
