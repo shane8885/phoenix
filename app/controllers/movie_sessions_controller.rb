@@ -17,9 +17,10 @@ class MovieSessionsController < ApplicationController
   def update
     @session = MovieSession.find(params[:id])
     event = Event.find(@session.event_id)
-    
+    @session.attributes = params[:movie_session]
+    @session.end_at = @session.start + @session.selection.running_time.minutes
     respond_to do |format|
-      if @session.update_attributes(params[:movie_session])
+      if @session.save
         format.html { redirect_to(schedule_event_path(event), :notice => 'Session was successfully updated.') }
         format.xml  { head :ok }
       else
