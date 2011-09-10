@@ -1,6 +1,6 @@
 class MovieSession < ActiveRecord::Base
-  has_event_calendar :start_at_field  => 'start', :end_at_field => 'end'
-  attr_accessible :event_id, :selection_id, :start, :end, :venue
+  has_event_calendar :start_at_field  => 'start'
+  attr_accessible :event_id, :selection_id, :start, :end_at, :venue
   
   default_scope :order => 'movie_sessions.start'
   

@@ -171,7 +171,7 @@ class EventsController < ApplicationController
     MovieSession.delete_all(['event_id = ?',@event.id])
     selections = @event.official_selections.sort_by &:position
     selections.each do |s|
-      session = @event.movie_sessions.build(:selection_id => s.id, :start => time, :end => (time + s.running_time.minutes) )
+      session = @event.movie_sessions.build(:selection_id => s.id, :start => time, :end_at => (time + s.running_time.minutes) )
       session.save
       count = count + 1
       if( count == mpw )

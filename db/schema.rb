@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909101550) do
+ActiveRecord::Schema.define(:version => 20110910075647) do
 
   create_table "attendances", :force => true do |t|
     t.integer  "event_id"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20110909101550) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "venue",        :default => "TBD"
-    t.datetime "end"
+    t.datetime "end_at"
   end
 
   add_index "movie_sessions", ["event_id"], :name => "index_sessions_on_event_id"
