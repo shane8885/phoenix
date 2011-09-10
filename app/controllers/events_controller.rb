@@ -74,6 +74,19 @@ class EventsController < ApplicationController
     end
   end
   
+  def calendar
+    @month = (params[:month] || (Time.zone || Time).now.month).to_i
+    @year = (params[:year] || (Time.zone || Time).now.year).to_i
+    @event = Event.find(params[:id])
+    @shown_month = Date.civil(@year, @month)
+
+    @event_strips = MovieSession.event_strips_for_month(@shown_month, :conditions => "event_id = #{@event.id}")
+    # only admin, owner or attendees can view this
+    if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
+      action_not_permitted
+    end
+  end
+  
   # GET /events/new
   # GET /events/new.xml
   def new
@@ -158,7 +171,7 @@ class EventsController < ApplicationController
     MovieSession.delete_all(['event_id = ?',@event.id])
     selections = @event.official_selections.sort_by &:position
     selections.each do |s|
-      session = @event.movie_sessions.build(:selection_id => s.id, :start => time)
+      session = @event.movie_sessions.build(:selection_id => s.id, :start => time, :end => (time + s.running_time.minutes) )
       session.save
       count = count + 1
       if( count == mpw )

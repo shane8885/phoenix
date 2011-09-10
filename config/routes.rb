@@ -31,6 +31,7 @@ Phoenix::Application.routes.draw do
       get 'update_attendees'
       get 'voting'
       get 'comments'
+      get 'calendar'
     end
     collection do
       get 'search'

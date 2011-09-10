@@ -3,19 +3,15 @@
     <%= link_to image_tag(session.selection.poster, :alt => "no image", :height => "50"),session.selection %>
   </td>
  
-  <td id="session_time"><%= session.start.strftime("%I:%M %P") %></td>
+  <td id="session_time"><%= session.start.strftime("%d %b %Y") %><br />
+  <%= session.start.strftime("%I:%M %P") %></td>
   <td id="selection_info">
-     <span class="selection_name"><%= link_to session.selection.movie_name,session.selection %></span><br />
+     <span class="title_link"><%= link_to session.selection.movie_name,session.selection %></span><br />
      <%= get_stars(session.selection,:small => true) %>
   </td>
   <td>
     Running Time: <strong><%= session.selection.running_time %></strong><br />
     Venue: <strong><%= session.venue %></strong>
-  </td>
-   <td class="date">
-    <span class="month"><%= session.start.strftime("%b") %></span>
-    <span class="day"><%= session.start.strftime("%d") %></span>
-    <span class="year"><%= session.start.strftime("%Y") %></span>
   </td>
   <td id="row_buttons">
     <% if current_user.authorized?(Event.find(session.event_id).user_id) %>

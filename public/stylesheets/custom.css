@@ -80,6 +80,10 @@ a.signup_button {
   padding-top: 20px;
 }
 
+.right {
+  text-align: right;
+}
+
 .logininfo {
   color: black;
   text-align: right;
@@ -222,21 +226,6 @@ color: lightyellow;
 #selection_info {
   width: 250px;
   padding-left: 10px;
-}
-
-.selection_name {
-  font-weight: bold;
-  font-size: 125%;
-  color: black;
-}
-
-.selection_name a {
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.selection_name a:hover {
-  text-decoration: none;
 }
 
 #session_time {
@@ -400,36 +389,6 @@ table.event_details {
 .event_detail_quota {
   background: lightblue;
   padding: 3px 10px;
-}
-
-.date {
-	vertical-align: center;
-	text-align: center;
-	display:block;
-	font-family: Georgia, serif;
-	width: 60px;
-}
-.month {
-	display:block; 
-	font-size: .9em;
-	margin:0; 
-	padding:0;
-	background: lightblue;
-}
-.day { 
-	display:block; 
-	font-size:1.6em;
-	font-weight: bold;
-	margin:0; 
-	padding:0;  
-	background:white;
-}
-.year { 
-	display:block; 
-	font-size: .9em;
-	margin:0; 
-	padding:0;  
-	background: lightblue;
 }
 
 #event_buttons {
@@ -647,7 +606,7 @@ table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:wh
  width: 100%;
  line-height: 1.2em;
 }
-caption {
+.phoenix_table caption {
  font-size: 30px;
  font-weight: bold;
  color: #002084;
@@ -656,7 +615,7 @@ caption {
  margin-bottom: 2px;
  text-transform: capitalize;
 }
-thead th {
+.phoenix_table thead th {
  border-right: 2px solid #fff;
  color:#fff;
  text-align:center;
@@ -664,7 +623,7 @@ thead th {
  height:25px;
  background-color: #004080;
 }
-tfoot {
+.phoenix_table tfoot {
  color:#002084;
  padding:2px;
  text-transform:uppercase;
@@ -674,26 +633,42 @@ tfoot {
  border-top: 6px solid #004080;
  border-bottom: 6px solid #004080;
 }
-tbody tr {
+.phoenix_table tbody tr {
  background-color:#fff;
  border-bottom: 2px solid #c0c0c0;
 }
-tbody td {
+.phoenix_table tbody td {
  color:#002084;
  padding:5px;
  text-align:left;
 }
-tbody th {
+.phoenix_table tbody th {
  text-align:left;
  padding: 2px;
 }
-tbody td a, tbody th a {
+.phoenix_table tbody td a, tbody th a {
  color:darkblue;
  text-decoration:underline;
  font-weight:normal; 
 }
-tbody td a:hover, tbody th a:hover {
+.phoenix_table tbody td a:hover, tbody th a:hover {
  text-decoration:underline;
+ color: #38a;
+}
+
+.phoenix_table .title_link {
+  font-weight: bold;
+  font-size: 125%;
+  color: black;
+}
+
+.phoenix_table .title_link a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.phoenix_table .title_link a:hover {
+  text-decoration: none;
 }
 
 form.rating_form input#rating_submit { display: none; }

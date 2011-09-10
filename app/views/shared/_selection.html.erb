@@ -4,7 +4,7 @@
     <%= link_to image_tag(selection.poster, :alt => "no image", :height => "50"),selection %>
   </td>
   <td class="selection_info">
-     <span class="selection_name"><%= link_to selection.movie_name,selection %></span><br />
+     <span class="title_link"><%= link_to selection.movie_name,selection %></span><br />
      <%= get_stars(selection,:small => true) %>
   </td>
   <td>

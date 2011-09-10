@@ -36,11 +36,11 @@
     <% if current_user.invited_to?(@event) %>
     <tr>
       <td class="event_detail_name">Your Selections</td> 
-      <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining,'selection') %> remaining</span><span id="selections_allocation"> what is this?</span></td>
+      <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).selections_remaining,'selection') %> remaining</span></td>
     </tr>
     <tr>  
       <td class="event_detail_name">Your Votes</td>
-      <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining,'vote') %> left</span><span id="votes_allocation"> what is this?</span></td>
+      <td><span class="event_detail_quota"><%= pluralize(Attendance.find_by_event_id_and_attending_id(@event.id,current_user.id).votes_remaining,'vote') %> left</span></td>
     </tr>
     <% end %>
   </table>
@@ -91,15 +91,3 @@
     <%= link_to 'see all comments',comments_event_path(@event) %>
   <% end %>
 </div>
-<div id='votes_tip' style="display:none; margin: 5px; background-color: lightblue; padding: 5px; max-width: 400px; border-width: 2px; border-color: blue;">
-  <strong>Votes Allocation</strong>
-  <p>Each event allocates a certain number of votes to each attendee. The attendee can then award their votes to any unofficial or offical selection. Go to the selections page to make your votes.</p>
-</div>
-<div id='selections_tip' style="display:none; margin: 5px; background-color: lightblue; padding: 5px; max-width: 400px; border-width: 2px; border-color: blue;">
-  <strong>Selection Allocation</strong>
-  <p>Each event allocates a certain number of votes to each attendee. The attendee can then award their votes to any unofficial or offical selection. Go to the selections page to make your votes.</p>
-</div>
-<script type="text/javascript">
-  var votes_tip = new Tooltip('votes_allocation','votes_tip')
-  var selections_tip = new Tooltip('selections_allocation','selections_tip')
-</script>

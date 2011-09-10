@@ -12,6 +12,7 @@ gem 'faker', '0.3.1'
 gem "paperclip", '2.3.6'
 gem 'aws-s3', '0.6.2'
 gem 'jquery-rails'
+gem 'event-calendar', '2.3.3', :require => 'event_calendar'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
