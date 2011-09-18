@@ -1,7 +1,7 @@
 <h1><%= @movie.name %></h1>
 <div class="span-6">
   <%= insert_poster(@movie,300) %>
-  <table>
+  <table class="zebra">
     <tbody>
       <tr>
           <td>Released</td>
@@ -64,7 +64,7 @@
   <strong>Description</strong><br>
   <p class="indent"><%= @movie.overview %></p>
   <strong>Credits</strong><br>
-  <table class="cast">
+  <table class="zebra">
     <tbody>
       <% @movie.cast.each do |actor| %>
         <tr>

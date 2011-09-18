@@ -594,9 +594,10 @@ table.event_details {
 }
 
 /* TABLE STYLING */
-
-table.phoenix_table tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
-table.event_details tbody tr:nth-child(even) td, tbody tr.even td {background:white;}
+table.zebra tbody tr:nth-child(even) td, tbody tr.even td 
+{
+  background:#e5ecf9;
+}
 
 .phoenix_table {
  font-size: 95%;
