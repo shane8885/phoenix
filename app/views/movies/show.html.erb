@@ -72,7 +72,7 @@
             <% if actor.profile == "" %>
               <%= image_tag '/avatars/thumb/missing.png' %>
             <% else %>
-              <%= image_tag actor.profile %>
+              <%= image_tag actor.profile,:height=>'50' %>
             <% end %>
           </td>
           <td>
