@@ -3,7 +3,7 @@
 <% end %>
 <h1><%= @event.name %></h1>
 <div class="span-4">
-  <%= image_tag @event.poster.url(:small) %>
+  <%= image_tag @event.poster.url(:small) %><br />
   <span class="event_detail_value"><%= @event.start.strftime('%a %e %b') %></span>
 </div>
 <div class="span-14 last">
