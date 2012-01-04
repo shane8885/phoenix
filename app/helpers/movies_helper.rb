@@ -3,8 +3,14 @@ module MoviesHelper
     if movie.posters.nil? or movie.posters.first.nil?
       image_tag 'no_poster.jpg', :height => height 
     else
-      image_tag movie.posters.first.url, :alt => "no image", :height => height
+      movie.posters.each do |p|
+        if p.size == "cover"
+          return image_tag p.url, :alt => "no image", :height => height
+        end
+      end
     end
+    #catch all, fallback to default no poster image 
+    image_tag 'no_poster.jpg', :height => height 
   end
   
   def insert_thumbnail(movie,height)
