@@ -3,13 +3,12 @@
   <p>Welcome to GarageFilmFestival.org where you can create and manage your own movie festival. It's all about sharing movies with your friends. This site lets you create an event, invite friends, vote on movies for the official selection, schedule movie sessions, keep everyone up to date with notifications and much more. Just follow the getting started instructions below and you'll be up an running in no time. Enjoy the movies!</p>
 </div>
 <% if not user_signed_in? %>
-  <div class="span-16 box last">
+  <div class="span-17 box last">
       <%= link_to "Sign up now!",new_user_registration_path, :class => "signup_button" %>
   </div>
 <% end %>
-  <hr />
-<div class="span-8">
-  <div class="box">
+<hr />
+<div class="span-7 box">
   <h1>Getting Started</h1>
   <ol class="guide">
       <li>Sign up
@@ -17,12 +16,20 @@
       <li>Invite your friends
       <li>Start selecting and voting
   </ol>
+</div>
+<div class="span-10 last">
+  <div class="box">
+    <h1>Suggestion Box</h1>
+    <table>
+    <tr>
+    <td vertical-align="top"><%= link_to insert_thumbnail(@suggested_movie,130),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %></td>
+    <td>
+      <strong><%= @suggested_movie.name %></strong> (<%= Date.parse(@suggested_movie.released).year %>)<br />
+      <p class="indent"><%= truncate(@suggested_movie.overview, :length => 230) %> <%= link_to 'more',:controller => 'movies', :action => 'show', :id => @suggested_movie.id %> <strong>(<%= @suggested_movie.rating %> / <%= @suggested_movie.votes %> votes)</strong></p>
+    </td></tr></table>
   </div>
 </div>
-<div class="span-9 push-1 last">
-  <%= image_tag('free_stamp.jpg',:alt => 'free', :height => 150 ) %>
-</div>
-<div class="span-24">
+<div class="span-18">
   <% unless @recent_movies.empty? %>
   <h3>Latest Movies</h3>
     <% @recent_movies.each do |m| %>
