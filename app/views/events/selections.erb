@@ -1,7 +1,12 @@
 <% content_for(:sidebar) do %>
   <%= render :partial => 'shared/sidebar_event',:object => @event %>
 <% end %>
-<h1><%= @event.name %></h1>
+<div class="span-9">
+  <h1><%= @event.name %></h1>
+</div>
+<div class="span-9 last right">
+  <%= link_to 'make selection',movies_search_path %>
+</div>
 <% if current_user.invited_to?(@event) %>
   <table class="event_details">
     <tbody>
@@ -55,4 +60,4 @@
   <p>No unofficial selections have been made. <%= link_to "add selection now", movies_search_path %></p>
 <% end %>
 
-<%= link_to 'Back to event',@event %>
+<%= link_to 'make selection',movies_search_path %> | <%= link_to 'Back to event',@event %>
