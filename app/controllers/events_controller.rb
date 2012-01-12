@@ -24,7 +24,7 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
-    @recent_selections = @event.recent_selections
+    @recent_selections = @event.recent_selections.limit(12)
     @comments = @event.event_comments.limit(10)
     @newcomment = EventComment.new
     
