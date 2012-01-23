@@ -1,3 +1,17 @@
+<% content_for(:scripts) do %>
+  <%= javascript_include_tag 'jquery.nivo.slider.pack' %>
+<% end %>
+<% content_for(:stylesheets) do %>
+  <%= stylesheet_link_tag 'themes/default/default', :media => 'screen' %>
+  <%= stylesheet_link_tag 'nivo-slider', :media => 'screen' %>
+<% end %>
+<% content_for(:scripts) do %>
+<script type="text/javascript">
+$(window).load(function() {
+    $('#slider').nivoSlider();
+});
+</script>
+<% end %>
 <h1><%= @movie.name %></h1>
 <div class="span-6">
   <%= insert_poster(@movie,300) %>
@@ -61,13 +75,11 @@
   <% end %>
 </div>
 <div class="span-12 last">
-  <strong>Description</strong><br>
-  <p class="indent"><%= @movie.overview %></p>
   <strong>Credits</strong><br>
   <div class="span-6">
     <table class="zebra">
       <tbody>
-        <% @actors.first(8).each do |actor| %>
+        <% @actors.each do |actor| %>
           <tr>
             <td width="60">
               <% if actor.profile == "" %>
@@ -88,7 +100,7 @@
   <div class="span-6 last">
     <table class="zebra">
       <tbody>
-        <% @credits.first(8).each do |person| %>
+        <% @credits.each do |person| %>
           <tr>
             <td width="60">
               <% if person.profile == "" %>
@@ -106,9 +118,7 @@
       </tbody>
     </table>
   </div>
-  <% if @actors.count > 8 or @credits.count > 8 %> 
-    <div class="span-12 last push-4">
-      <%= link_to "full credits", { :action => "credits", :id => @movie.id } %>
-    </div>
-  <% end %>
+  <div class="span-12 last push-4">
+    <%= link_to "movie details", { :action => "show", :id => @movie.id } %>
+  </div>
 </div>

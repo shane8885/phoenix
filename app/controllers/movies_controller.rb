@@ -5,9 +5,11 @@ class MoviesController < ApplicationController
     end
     
     def show
-      #TODO: handle case where movie not found, need to present an error
+        @actors = []
+        @credits = []
         @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
-        if( user_signed_in? )
+
+        if( user_signed_in? ):
           @selection = current_user.selections.build()
           #user just sees their events
           @events = current_user.open_selection_events
@@ -16,7 +18,31 @@ class MoviesController < ApplicationController
         if( @movie.class == Array and @movie.length == 0 )
           flash[:error] = 'Sorry, Could not find movie, this was unexpected'
           redirect_to(root_path)
+        else
+          @actors = @movie.cast.find_all{|member| member.job == 'Actor'}
+          @credits = @movie.cast.find_all{|member| member.job != 'Actor'}
         end
+    end
+
+    def credits
+        @actors = []
+        @credits = []
+        @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+
+        if( user_signed_in? ):
+          @selection = current_user.selections.build()
+          #user just sees their events
+          @events = current_user.open_selection_events
+        end
+        
+        if( @movie.class == Array and @movie.length == 0 )
+          flash[:error] = 'Sorry, Could not find movie, this was unexpected'
+          redirect_to(root_path)
+        else
+          @actors = @movie.cast.find_all{|member| member.job == 'Actor'}
+          @credits = @movie.cast.find_all{|member| member.job != 'Actor'}
+        end
+
     end
     
     def index

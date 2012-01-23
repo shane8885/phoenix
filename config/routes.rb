@@ -58,6 +58,8 @@ Phoenix::Application.routes.draw do
   get "movies/search"
 
   get "movies/show"
+
+  get "movies/credits"
   
   get "movies/index"
 
