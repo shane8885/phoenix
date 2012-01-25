@@ -24,6 +24,7 @@ class EventsController < ApplicationController
   # GET /events/1.xml
   def show
     @event = Event.find(params[:id])
+    @title = @event.name
     @recent_selections = @event.recent_selections.limit(12)
     @comments = @event.event_comments.limit(10)
     @newcomment = EventComment.new
@@ -36,6 +37,7 @@ class EventsController < ApplicationController
   
   def comments
     @event = Event.find(params[:id])
+    @title = @event.name
     @comments = @event.event_comments
     @newcomment = EventComment.new
     if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
@@ -45,6 +47,7 @@ class EventsController < ApplicationController
 
   def selections
     @event = Event.find(params[:id])
+    @title = @event.name
     @vote = Vote.new
     @official = @event.official_selections
     @unofficial = @event.unofficial_selections
@@ -57,7 +60,7 @@ class EventsController < ApplicationController
   
   def attendees
     @event = Event.find(params[:id])
-    
+    @title = @event.name
     # check that current user owns this event or that current user is admin
     if not current_user.authorized?(@event.user_id) and not current_user.invited_to?(@event)
       action_not_permitted
@@ -66,6 +69,7 @@ class EventsController < ApplicationController
   
   def schedule
     @event = Event.find(params[:id])
+    @title = @event.name
     @sessions = @event.movie_sessions
     
     # check that current user owns this event or that current user is admin
@@ -78,6 +82,7 @@ class EventsController < ApplicationController
     @month = (params[:month] || (Time.zone || Time).now.month).to_i
     @year = (params[:year] || (Time.zone || Time).now.year).to_i
     @event = Event.find(params[:id])
+    @title = @event.name
     @shown_month = Date.civil(@year, @month)
 
     @event_strips = MovieSession.event_strips_for_month(@shown_month, :conditions => "event_id = #{@event.id}")
@@ -101,6 +106,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @title = @event.name
     if not current_user.authorized?(@event.user_id)
       action_not_permitted
     end
@@ -153,15 +159,18 @@ class EventsController < ApplicationController
   
   def order_selections
     @event = Event.find(params[:id])
+    @title = @event.name
     @selections = @event.official_selections.sort_by &:position
   end
   
   def schedule_parameters
     @event = Event.find(params[:id])
+    @title = @event.name
   end
   
   def build_schedule
     @event = Event.find(params[:id])
+    @title = @event.name
     date = @event.start
     count = 0
     mpw = params[:mpw].to_i
@@ -200,6 +209,7 @@ class EventsController < ApplicationController
   
   def voting
     @event = Event.find(params[:id])
+    @title = @event.name
     @votes = []
     @event.selections.each do |s|
       s.registered_votes.each do |v|

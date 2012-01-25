@@ -22,11 +22,14 @@
     <h1>Movie Suggestion</h1>
     <table>
     <tr>
-    <td vertical-align="top"><%= link_to insert_thumbnail(@suggested_movie,130),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %></td>
-    <td>
-      <strong><%= @suggested_movie.name %></strong> (<%= Date.parse(@suggested_movie.released).year %>)<br />
-      <p class="indent"><%= truncate(@suggested_movie.overview, :length => 230) %> <%= link_to 'more',:controller => 'movies', :action => 'show', :id => @suggested_movie.id %> <strong>(<%= @suggested_movie.rating %> / <%= @suggested_movie.votes %> votes)</strong></p>
-    </td></tr></table>
+      <% if @suggested_movie %>
+        <td vertical-align="top"><%= link_to insert_thumbnail(@suggested_movie,130),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %></td>
+        <td>
+          <strong><%= @suggested_movie.name %></strong> (<%= Date.parse(@suggested_movie.released).year %>)<br />
+          <p class="indent"><%= truncate(@suggested_movie.overview, :length => 230) %> <%= link_to 'more',:controller => 'movies', :action => 'show', :id => @suggested_movie.id %> <strong>(<%= @suggested_movie.rating %> / <%= @suggested_movie.votes %> votes)</strong></p>
+        </td>
+      <% end %>
+    </tr></table>
   </div>
 </div>
 <div class="span-18">
