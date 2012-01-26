@@ -59,7 +59,11 @@ class SelectionsController < ApplicationController
   def show
     @selection = Selection.find(params[:id])
     if current_user.authorized?(@selection.user_id) or current_user.invited_to?(@selection.event)
-      @movie = TmdbMovie.find(:id => @selection.movie_id, :expand_results => true, :limit => 1)
+      begin
+        @movie = TmdbMovie.find(:id => @selection.movie_id, :expand_results => true, :limit => 1)
+      rescue
+        render 'shared/tmdb_error'
+      end
       @vote = Vote.new
       
       if( @movie.class == Array and @movie.length == 0 )

@@ -7,7 +7,11 @@ class MoviesController < ApplicationController
     def show
         @actors = []
         @credits = []
-        @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+        begin
+          @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+        rescue
+          render 'shared/tmdb_error'
+        end
 
         if( user_signed_in? ):
           @selection = current_user.selections.build()
@@ -27,7 +31,11 @@ class MoviesController < ApplicationController
     def credits
         @actors = []
         @credits = []
-        @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+        begin
+          @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+        rescue
+          render 'shared/tmdb_error'
+        end
 
         if( user_signed_in? ):
           @selection = current_user.selections.build()
@@ -46,7 +54,11 @@ class MoviesController < ApplicationController
     end
     
     def index
-        results = TmdbMovie.find(:title => params[:search], :expand_results => false, :limit => 100)
+        begin
+          results = TmdbMovie.find(:title => params[:search], :expand_results => false, :limit => 100)
+        rescue
+          render 'shared/tmdb_error'
+        end
         # if only one result is returned it doesn't come back in an array, annoying. So we have to do this
         if( results.class == Array)
            @movies = results.paginate(:page => params[:page], :per_page => 10)
