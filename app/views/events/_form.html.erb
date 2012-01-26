@@ -38,15 +38,12 @@
       <%= f.label :votes_per_attendee %><br />
       <%= f.text_field :votes_per_attendee %>
     </div>
-    <div class="field">
-      <%= f.label :maxmovies %><br />
-      <%= f.text_field :maxmovies %>
-    </div>
     <div>
       <%= f.label :poster %><br />
       <%= f.file_field :poster %>
     </div>
     <hr>
+    <%= f.hidden_field :maxmovies, :value => 999 %>
     <div class="actions">
       <%= f.submit %>
     </div>
