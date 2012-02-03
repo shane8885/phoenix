@@ -4,6 +4,6 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <p><%= @msg_text %><p>
+    <p><%= h(@msg_text).gsub(/\n/, '<br/>') %><p>
   </body>
 </html>
