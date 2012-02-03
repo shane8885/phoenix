@@ -32,6 +32,8 @@ Phoenix::Application.routes.draw do
       get 'voting'
       get 'comments'
       get 'calendar'
+      get 'new_broadcast'
+      post 'broadcast_message'
     end
     collection do
       get 'search'

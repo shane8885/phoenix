@@ -1,8 +1,15 @@
 <% content_for(:sidebar) do %>
   <%= render :partial => 'shared/sidebar_event',:object => @event %>
 <% end %>
+<div class="span-9">
 <h1><%= @event.name %></h1>
 <h3>Confirmed Attendees</h3>
+</div>
+<div class="span-9 right last">
+  <% if current_user.authorized?(@event.user_id)%>
+    <%= link_to 'Broadcast Message', new_broadcast_event_path %>
+  <% end %>
+</div>
 <% if not @event.confirmed_attendees.empty? %>
     <table class="phoenix_table">
       <tbody>

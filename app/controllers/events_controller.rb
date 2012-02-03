@@ -207,6 +207,26 @@ class EventsController < ApplicationController
     end
   end
   
+  def new_broadcast
+    @event = Event.find(params[:id])
+    if not current_user.authorized?(@event.user_id)
+      action_not_permitted
+    end
+  end
+  
+  def broadcast_message
+    event = Event.find(params[:id])
+    msg_text = params[:msg_text]
+    if current_user.authorized?(event.user_id)
+      event.all_attendees.each do |u|
+        Notifier.send_message(u,event,msg_text).deliver
+      end
+      redirect_to attendees_event_path,:notice => 'Successfully sent message to attendees.'
+    else
+      action_not_permitted
+    end
+  end
+  
   def voting
     @event = Event.find(params[:id])
     @title = @event.name

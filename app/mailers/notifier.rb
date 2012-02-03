@@ -51,4 +51,11 @@ class Notifier < ActionMailer::Base
          :subject => "Voting Closed")
   end
   
+  def send_message(user,event,msg_text)
+    @event = event
+    @user = user
+    @msg_text = msg_text
+    mail(:to => @user.email,
+         :subject => "Message from #{@event.name}")
+  end
 end
