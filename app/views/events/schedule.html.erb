@@ -8,7 +8,7 @@
 <div class="span-9 last right">
   <% if current_user.authorized?(@event.user_id)%>
     <%= link_to 'Create New Schedule', order_selections_event_path %> | 
-    <%= link_to 'Send Attendee Update', update_attendees_event_path %> | 
+    <%= link_to 'Send Attendee Update', update_attendees_event_path, :confirm => 'This will send an email to all attendees with a full listing of the schedule, confirm?' %> | 
   <% end %>
   <%= link_to 'View Calendar', calendar_event_path %>
 </div>
