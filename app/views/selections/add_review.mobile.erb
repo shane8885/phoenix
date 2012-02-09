@@ -1,0 +1,27 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", list_reviews_selection_path(@selection), "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1>Add Review</h1>
+<% end %>
+<ul data-role="listview">
+  <li data-role="list-divider">Review for <%= @selection.movie_name %></li>
+  <%= form_for(@review) do |f| %>
+    <%= f.error_messages %>
+    <li>
+      <%= f.label :rating %>
+      <%= f.number_field :rating %>
+    </li>
+    <li>
+      <%= f.label :summary %> (optional)
+      <%= f.text_field :summary %>
+    </li>
+    <li>
+      <%= f.label :review %> (optional)
+      <%= f.text_area :review %>
+    </li>
+    <%= f.hidden_field :selection_id, :value => @selection.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <hr>
+    <li><%= f.submit "Submit Review" %></li>
+  <% end %>
+</ul>
+

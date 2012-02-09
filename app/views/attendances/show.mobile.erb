@@ -1,0 +1,33 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", attendees_event_path(@attendance.event), "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1><%= @attendance.event.name %></h1>
+<% end %>
+<ul data-role="listview">
+<li>
+  <%= image_tag @attendance.attending.avatar.url(:small) %>
+  <%= @attendance.attending.username %>
+</li>
+<li>Status: <%= @attendance.confirmed ? "Confirmed" : "Unconfirmed" %>
+<% unless @selections.empty? %>
+<li data-role="list-divider">Selections</li>
+<li>Remaining selections: <%= @attendance.selections_remaining %></li>
+  <% @selections.each do |s| %>
+    <li>
+      <%= link_to raw("<img src=#{s.poster} alt=#{s.movie_name}>#{s.movie_name}"),s %>
+    </li>
+  <% end %>
+<% else %>
+  <li>No Selections made</li>
+<% end %>
+<li data-role="list-divider">Votes</li>
+<li>Remaining votes: <%= @attendance.votes_remaining %></li>
+<% unless @votes.empty? %>
+  <% @votes.each do |s| %>
+    <li>
+      <%= link_to raw("<img src=#{s.poster} alt=#{s.movie_name}>#{s.movie_name}"),s %>
+    </li>
+  <% end %>
+<% else %>
+  <li>No votes registered</li>
+<% end %>
+</ul>

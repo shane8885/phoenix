@@ -1,0 +1,30 @@
+<% content_for(:header) do %>
+	<h1>GarageFilmFestival</h1>
+<% end %>
+<% if not user_signed_in? %>
+  <%= form_for("user", :url => user_session_path) do |f| %>
+    <%= f.label :username %>
+    <%= f.text_field :username, :size => 12 %>
+    <%= f.label :password %>
+    <%= f.password_field :password, :size => 12 %>
+    <%= f.check_box :remember_me %><%= f.label :remember_me %>
+    <%= f.submit 'Sign in' %><br>
+  <% end %>
+<% else %>
+<h3>Your Events</h3>
+<ul data-role="listview">
+  <% current_user.all_events.each do |event| %>
+    <li>
+      <%= link_to raw("<img src=#{event.poster.url(:thumb)} alt=\"#{event.name}\">#{event.name}"),event %>
+    </li>
+  <% end %>
+  <div data-role="navbar">
+      <ul>
+        <li><%= link_to "Find Movie", movies_search_path, :class => "ui-btn-active", "data-iconpos" => "left", "data-icon" => 'search' %></li>
+		    <li><%= link_to "Create Event", new_event_path, :class => "ui-btn-active", "data-iconpos" => "left", "data-icon" => 'plus' %></li>
+		  </ul>
+  </div><!-- /navbar -->
+</ul>
+<% end %>
+
+

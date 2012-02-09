@@ -1,0 +1,36 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1>Selections</h1>
+<% end %>
+<ul data-role="listview">
+<% unless @official.empty? %>
+  <li data-role="list-divider">Official Selections</li>
+  <% @official.each do |s| %>
+    <li class="arrow">
+      <a href="<%= url_for(s) %>">
+        <%= image_tag(s.poster, :alt => s.movie_name) %>
+        <h3><%= s.movie_name %></h3>
+        <%= get_stars(s,:small => true) %>
+      </a>
+      <span class="ui-li-count"><%= s.registered_votes.count %> votes</span>
+    </li>
+  <% end %>
+<% else %>
+  <li>No official selections</li>
+<% end %>
+<% unless @unofficial.empty? %>
+    <li data-role="list-divider">Unofficial Selections</li>
+    <% @unofficial.each do |s| %>
+      <li class="arrow">
+        <a href="<%= url_for(s) %>">
+          <%= image_tag(s.poster, :alt => s.movie_name) %>
+          <h3><%= s.movie_name %></h3>
+        </a>
+        <span class="ui-li-count"><%= s.registered_votes.count %> votes</span>
+      </li>
+    <% end %>
+<% else %>
+  <li>No official selections</li>
+<% end %>
+</ul>
+

@@ -10,14 +10,12 @@ class AttendancesController < ApplicationController
     attendance.votes_remaining = event.votes_per_attendee
     attendance.selections_remaining = event.selections_per_attendee
     
-    respond_to do |format|
-      if attendance.save
-        Notifier.invite_email(attendance).deliver
-        format.html { redirect_to(event, :notice => 'Invitation was successfully created.') }
-      else
-        flash[:error] = 'Sorry, Could not create invitation.'
-        format.html { redirect_to(event) }
-      end
+    if attendance.save
+      Notifier.invite_email(attendance).deliver
+      redirect_to(event, :notice => 'Invitation was successfully created.')
+    else
+      flash[:error] = 'Sorry, Could not create invitation.'
+      redirect_to(event)
     end
   end
   

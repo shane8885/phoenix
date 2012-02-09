@@ -1,0 +1,37 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", selections_event_path(@selection.event), "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1><%= @movie.name %></h1>
+<% end %>
+<%= insert_poster(@movie,200) %>
+<ul data-role="listview">
+<li data-role="list-divider">Overview</li>
+<li><p style="white-space: normal;"><%= @movie.overview %></p></li>
+<li data-role="list-divider">Reviews</li>
+<li>
+  <% unless @selection.reviews.empty? %>
+    <a href="<%= list_reviews_selection_path(@selection) %>">
+      <h3><%= pluralize(@selection.reviews.count,'review') %></h3>
+      <p><%= get_stars(@selection,:small => true) %></p>
+    </a>
+  <% else %>
+    <%= link_to 'Review it now',add_review_selection_path(@selection) %>
+  <% end %>
+  </a>
+</li>
+<li data-role="list-divider">Details</li>
+<li>TMDB Rating: <%= @movie.rating %></li>
+<li>Classification: <%= @movie.certification %></li>
+<li>Running Time: <%= @movie.runtime %></li>
+<li>Status: <%= @selection.official ? "Official Selection" : "Unofficial Selection" %></li>
+<li>Selected by: <%= @selection.user.username %></li>
+<% unless @selection.registered_votes.empty? %>
+  <li>Votes: <%= @selection.registered_votes.count %></li>
+<% end %>
+<% if @selection.event.open_for_voting %>
+  <% form_for(@vote) do |f| %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :selection_id, :value => @selection.id %>
+    <li><%= f.submit "Add Vote" %></li>
+  <% end %><br>
+<% end %>
+</ul>

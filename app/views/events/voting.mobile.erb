@@ -1,0 +1,18 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1>Voting</h1>
+<% end %>
+<ul data-role="listview">
+<li data-role="list-divider">Voting Log</li>
+<% unless @votes.empty? %>
+  <% @votes.each do |v| %>
+    <li>
+      <%= image_tag v.user.avatar.url(:thumb), :alt => v.user.username, :height => '22', :class => 'ui-li-icon' %>
+      <h3><%= v.user.username %>, <%= v.selection.movie_name %></h3>
+      <p><%= v.created_at.strftime('%d %b %Y, %I:%M %p') %></p>
+    </li>
+  <% end %>
+<% else %>
+  <li>No votes have been registered</li>
+<% end %>
+</ul>

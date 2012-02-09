@@ -1,0 +1,20 @@
+<%= content_for(:header) do %>
+  <%= link_to "Back", movies_search_path, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1>Search Results</h1>
+<% end %>
+<ul data-role="listview">
+  <% unless @movies.empty? %>
+    <% @movies.each do |m| %>
+      <li>
+        <a href="<%= url_for(:action => "show", :id => m.id) %>">
+          <%= insert_thumbnail(m,100) %>
+          <h3><%= m.name %></h3>
+          <p><%= m.rating %> (<%= m.votes %> votes)</p>
+          <p><%= m.overview %></p>
+        </a>
+      </li>
+    <% end %>
+  <% else %>
+    <li><h3>No results</h3></li>
+  <% end %>
+</ul>

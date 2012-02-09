@@ -1,0 +1,20 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1>Sessions</h1>
+<% end %>
+<ul data-role="listview">
+<% unless @sessions.empty? %>
+  <% @sessions.each do |s| %>
+    <li>
+        <a href="<%= url_for(s.selection) %>">
+          <%= image_tag(s.selection.poster, :alt => s.selection.movie_name) %>
+          <h3><%= s.selection.movie_name %><br /></h3>
+          <p><%= s.start.strftime("%I:%M %P") %>, <%= s.start.strftime("%d %b %Y") %><br />
+          Venue: <%= s.venue %></p>
+        </a>
+    </li>
+  <% end %>
+<% else %>
+  <li>No sessions</li>
+<% end %>
+</ul>
