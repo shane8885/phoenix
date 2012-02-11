@@ -3,6 +3,13 @@
   <h1>Selections</h1>
 <% end %>
 <ul data-role="listview">
+  <% if @event.open_for_selections? %>
+    <div data-role="navbar">
+      <ul>
+        <li><%= link_to "New Selection", movies_search_path, :class => "ui-btn-active", "data-iconpos" => "left", "data-icon" => 'Plus' %></li>
+      </ul>
+    </div>
+  <% end %>
 <% unless @official.empty? %>
   <li data-role="list-divider">Official Selections</li>
   <% @official.each do |s| %>

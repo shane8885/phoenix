@@ -4,11 +4,11 @@
 <% end %>
 <ul data-role="listview">
   <li>
-    <%= link_to "Selections", selections_event_path %>
+    <%= link_to "Selections", selections_event_path, 'data-prefetch' => '' %>
     <span class="ui-li-count"><%= @event.selections.count %></span>
   </li>
   <li>
-    <%= link_to "Attendees", attendees_event_path %>
+    <%= link_to "Attendees", attendees_event_path, 'data-prefetch' => '' %>
     <span class="ui-li-count"><%= @event.all_attendees.count %></span>
   </li>
   <li>
@@ -16,12 +16,12 @@
   </li>
   <% if not @event.movie_sessions.empty? %>
   <li>
-    <%= link_to "Sessions", schedule_event_path %>
+    <%= link_to "Sessions", schedule_event_path, 'data-prefetch' => '' %>
   </li>
   <% end %>
   <% if current_user.id == @event.user_id %>
   <li>
-    <%= link_to "Invite Someone", search_user_index_path %>
+    <%= link_to "Invite Someone", search_user_index_path, 'data-ajax' => 'false' %>
   </li>
   <% end %>
 </ul>
