@@ -13,23 +13,21 @@ class SelectionsController < ApplicationController
       attendance = Attendance.find_by_event_id_and_attending_id(event.id,current_user.id)
       attendance.selections_remaining -= 1
     
-      respond_to do |format|
-        # check they haven't used all their selections
-        if attendance.selections_remaining >= 0
-          if selection.save
-            attendance.save
-            flash[:notice] = 'Selection was successfully created.'
-          else
-            flash[:error] = 'Failed to add selection. It may already exist.'
-          end
+      # check they haven't used all their selections
+      if attendance.selections_remaining >= 0
+        if selection.save
+          attendance.save
+          flash[:notice] = 'Selection was successfully created.'
         else
-          flash[:error] = 'You have no selections remaining.'
+          flash[:error] = 'Failed to add selection. It may already exist.'
         end
-        format.html { redirect_to event }
+      else
+        flash[:error] = 'You have no selections remaining.'
       end
+      redirect_to event
     else
       flash[:error] = 'Event not open for selections.'
-      redirect_to root_path
+      redirect_to event
     end
   end
 
@@ -114,10 +112,7 @@ class SelectionsController < ApplicationController
     event = selection.event
     selection.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(event, :notice => 'Successfully removed selection.') }
-      format.xml  { head :ok }
-    end
+    redirect_to(event, :notice => 'Successfully removed selection.')
   end
   
   def sort

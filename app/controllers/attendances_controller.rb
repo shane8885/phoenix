@@ -59,10 +59,7 @@ class AttendancesController < ApplicationController
     attendance = Attendance.find(params[:id])
     if( current_user.authorized?(attendance.attending_id) or current_user.authorized?(attendance.inviting_id) )
       attendance.destroy
-      respond_to do |format|
-        format.html { redirect_to(current_user, :notice => 'Successfully destroyed invitation or attendee') }
-        format.xml  { head :ok }
-      end
+      redirect_to(current_user, :notice => 'Successfully destroyed invitation or attendee')
     else
       action_not_permitted
     end    

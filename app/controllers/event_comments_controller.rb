@@ -24,12 +24,10 @@ class EventCommentsController < ApplicationController
     @comment = EventComment.find(params[:id])
     event = Event.find(@comment.event_id)
     
-    respond_to do |format|
-      if @comment.update_attributes(params[:event_comment])
-        format.html { redirect_to(event, :notice => 'Comment was successfully updated.') }
-      else
-        format.html { render :action => "edit" }
-      end
+    if @comment.update_attributes(params[:event_comment])
+      redirect_to(event, :notice => 'Comment was successfully updated.')
+    else
+      render :action => "edit"
     end
   end
   
