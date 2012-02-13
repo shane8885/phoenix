@@ -15,7 +15,7 @@
   <% unless @events.empty? %>
     <li><a href="#selection">Make Selection</a></li>
   <% end %>
-  <div data-role="navbar">
+  <div data-role="navbar" data-iconpos="left">
     <ul>
       <% unless @movie.imdb_id.nil? %>
         <li><%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id, :class => "ui-btn-active", :rel => 'external' ) %></li>

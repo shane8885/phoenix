@@ -18,10 +18,10 @@
       <%= link_to raw("<img src=#{event.poster.url(:thumb)} alt=\"#{event.name}\">#{event.name}"),event %>
     </li>
   <% end %>
-  <div data-role="navbar">
+  <div data-role="navbar" data-iconpos="left">
       <ul>
-        <li><%= link_to "Find Movie", movies_search_path, :class => "ui-btn-active", "data-iconpos" => "left", "data-icon" => 'search' %></li>
-		    <li><%= link_to "Create Event", new_event_path, :class => "ui-btn-active", "data-iconpos" => "left", "data-icon" => 'plus' %></li>
+        <li><%= link_to "Find Movie", movies_search_path, :class => "ui-btn-active", "data-icon" => 'search' %></li>
+		    <li><%= link_to "Create Event", new_event_path, :class => "ui-btn-active", "data-icon" => 'plus' %></li>
 		  </ul>
   </div><!-- /navbar -->
 </ul>

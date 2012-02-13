@@ -5,6 +5,7 @@ class EventCommentsController < ApplicationController
     @comment = current_user.event_comments.build(params[:event_comment])
     @comment.save
     respond_to do |format|
+      format.mobile { redirect_to(comments_event_path(@comment.event), :notice => 'Successfully created comment.') }
       format.html { redirect_to(@comment.event, :notice => 'Successfully created comment.') }
       format.js
     end

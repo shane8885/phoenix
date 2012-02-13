@@ -17,9 +17,9 @@
   <% else %>
     <li><%= link_to 'Review it now',add_review_selection_path(@selection) %></li>
   <% end %>
-<div data-role="navbar">
+<div data-role="navbar" data-iconpos="left">
 	<ul>
-	  <li><%= link_to 'Review it now',add_review_selection_path(@selection), :class => "ui-btn-active", "data-iconpos" => "left", "data-icon" => 'plus' %></li>
+	  <li><%= link_to 'Review it now',add_review_selection_path(@selection), :class => "ui-btn-active", "data-icon" => 'plus' %></li>
 	</ul>
 </div><!-- /navbar -->
 </ul>

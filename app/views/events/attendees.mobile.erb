@@ -1,5 +1,5 @@
 <% content_for(:header) do %>
-  <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left", 'data-prefetch' => '' %>
   <h1>Attendees</h1>
 <% end %>
 <ul data-role="listview">

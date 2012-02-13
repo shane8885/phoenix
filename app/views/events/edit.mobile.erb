@@ -1,0 +1,31 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", root_url, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1>Edit Event</h1>
+<% end %>
+<%= form_for(@event, :html => { :multipart => true }) do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+  <%= f.label :description %><br />
+  <%= f.text_area :description %>
+  <%= f.label :open_for_selections %><br />
+  <%= f.check_box :open_for_selections %>
+  <%= f.label :open_for_voting %><br />
+  <%= f.check_box :open_for_voting %>
+  <%= f.label :selections_deadline %><br />
+  <%= f.date_select :selections_deadline %>
+  <%= f.label :votes_deadline %><br />
+  <%= f.date_select :votes_deadline %>   
+  <%= f.label :start %><br />
+  <%= f.date_select :start %>   
+  <%= f.label :selections_per_attendee %><br />
+  <%= f.text_field :selections_per_attendee %>    
+  <%= f.label :votes_per_attendee %><br />
+  <%= f.text_field :votes_per_attendee %>
+  <%= f.label :poster %><br />
+  <%= f.file_field :poster %>
+  <%= f.hidden_field :maxmovies, :value => 999 %>
+  <%= f.submit %>
+<% end %>
+
+

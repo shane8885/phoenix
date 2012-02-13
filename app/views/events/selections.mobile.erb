@@ -1,43 +1,43 @@
 <% content_for(:header) do %>
-  <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left", 'data-prefetch' => '' %>
   <h1>Selections</h1>
 <% end %>
 <ul data-role="listview">
   <% if @event.open_for_selections? %>
-    <div data-role="navbar">
+    <div data-role="navbar" data-iconpos="left">
       <ul>
-        <li><%= link_to "New Selection", movies_search_path, :class => "ui-btn-active", "data-iconpos" => "left", "data-icon" => 'Plus' %></li>
+        <li><%= link_to "New Selection", movies_search_path, :class => "ui-btn-active", "data-icon" => 'Plus' %></li>
       </ul>
     </div>
   <% end %>
-<% unless @official.empty? %>
   <li data-role="list-divider">Official Selections</li>
-  <% @official.each do |s| %>
-    <li class="arrow">
-      <a href="<%= url_for(s) %>">
-        <%= image_tag(s.poster, :alt => s.movie_name) %>
-        <h3><%= s.movie_name %></h3>
-        <%= get_stars(s,:small => true) %>
-      </a>
-      <span class="ui-li-count"><%= s.registered_votes.count %> votes</span>
-    </li>
-  <% end %>
-<% else %>
-  <li>No official selections</li>
-<% end %>
-<% unless @unofficial.empty? %>
-    <li data-role="list-divider">Unofficial Selections</li>
-    <% @unofficial.each do |s| %>
+  <% unless @official.empty? %>
+    <% @official.each do |s| %>
       <li class="arrow">
         <a href="<%= url_for(s) %>">
           <%= image_tag(s.poster, :alt => s.movie_name) %>
           <h3><%= s.movie_name %></h3>
+          <%= get_stars(s,:small => true) %>
         </a>
         <span class="ui-li-count"><%= s.registered_votes.count %> votes</span>
       </li>
     <% end %>
-<% else %>
-  <li>No official selections</li>
-<% end %>
+  <% else %>
+    <li>No official selections</li>
+  <% end %>
+  <li data-role="list-divider">Unofficial Selections</li>
+  <% unless @unofficial.empty? %>
+      <% @unofficial.each do |s| %>
+        <li class="arrow">
+          <a href="<%= url_for(s) %>">
+            <%= image_tag(s.poster, :alt => s.movie_name) %>
+            <h3><%= s.movie_name %></h3>
+          </a>
+          <span class="ui-li-count"><%= s.registered_votes.count %> votes</span>
+        </li>
+      <% end %>
+  <% else %>
+    <li>No official selections</li>
+  <% end %>
 </ul>
 
