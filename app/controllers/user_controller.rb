@@ -32,6 +32,11 @@ class UserController < ApplicationController
     if not current_user.authorized?(@user.id)
       action_not_permitted
     end
+    
+    respond_to do |format|
+      format.html
+      format.mobile { redirect_to root_path }
+    end
   end
  
   private 

@@ -11,20 +11,53 @@
     <%= f.submit 'Sign in' %><br>
   <% end %>
 <% else %>
-<h3>Your Events</h3>
-<ul data-role="listview">
-  <% current_user.all_events.each do |event| %>
-    <li>
-      <%= link_to raw("<img src=#{event.poster.url(:thumb)} alt=\"#{event.name}\">#{event.name}"),event %>
-    </li>
-  <% end %>
-  <div data-role="navbar" data-iconpos="left">
-      <ul>
-        <li><%= link_to "Find Movie", movies_search_path, :class => "ui-btn-active", "data-icon" => 'search' %></li>
-		    <li><%= link_to "Create Event", new_event_path, :class => "ui-btn-active", "data-icon" => 'plus' %></li>
-		  </ul>
-  </div><!-- /navbar -->
-</ul>
+  <ul data-role="listview">
+    <li data-role="list-divider">Your Events</li>
+    <% unless current_user.all_events.empty? %>
+      <% current_user.all_events.each do |event| %>
+        <li>
+          <a href="<%= url_for(event) %>">
+            <%= image_tag(event.poster.url(:small), :alt => event.name) %>
+            <h3><%= event.name %></h3>
+          </a>
+        </li>
+      <% end %>
+    <% else %>
+      <li>None</li>
+    <% end %>
+    <li data-role="list-divider">Invitations</li>
+    <% unless current_user.open_invitations.empty? %>
+      <% current_user.open_invitations.each do |i| %>
+        <li>
+          <h3><%= i.inviting.username %> invites you to...</h3>
+          <ul>
+            <li>
+              <%= image_tag(i.event.poster.url(:small), :alt => i.event.name) %>
+              <h3><%= i.event.name %></h3>
+            </li>
+            <li>
+              <fieldset class="ui-grid-a">
+                <div class="ui-block-a">
+                  <%= link_to 'Accept', accept_attendance_path(i), :method => :put, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'check' %>
+                </div>
+                <div class="ui-block-n">
+                  <%= link_to 'Decline', i, :confirm => 'Are you sure you want to remove this invitation?', :method => :delete, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'delete' %>
+                </div>
+              </fieldset>
+            </li>
+          </ul>
+        </li>
+      <% end %>
+    <% else %>
+      <li>None</li>
+    <% end %>
+    <div data-role="navbar" data-iconpos="left">
+        <ul>
+          <li><%= link_to "Find Movie", movies_search_path, :class => "ui-btn-active", "data-icon" => 'search' %></li>
+		      <li><%= link_to "Create Event", new_event_path, :class => "ui-btn-active", "data-icon" => 'plus' %></li>
+		    </ul>
+    </div><!-- /navbar -->
+  </ul>
 <% end %>
 
 

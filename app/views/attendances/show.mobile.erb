@@ -8,8 +8,8 @@
   <%= @attendance.attending.username %>
 </li>
 <li>Status: <%= @attendance.confirmed ? "Confirmed" : "Unconfirmed" %>
-<% unless @selections.empty? %>
 <li data-role="list-divider">Selections</li>
+<% unless @selections.empty? %>
 <li>Remaining selections: <%= @attendance.selections_remaining %></li>
   <% @selections.each do |s| %>
     <li>
