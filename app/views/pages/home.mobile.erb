@@ -38,10 +38,10 @@
             <li>
               <fieldset class="ui-grid-a">
                 <div class="ui-block-a">
-                  <%= link_to 'Accept', accept_attendance_path(i), :method => :put, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'check' %>
+                  <%= link_to 'Accept', accept_attendance_path(i), :method => :put, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'check', "data-ajax" => "false" %>
                 </div>
                 <div class="ui-block-n">
-                  <%= link_to 'Decline', i, :confirm => 'Are you sure you want to remove this invitation?', :method => :delete, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'delete' %>
+                  <%= link_to 'Decline', i, :confirm => 'Are you sure you want to remove this invitation?', :method => :delete, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'delete', "data-ajax" => "false" %>
                 </div>
               </fieldset>
             </li>

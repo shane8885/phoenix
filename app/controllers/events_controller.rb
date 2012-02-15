@@ -109,7 +109,10 @@ class EventsController < ApplicationController
     
     if @event.save
       attendance = Attendance.create!( :event_id => @event.id, :inviting_id => current_user.id, :attending_id => current_user.id, :votes_remaining => @event.votes_per_attendee, :selections_remaining => @event.selections_per_attendee )
-      redirect_to(@event, :notice => 'Event was successfully created.')
+      respond_to do |format|
+        format.html { redirect_to(@event, :notice => 'Event was successfully created.') }
+        format.mobile { redirect_to(root_path, :notice => 'Event was successfully created.') }
+      end
     else
       render :action => "new"
     end
@@ -133,7 +136,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if current_user.authorized?(@event.user_id)
       @event.destroy
-      redirect_to events_path
+      respond_to do |format|
+        format.html { redirect_to events_path, :notice => 'Successfully destroyed event.' }
+        format.mobile { redirect_to root_path, :notice => 'Successfully destroyed event.' }
+      end
     else
       action_not_permitted
     end 

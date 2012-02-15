@@ -47,7 +47,10 @@ class AttendancesController < ApplicationController
     attendance = Attendance.find(params[:id])
     if current_user.authorized?(attendance.attending_id)
       attendance.update_attribute(:confirmed, true)
-      redirect_to(User.find(attendance.attending_id), :notice => 'Attendance was successfully updated.')
+      respond_to do |format|
+        format.html { redirect_to(User.find(attendance.attending_id), :notice => 'Attendance was  successfully updated.') }
+        format.mobile { redirect_to(root_path, :notice => 'Attendance was  successfully updated.') }
+      end
     else
       action_not_permitted
     end
@@ -59,7 +62,10 @@ class AttendancesController < ApplicationController
     attendance = Attendance.find(params[:id])
     if( current_user.authorized?(attendance.attending_id) or current_user.authorized?(attendance.inviting_id) )
       attendance.destroy
-      redirect_to(current_user, :notice => 'Successfully destroyed invitation or attendee')
+      respond_to do |format|
+        format.html { redirect_to(current_user, :notice => 'Successfully destroyed invitation or attendee') }
+        format.mobile { redirect_to(root_path, :notice => 'Successfully destroyed invitation or attendee') }
+      end
     else
       action_not_permitted
     end    
