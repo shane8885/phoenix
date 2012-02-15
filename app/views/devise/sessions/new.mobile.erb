@@ -1,0 +1,12 @@
+<% content_for(:header) do %>
+	<h1>GarageFilmFestival</h1>
+<% end %>
+<%= form_for("user", :url => user_session_path) do |f| %>
+  <%= f.label :username %>
+  <%= f.text_field :username, :size => 12 %>
+  <%= f.label :password %>
+  <%= f.password_field :password, :size => 12 %>
+  <%= f.check_box :remember_me %><%= f.label :remember_me %>
+  <%= f.submit 'Sign in' %><br>
+<% end %>
+
