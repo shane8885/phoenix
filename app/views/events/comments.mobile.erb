@@ -16,8 +16,8 @@
     <li>
       <%= image_tag(c.user.avatar.url(:small)) %>
       <h3><%= c.user.username %></h3>
-      <p><%= time_ago_in_words(c.created_at) %> ago</p>
       <p><%= c.comment %></p>
+      <p class="ui-li-aside"><%= time_ago_in_words(c.created_at) %> ago</p>
     </li>
   <% end %>
 </ul>

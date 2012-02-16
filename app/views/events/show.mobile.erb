@@ -4,8 +4,16 @@
 <% end %>
 <ul data-role="listview">
   <li>
-    <%= link_to "Selections", selections_event_path, 'data-prefetch' => '' %>
-    <span class="ui-li-count"><%= @event.selections.count %></span>
+    <%= image_tag @event.poster.url(:small) %>
+    <h3>Description</h3>
+    <p style="white-space: normal;"><%= @event.description %></p>
+  </li>
+  <li>
+    <a href="<%= selections_event_path %>" data-prefetch>
+      <h3>Selections</h3>
+      <p>Selections are <%= @event.open_for_selections ? "OPEN" : "CLOSED" %>. Voting is <%= @event.open_for_voting ? "OPEN" : "CLOSED" %></p>
+      <span class="ui-li-count"><%= @event.selections.count %></span>
+    </a>
   </li>
   <li>
     <%= link_to "Attendees", attendees_event_path, 'data-prefetch' => '' %>
@@ -19,11 +27,10 @@
     <%= link_to "Sessions", schedule_event_path, 'data-prefetch' => '' %>
   </li>
   <% end %>
-  <% if not @comments.empty? %>
   <li>
     <%= link_to "Comments", comments_event_path, 'data-prefetch' => '' %>
+    <span class="ui-li-count"><%= @event.event_comments.count %></span>
   </li>
-  <% end %>
   <% if current_user.id == @event.user_id %>
   <li>
     <%= link_to "Invite Someone", search_user_index_path, 'data-ajax' => 'false' %>

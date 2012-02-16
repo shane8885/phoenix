@@ -9,9 +9,9 @@
       <li>
         <%= image_tag(r.user.avatar.url(:small)) %>
         <h3><%= r.user.username %></h3>
-        <p><%= time_ago_in_words(r.created_at) %> ago</p>
         <%= get_stars_for_review(r,:small => true) %>
         <p><%= r.review %></p>
+        <p class="ui-li-aside"><%= time_ago_in_words(r.created_at) %> ago</p>
       </li>
     <% end %>
   <% else %>
