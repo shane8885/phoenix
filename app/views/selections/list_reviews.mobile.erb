@@ -17,9 +17,11 @@
   <% else %>
     <li><%= link_to 'Review it now',add_review_selection_path(@selection) %></li>
   <% end %>
-<div data-role="navbar" data-iconpos="left">
-	<ul>
-	  <li><%= link_to 'Review it now',add_review_selection_path(@selection), :class => "ui-btn-active", "data-icon" => 'plus' %></li>
-	</ul>
-</div><!-- /navbar -->
+  <li>
+    <fieldset class="ui-grid-a">
+      <div class="ui-block-a">
+        <%= link_to 'Review it now',add_review_selection_path(@selection), "data-role" => "button", "data-inline" => "true", "data-icon" => 'plus' %></li>
+      </div>
+    </fieldset>
+  </li>
 </ul>

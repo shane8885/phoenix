@@ -4,11 +4,13 @@
 <% end %>
 <ul data-role="listview">
   <% if @event.open_for_selections? %>
-    <div data-role="navbar" data-iconpos="left">
-      <ul>
-        <li><%= link_to "New Selection", movies_search_path, :class => "ui-btn-active", "data-icon" => 'Plus' %></li>
-      </ul>
-    </div>
+    <li>
+      <fieldset class="ui-grid-a">
+        <div class="ui-block-a">
+          <%= link_to "New Selection", movies_search_path, "data-role" => "button", "data-inline" => "true", "data-icon" => 'Plus' %>
+        </div>
+      </fieldset>
+    </li>
   <% end %>
   <li data-role="list-divider">Official Selections</li>
   <% unless @official.empty? %>

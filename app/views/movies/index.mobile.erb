@@ -6,7 +6,7 @@
   <% unless @movies.empty? %>
     <% @movies.each do |m| %>
       <li>
-        <a href="<%= url_for(:action => "show", :id => m.id) %>" data-ajax="false">
+        <a href="<%= url_for(:action => "show", :id => m.id) %>">
           <%= insert_thumbnail(m,100) %>
           <h3><%= m.name %></h3>
           <p><%= m.rating %> (<%= m.votes %> votes)</p>

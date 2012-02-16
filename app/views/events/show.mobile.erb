@@ -29,12 +29,16 @@
     <%= link_to "Invite Someone", search_user_index_path, 'data-ajax' => 'false' %>
   </li>
   <% end %>
-  <div data-role="navbar" data-iconpos="left">
-    <ul>
-      <% if current_user.authorized?(@event.user_id) %>
-        <li><%= link_to 'Edit', edit_event_path(@event), :class => "ui-btn-active", "data-icon" => 'gear' %></li>
-        <li><%= link_to 'Destroy', @event, :confirm => 'Are you sure you want to remove this event?', :method => :delete, :class => "ui-btn-active", "data-icon" => 'delete', "data-ajax" => 'false' %></li>
-      <% end %>
-	  </ul>
-  </div><!-- /navbar -->
+  <% if current_user.authorized?(@event.user_id) %>
+    <li>
+      <fieldset class="ui-grid-b">
+        <div class="ui-block-a">
+          <%= link_to 'Edit', edit_event_path(@event), "data-role" => "button", "data-inline" => "true", "data-icon" => 'gear' %>
+        </div>
+        <div class="ui-block-b">
+          <%= link_to 'Destroy', @event, :confirm => 'Are you sure you want to remove this event?', :method => :delete, "data-role" => "button", "data-icon" => 'delete', "data-inline" => "true", "data-ajax" => 'false' %>
+        </div>
+      </fieldset>
+    </li>
+  <% end %>
 </ul>

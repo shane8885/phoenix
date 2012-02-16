@@ -40,7 +40,7 @@
                 <div class="ui-block-a">
                   <%= link_to 'Accept', accept_attendance_path(i), :method => :put, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'check', "data-ajax" => "false" %>
                 </div>
-                <div class="ui-block-n">
+                <div class="ui-block-b">
                   <%= link_to 'Decline', i, :confirm => 'Are you sure you want to remove this invitation?', :method => :delete, "data-role" => "button", "data-inline" => "true", "data-mini" => "true", "data-theme" => "b", "data-icon" => 'delete', "data-ajax" => "false" %>
                 </div>
               </fieldset>
@@ -51,12 +51,16 @@
     <% else %>
       <li>None</li>
     <% end %>
-    <div data-role="navbar" data-iconpos="left">
-        <ul>
-          <li><%= link_to "Find Movie", movies_search_path, :class => "ui-btn-active", "data-icon" => 'search' %></li>
-		      <li><%= link_to "Create Event", new_event_path, :class => "ui-btn-active", "data-icon" => 'plus' %></li>
-		    </ul>
-    </div><!-- /navbar -->
+    <li>
+      <fieldset class="ui-grid-a">
+        <div class="ui-block-a">
+          <%= link_to "Find Movie", movies_search_path, "data-role"=> "button", "data-inline" => "true", "data-icon" => 'search' %>
+        </div>
+        <div class="ui-block-b">
+		      <%= link_to "Create Event", new_event_path,  "data-role"=> "button", "data-inline" => "true", "data-icon" => 'plus' %>
+		    </div>
+		  </fieldset>
+    </li>
   </ul>
 <% end %>
 
