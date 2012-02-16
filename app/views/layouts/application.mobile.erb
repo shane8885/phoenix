@@ -27,8 +27,11 @@
     <div data-role="footer" class="ui-bar">
 	    <%= yield :footer %>
 	    <% if user_signed_in? %>
-	      <%= link_to "Home", root_path, "data-role" => 'button', "data-icon" => 'home' %></li>
-        <%= link_to "Sign out", destroy_user_session_path, "data-role" => 'button', "data-icon" => 'delete' %></li>
+	      <%= link_to "Home", root_path, "data-role" => 'button', "data-icon" => 'home' %>
+        <%= link_to "Sign out", destroy_user_session_path, "data-role" => 'button', "data-icon" => 'delete' %>
+        <%= link_to "Settings", edit_user_registration_path, "data-role" => 'button', "data-icon" => 'gear' %>
+      <% else %>
+        <%= link_to "Sign up",new_user_registration_path, "data-role" => 'button', "data-icon" => 'gear' %>
       <% end %>
     </div><!-- /footer -->
   </div><!-- /page -->
