@@ -38,7 +38,7 @@
   <% end %>
   <% if current_user.authorized?(@event.user_id) %>
     <li>
-      <fieldset class="ui-grid-b">
+      <fieldset class="ui-grid-a">
         <div class="ui-block-a">
           <%= link_to 'Edit', edit_event_path(@event), "data-role" => "button", "data-inline" => "true", "data-icon" => 'gear' %>
         </div>

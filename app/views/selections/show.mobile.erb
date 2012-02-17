@@ -27,11 +27,29 @@
 <% unless @selection.registered_votes.empty? %>
   <li>Votes: <%= @selection.registered_votes.count %></li>
 <% end %>
-<% if @selection.event.open_for_voting %>
-  <% form_for(@vote) do |f| %>
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :selection_id, :value => @selection.id %>
-    <li><%= f.submit "Add Vote" %></li>
-  <% end %><br>
-<% end %>
+  <li>
+    <fieldset class="ui-grid-b">
+      <div class="ui-block-a">
+        <% if @selection.event.open_for_voting %>
+          <% form_for(@vote) do |f| %>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+            <%= f.hidden_field :selection_id, :value => @selection.id %>
+            <li><%= f.submit "Add Vote", "data-inline" => "true" %></li>
+          <% end %><br>
+        <% end %>
+      </div>
+      <% if current_user.authorized?(@selection.event.user_id) %>
+        <div class="ui-block-b">
+          <%= link_to 'Remove',@selection, :method => :delete, :confirm => 'Are you sure you want to remove this selection?', "data-role" => "button", "data-inline" => "true" %>
+        </div>
+        <div class="ui-block-c">
+          <% if not @selection.official %>
+            <%= link_to 'Promote',promote_selection_path(@selection), :method => :put, "data-role" => "button", "data-inline" => "true", "data-ajax" => "false" %>
+          <% else %>
+            <%= link_to 'Relegate',demote_selection_path(@selection), :method => :put, "data-role" => "button", "data-inline" => "true", "data-ajax" => "false" %>
+          <% end %>
+        </div>
+      <% end %>
+    </fieldset>
+  </li>
 </ul>
