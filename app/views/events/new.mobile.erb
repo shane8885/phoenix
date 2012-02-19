@@ -4,13 +4,13 @@
 <% end %>
 <%= form_for(@event, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
-  <%= f.label :name %>
+  <%= f.label :name, :for => "name" %>
   <%= f.text_field :name %>
-  <%= f.label :description %>
+  <%= f.label :description, :for => "description" %>
   <%= f.text_area :description %>
-  <%= f.label :open_for_selections %>
+  <%= f.label :open_for_selections, :for => "open_for_selections" %>
   <%= f.check_box :open_for_selections %>
-  <%= f.label :open_for_voting %>
+  <%= f.label :open_for_voting, :for => "open_for_voting" %>
   <%= f.check_box :open_for_voting %>
   <%= f.label :selections_deadline %>
   <%= f.date_select :selections_deadline %>

@@ -3,15 +3,19 @@
   <h1>Comments</h1>
 <% end %>
 <ul data-role="listview">
-<% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
-  <div>
-    <li><%= f.text_area :comment, :class => "comment_textarea" %></li>
-    <%= f.hidden_field :event_id, :value => @event.id %>
+<fieldset class="ui-grid-a">
+  <div class="ui-block-a">
+    <% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
+      <div>
+        <li><%= f.text_area :comment, :class => "comment_textarea" %></li>
+        <%= f.hidden_field :event_id, :value => @event.id %>
+      </div>
+      <div class="actions">
+        <li><%= f.submit "Add Comment", "data-inline" => "true" %></li>
+      </div>
+    <% end %>
   </div>
-  <div class="actions">
-    <li><%= f.submit "Add Comment" %></li>
-  </div>
-<% end %>
+</fieldset>
   <% @comments.each do |c| %>
     <li>
       <%= image_tag(c.user.avatar.url(:small)) %>

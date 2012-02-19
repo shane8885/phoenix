@@ -17,7 +17,7 @@ attr_accessible :name, :description, :public, :maxmovies, :start, :selections_de
   has_many :confirmed_attendees, :class_name => 'User', :through => :accepted_invitations, :source => :attending
   has_many :unconfirmed_attendees, :class_name => 'User', :through => :not_accepted_invitations, :source => :attending
   has_many :all_attendees, :class_name => 'User', :through => :attendances, :source => :attending
-  
+  has_many :upcoming_sessions, :class_name => 'MovieSession', :conditions => ['start > ?',Time.now.utc]
   validates :name, :presence => true, :length => { :maximum => 30 }
   validates :maxmovies, :presence => true, :numericality => { :within => 1..1000 }
   validates :start, :presence => true

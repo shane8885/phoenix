@@ -14,8 +14,6 @@
         <p class="ui-li-aside"><%= time_ago_in_words(r.created_at) %> ago</p>
       </li>
     <% end %>
-  <% else %>
-    <li><%= link_to 'Review it now',add_review_selection_path(@selection) %></li>
   <% end %>
   <li>
     <fieldset class="ui-grid-a">

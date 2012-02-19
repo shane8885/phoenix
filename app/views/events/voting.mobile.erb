@@ -9,7 +9,7 @@
     <li>
       <%= image_tag v.user.avatar.url(:thumb), :alt => v.user.username, :height => '22', :class => 'ui-li-icon' %>
       <h3><%= v.user.username %>, <%= v.selection.movie_name %></h3>
-      <p><%= v.created_at.strftime('%d %b %Y, %I:%M %p') %></p>
+      <p class="ui-li-aside"><%= time_ago_in_words(v.created_at) %> ago</p>
     </li>
   <% end %>
 <% else %>
