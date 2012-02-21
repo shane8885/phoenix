@@ -39,7 +39,7 @@
   </li>
   <% if current_user.id == @event.user_id %>
   <li>
-    <%= link_to "Invite Someone", search_user_index_path, 'data-ajax' => 'false' %>
+    <%= link_to "Invite Someone", search_user_index_path %>
   </li>
   <% end %>
   <% if current_user.authorized?(@event.user_id) %>
