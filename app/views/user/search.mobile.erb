@@ -1,3 +1,7 @@
+<% content_for(:head) do %>
+  <%= javascript_include_tag 'jquery.mobile.pagination' %>
+  <%= stylesheet_link_tag 'jquery.mobile.pagination', :media => 'screen' %>
+<% end %>
 <% content_for(:header) do %>
   <%= link_to "Back", @event, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
   <h1>Find User<h1>
@@ -6,27 +10,9 @@
 <% if not @users.nil? %>
   <% @users.each do |u| %>
       <li>
-        <a href="#<%= u.username %>">
-          <%= image_tag(u.avatar.url(:thumb), :alt => u.username, :height => 22, :class => 'ui-li-icon') %>
-          <%= u.username %>
-        </a>
-      </li>
-  <% end %>
-<% else %>
-  <li>No users</li>
-<% end %>
-</ul>
-<% content_for(:morepages) do %>
-  <% @users.each do |u| %>
-    <div data-role="page" id="<%= u.username %>">
-      <div data-role="header">
-        <a href="#mainpage" data-rel="back" data-role="button" class="ui-btn-left">Back</a>
-        <h1><%= u.username %></h1>
-        <%= link_to "Full Site", root_url(:mobile => 0), :rel => 'external', "data-role" => 'button', "class" => "ui-btn-right" %>
-      </div>
-      <div data-role="content">
-        <%= image_tag(u.avatar.url(:small)) %>
-        <ul data-role="listview">
+        <%= image_tag(u.avatar.url(:thumb), :alt => u.username, :height => 22, :class => 'ui-li-icon') %>
+        <h3><%= u.username %></h3>
+        <ul>
           <li data-role="list-divider">Invite to</li>
           <% form_for(@attendance) do |f| %>
             <li><%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %></li>
@@ -35,11 +21,11 @@
             <li><%= f.submit "Invite" %></li>
           <% end %>
         </ul>
-      </div>
-      <div data-role="footer">
-      
-      </div>
-    </div>
+      </li>
   <% end %>
+  <%= will_paginate(@users, :renderer => WillPaginateJqueryMobileRenderer) %>
+<% else %>
+  <li>No users</li>
 <% end %>
+</ul>
 
