@@ -3,24 +3,20 @@
   <h1>Comments</h1>
 <% end %>
 <ul data-role="listview">
-<fieldset class="ui-grid-a">
-  <div class="ui-block-a">
-    <% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
-      <div>
-        <li><%= f.text_area :comment, :class => "comment_textarea" %></li>
-        <%= f.hidden_field :event_id, :value => @event.id %>
-      </div>
-      <div class="actions">
-        <li><%= f.submit "Add Comment", "data-inline" => "true" %></li>
-      </div>
-    <% end %>
-  </div>
-</fieldset>
+<% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
+  <li><%= f.text_area :comment, :class => "comment_textarea" %></li>
+  <%= f.hidden_field :event_id, :value => @event.id %>
+  <fieldset class="ui-grid-a">
+    <div class="ui-block-a">
+      <li><%= f.submit "Add Comment", "data-inline" => "true" %></li>
+    </div>
+  </fieldset>
+<% end %>
   <% @comments.each do |c| %>
     <li>
       <%= image_tag(c.user.avatar.url(:small)) %>
       <h3><%= c.user.username %></h3>
-      <p><%= c.comment %></p>
+      <p style="white-space: normal;"><%= c.comment %></p>
       <p class="ui-li-aside"><%= time_ago_in_words(c.created_at) %> ago</p>
     </li>
   <% end %>
