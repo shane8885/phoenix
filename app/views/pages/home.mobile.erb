@@ -12,6 +12,7 @@
   <% end %>
 <% else %>
   <ul data-role="listview">
+    <li><h3>Welcome <%= current_user.username %>!</h3></li>
     <li data-role="list-divider">Your Events</li>
     <% unless current_user.all_events.empty? %>
       <% current_user.all_events.each do |event| %>
@@ -19,6 +20,7 @@
           <a href="<%= url_for(event) %>">
             <%= image_tag(event.poster.url(:small), :alt => event.name) %>
             <h3><%= event.name %></h3>
+            <p>Owner: <%= event.user.username %></p>
           </a>
         </li>
       <% end %>
