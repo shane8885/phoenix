@@ -10,11 +10,7 @@
   <%= link_to "Sign in", new_user_session_path %> | 
   <%= link_to "Sign up", new_user_registration_path %>
 <% end %>
-| <% if mobile_device? %>
-  <%= link_to "Full site", :mobile => 0 %>
-<% else %>
-  <%= link_to "Mobile site", :mobile => 1 %>
-<% end %>
+| <%= link_to "Mobile site", root_path(:mobile => 1) %>
 </div>
 <div id="header" class="span-24 last">
   <!--%= link_to logo, root_path %-->
