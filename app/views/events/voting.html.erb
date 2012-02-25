@@ -2,6 +2,7 @@
   <%= render :partial => 'shared/sidebar_event',:object => @event %>
 <% end %>
 <h1><%= @event.name %></h1>
+<hr />
 <h3>Voting Log</h3>
 <% if not @votes.empty? %>
   <table class="phoenix_table">

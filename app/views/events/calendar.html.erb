@@ -7,8 +7,7 @@
   <%= javascript_include_tag 'event_calendar' %>
 <% end %>
 <div class="span-9">
-<h1><%= @event.name %></h1>
-<h3>Calendar</h3>
+  <h1><%= @event.name %></h1>
 </div>
 <div class="span-9 last right">
   <% if current_user.authorized?(@event.user_id)%>
@@ -17,5 +16,7 @@
   <% end %>
   <%= link_to 'View Sessions', schedule_event_path %>
 </div>
+<hr />
+<h3>Calendar</h3>
 <%= raw(event_calendar) %>
 <br />
