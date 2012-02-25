@@ -1,0 +1,41 @@
+<% content_for(:sidebar) do %>
+  <%= render :partial => 'shared/sidebar_event',:object => @session.selection.event %>
+<% end %>
+<div class="span-12">
+  <h1>Session for <%= @session.selection.event.name %></h1>
+</div>
+<div class="span-6 right last">
+  <% if current_user.authorized?(@session.event.user_id)%>
+    <%= link_to 'Edit Session',edit_movie_session_path(@session) %>
+  <% end %>
+</div>
+<hr />
+<div class="span-6">
+  <%= image_tag 'admit-one.gif', :width => 170 %>
+</div>
+<div class="span-12 last">
+  <strong>Movie Title</strong>
+  <p class="indent"><%= @session.selection.movie_name %></p>
+  <strong>Session Time</strong>
+  <p class="indent"><%= @session.start.strftime("%I:%M %P, %d %b %Y") %></p>
+  <p>Running Time: <%= @session.selection.running_time %> mins</p>
+  <strong>Venue</strong>
+  <p class="indent"><%= @session.venue %></p>
+  <strong>Attendee reviews</strong><br>
+  <%= get_stars(@session.selection) %><br>
+  <p class="indent">
+    <%= @session.selection.average_rating %> (<%= link_to pluralize(@session.selection.reviews.count,'review'),list_reviews_selection_path(@session.selection) %>)
+  | <%= myreview %><br>
+  </p>
+  <strong>Selected by</strong> (<%= @session.selection.created_at.strftime('%d %b %Y') %>)<br>
+  <table>
+    <tr>
+      <td id="row_image"><%= link_to image_tag(@session.selection.user.avatar.url(:thumb)), Attendance.find_by_event_id_and_attending_id(@session.selection.event_id,@session.selection.user_id) %></td>
+      <td id="user_name"><%= @session.selection.user.username %></td><td>
+    </tr>
+  </table>
+  <br><hr>
+  <%= link_to 'Selection details',@session.selection %> | 
+  <%= link_to 'Event home',@session.selection.event %> |
+  <%= link_to 'Event sessions', schedule_event_path(@session.selection.event) %>
+</div>

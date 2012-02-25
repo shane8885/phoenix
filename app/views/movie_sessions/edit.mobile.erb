@@ -1,0 +1,12 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", @session, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1><%= @event.name %></h1>
+<% end %>
+<%= form_for(@session) do |f| %>
+  <%= f.error_messages %>
+  <%= f.label :start %>
+  <%= f.datetime_select :start, 'data-inline' => 'true'%>
+  <%= f.label :venue %>
+  <%= f.text_field :venue %>
+  <%= f.submit %>
+<% end %>

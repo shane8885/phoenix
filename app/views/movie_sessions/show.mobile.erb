@@ -1,0 +1,26 @@
+<% content_for(:header) do %>
+  <%= link_to "Back", schedule_event_path(@session.selection.event), "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
+  <h1><%= @session.selection.movie_name %></h1>
+<% end %>
+<ul data-role="listview">
+<li>
+  <%= image_tag(@session.selection.poster, :alt => @session.selection.movie_name) %>
+  <h3><%= @session.selection.movie_name %></h3>
+  <p>Session for <%= @session.selection.event.name %></p>
+</li>
+<li data-role="list-divider">Session Details</li>
+<li>Time: <%= @session.start.strftime("%I:%M %P, %d %b %Y") %></li>
+<li>Venue: <%= @session.venue %></li>
+<li>Running Time: <%= @session.selection.running_time %></li>
+<li>Selected by: <%= @session.selection.user.username %></li>
+<li><%= link_to 'Selection details',@session.selection %></li>
+<% if current_user.authorized?(@session.selection.event.user_id) %>
+  <li>
+    <fieldset class="ui-grid-b">
+      <div class="ui-block-a">
+        <%= link_to 'Update',edit_movie_session_path(@session), "data-role" => "button", "data-inline" => "true" %>
+      </div>
+    </fieldset>
+  </li>
+<% end %>
+</ul>
