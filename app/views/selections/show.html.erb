@@ -42,7 +42,12 @@
     </tbody>
   </table>
 </div>
-<div class="span-10">
+<div class="span-12 last">
+  <% if @selection.movie_session %>
+    <div class="info">
+      <p>This selection is scheduled for <strong><%= @selection.movie_session.start.strftime("%I:%M %P, %d %b %Y") %></strong> <%= link_to "details", @selection.movie_session %></p>
+    </div>
+  <% end %>
   <strong>Title</strong>
   <p class="indent"><%= @movie.name %></p>
   <strong>Description</strong><br>

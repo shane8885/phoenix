@@ -53,7 +53,7 @@ Phoenix::Application.routes.draw do
   
   resources :reviews, :only => [:create,:update, :edit, :destroy]
   
-  resources :movie_sessions, :only => [:update,:edit]
+  resources :movie_sessions, :only => [:update,:edit,:show]
   
   resources :event_comments, :only => [:update, :edit, :destroy]
   

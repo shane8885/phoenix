@@ -1,6 +1,8 @@
 class Selection < ActiveRecord::Base
     belongs_to :user
     belongs_to :event
+    has_one :movie_session
+    
     # couldn't call this 'votes' because it conflicts with column name
     has_many :registered_votes, :class_name => "Vote", :foreign_key => "selection_id", :dependent => :destroy
     has_many :reviews, :dependent => :destroy

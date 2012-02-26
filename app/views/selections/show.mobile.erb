@@ -21,6 +21,15 @@
   </a>
 </li>
 <li data-role="list-divider">Details</li>
+<% if @selection.movie_session %>
+  <li>
+    <a href="<%= url_for(@selection.movie_session) %>">
+      <h3>Session info</h3>
+      <p><%= @selection.movie_session.start.strftime("%I:%M %P, %d %b %Y") %></p>
+    </a>
+  </li>
+<% end %>
+<li>Event: <%= @selection.event.name %></li>
 <li>TMDB Rating: <%= @movie.rating %></li>
 <li>Classification: <%= @movie.certification %></li>
 <li>Running Time: <%= @movie.runtime %></li>

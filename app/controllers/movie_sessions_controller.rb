@@ -12,6 +12,12 @@ class MovieSessionsController < ApplicationController
     end
   end
   
+  def show
+    @session = MovieSession.find(params[:id])
+    unless current_user.authorized?(@session.selection.user_id) or current_user.invited_to?(@session.selection.event)
+      action_not_permitted
+    end
+  end
   # PUT /events/1
   # PUT /events/1.xml
   def update
@@ -20,14 +26,18 @@ class MovieSessionsController < ApplicationController
     @session.attributes = params[:movie_session]
     runningtime = @session.selection.running_time ? @session.selection.running_time : 120
     @session.end_at = @session.start + runningtime.minutes
-    respond_to do |format|
-      if @session.save
-        format.html { redirect_to(schedule_event_path(event), :notice => 'Session was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @session.errors, :status => :unprocessable_entity }
-      end
+
+    if @session.save
+      redirect_to(@session, :notice => 'Session was successfully updated.')
+    else
+      render :action => "edit"
     end
+
   end
+  
+  private 
+    
+    def action_not_permitted
+      redirect_to(root_path, :alert => 'Not authorized to perform that action.')
+    end
 end
