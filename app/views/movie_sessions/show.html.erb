@@ -14,13 +14,39 @@
   <%= image_tag 'admit-one.gif', :width => 170 %>
 </div>
 <div class="span-12 last">
-  <strong>Movie Title</strong>
-  <p class="indent"><%= @session.selection.movie_name %></p>
+  <strong>Movie Title</strong><br />
+  <table><tr>
+    <td id="row_image">
+      <%= image_tag(@session.selection.poster, :alt => @session.selection.movie_name, :height => "50") %>
+    </td>
+    <td>
+      <strong><%= @session.selection.movie_name %></strong>
+    </td>
+  </tr></table>
   <strong>Session Time</strong>
   <p class="indent"><%= @session.start.strftime("%I:%M %P, %d %b %Y") %></p>
   <p>Running Time: <%= @session.selection.running_time %> mins</p>
   <strong>Venue</strong>
   <p class="indent"><%= @session.venue %></p>
+  <strong>Who's Going?</strong><br />
+  <% unless @session.session_attendances.empty? %>
+    <% @session.session_attendances.each do |a| %>
+        <%= image_tag(a.user.avatar.url(:thumb), :alt => "#{a.user.username}", :title => "#{a.user.username}" ) %>
+    <% end %>
+    <br />
+  <% else %>
+    <p class="indent">No one has confirmed their attendance.</p>
+  <% end %>
+  <% unless @session_attendance %>
+    <% form_for(@new_attendance) do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :movie_session_id, :value => @session.id %>
+      <%= f.submit "I will be there!" %>
+    <% end %>
+  <% else %>
+    <%= button_to "Changed my mind!", session_attendance_path(@session_attendance), :method => :delete %>
+  <% end %>
+  <br />
   <strong>Attendee reviews</strong><br>
   <%= get_stars(@session.selection) %><br>
   <p class="indent">

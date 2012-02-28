@@ -14,6 +14,8 @@ class MovieSessionsController < ApplicationController
   
   def show
     @session = MovieSession.find(params[:id])
+    @session_attendance = SessionAttendance.find_by_user_id_and_movie_session_id(current_user.id,@session.id)
+    @new_attendance = SessionAttendance.new
     unless current_user.authorized?(@session.selection.user_id) or current_user.invited_to?(@session.selection.event)
       action_not_permitted
     end

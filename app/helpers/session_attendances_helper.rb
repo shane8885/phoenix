@@ -1,0 +1,2 @@
+module SessionAttendancesHelper
+end

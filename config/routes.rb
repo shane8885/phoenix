@@ -1,5 +1,7 @@
 Phoenix::Application.routes.draw do
 
+  resources :session_attendances, :only => [:create,:destroy]
+
   resources :votes, :only => [:create,:destroy]
   
   resources :attendances, :except => [:index] do

@@ -6,6 +6,7 @@ class MovieSession < ActiveRecord::Base
   
   belongs_to :selection
   belongs_to :event
+  has_many :session_attendances
   
   validates :event_id, :presence => true
   validates :selection_id, :presence => true 

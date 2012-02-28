@@ -13,6 +13,33 @@
 <li>Venue: <%= @session.venue %></li>
 <li>Running Time: <%= @session.selection.running_time %></li>
 <li>Selected by: <%= @session.selection.user.username %></li>
+<li>
+  <h3>Who's Going?</h3>
+  <span class="ui-li-count"><%= @session.session_attendances.count %></span>
+  <ul>
+    <% unless @session.session_attendances.empty? %>
+      <% @session.session_attendances.each do |a| %>
+        <li>
+          <%= image_tag(a.user.avatar.url(:thumb), :alt => a.user.username, :height => 22, :class => 'ui-li-icon') %>
+          <%= a.user.username %>
+        </li>
+      <% end %>
+    <% else %>
+      <li>No one yet...</li>
+    <% end %>
+    <li>
+      <% unless @session_attendance %>
+        <% form_for(@new_attendance) do |f| %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :movie_session_id, :value => @session.id %>
+          <%= f.submit "I will be there!" %>
+        <% end %>
+      <% else %>
+        <%= button_to "Changed my mind!", session_attendance_path(@session_attendance), :method => :delete %>
+      <% end %>
+    </li>
+  </ul>
+</li>
 <li><%= link_to 'Selection details',@session.selection %></li>
 <% if current_user.authorized?(@session.selection.event.user_id) %>
   <li>
