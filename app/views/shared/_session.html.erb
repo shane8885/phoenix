@@ -15,7 +15,8 @@
   </td>
   <td id="row_buttons">
     <% if current_user.authorized?(Event.find(session.event_id).user_id) %>
-      <%= link_to 'Edit',edit_movie_session_path(session) %>
+      <%= link_to 'Edit',edit_movie_session_path(session) %><br />
+      <%= link_to 'Remove',session,:method => :delete,:confirm => 'Are you sure you want to remove this session?' %>
     <% end %>
   </td>
 </tr>

@@ -110,9 +110,12 @@ class SelectionsController < ApplicationController
   def destroy
     selection = Selection.find(params[:id])
     event = selection.event
-    selection.destroy
-
-    redirect_to(event, :notice => 'Successfully removed selection.')
+    if current_user.authorized?(event.user_id)
+      selection.destroy
+      redirect_to(event, :notice => 'Successfully removed selection.')
+    else
+      action_not_permitted
+    end
   end
   
   def sort

@@ -37,6 +37,17 @@ class MovieSessionsController < ApplicationController
 
   end
   
+  def destroy
+    session = MovieSession.find(params[:id])
+    event = session.event
+    if current_user.authorized?(event.user_id)
+      session.destroy
+      redirect_to(schedule_event_path(event), :notice => 'Successfully removed selection.')
+    else
+      action_not_permitted
+    end
+  end
+  
   private 
     
     def action_not_permitted

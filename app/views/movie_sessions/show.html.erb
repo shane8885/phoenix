@@ -6,7 +6,8 @@
 </div>
 <div class="span-6 right last">
   <% if current_user.authorized?(@session.event.user_id)%>
-    <%= link_to 'Edit Session',edit_movie_session_path(@session) %>
+    <%= link_to 'Edit Session',edit_movie_session_path(@session) %> | 
+    <%= link_to 'Remove Session',@session,:method => :delete,:confirm => 'Are you sure you want to remove this session?' %>
   <% end %>
 </div>
 <hr />
