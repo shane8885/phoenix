@@ -20,7 +20,7 @@ module CalendarHelper
       event, day = args[:event], args[:day]
       starttime = event.start.strftime("%R")
       endtime = event.end_at.strftime("%R")
-      html = %(<a href="/selections/#{event.selection_id}" title=" #{h(event.selection.movie_name)}: #{h(starttime)} - #{h(endtime)}">)
+      html = %(<a href="/movie_sessions/#{event.id}" title=" #{h(event.selection.movie_name)}: #{h(starttime)} - #{h(endtime)}">)
       html << display_event_time(event, day)
       html << %(#{h(event.selection.movie_name)}</a>)
       html
