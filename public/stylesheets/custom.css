@@ -448,7 +448,7 @@ table.event_details {
 	padding:0px;
 }
 .menu li a{
-	background:#333 url("images/seperator.gif") bottom right no-repeat;
+	background:#333;
 	color:#ccc;
 	display:block;
 	font-weight:normal;
@@ -459,7 +459,7 @@ table.event_details {
 	text-decoration:none;
 }
 .menu li a:hover, .menu ul li:hover a{
-	background: #2580a2 url("images/hover.gif") bottom center no-repeat;
+	background: #2580a2;
 	color:#FFFFFF;
 	text-decoration:none;
 }
@@ -481,7 +481,6 @@ table.event_details {
 		
 }
 .menu li li {
-	background:url('images/sub_sep.gif') bottom left no-repeat;
 	display:block;
 	float:none;
 	margin:0px;
@@ -502,7 +501,7 @@ table.event_details {
 	text-align:left;
 }
 .menu li ul a:hover, .menu li ul li:hover a{
-	background:#2580a2 url('images/hover_sub.gif') center left no-repeat;
+	background:#2580a2;
 	border:0px;
 	color:#ffffff;
 	text-decoration:none;
@@ -688,7 +687,7 @@ width: 175px; /*width of menu*/
 .sidebarmenu .headerbar{
 font: bold 13px Verdana;
 color: white;
-background: #333 url(media/arrowstop.gif) no-repeat 8px 6px; /*last 2 values are the x and y coordinates of bullet image*/
+background: #333;
 margin-bottom: 0; /*bottom spacing between header and rest of content*/
 text-transform: uppercase;
 padding: 7px 0 7px 31px; /*31px is left indentation of header text*/
