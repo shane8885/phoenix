@@ -25,13 +25,23 @@
     <% unless @sessions.empty? %>
       <h3>Upcoming Movie Sessions</h3>
       <table border="1">
-      <tr><th /><th>Time</th><th>Movie</th><th>Venue</th></tr>
+      <tr><th /><th>Time</th><th>Movie</th><th>Venue</th><th>Who's Going?</th></tr>
       <% @sessions.each do |s| %>
         <tr>
           <td><%= image_tag s.selection.poster,:alt => "no image", :height => "50" %></td>
           <td><%= s.start.strftime("%a %d %b, %I:%M %P") %></td> 
           <td><%= s.selection.movie_name %></td>
           <td><%= s.venue %></td>
+          <td>
+            <% unless s.session_attendances.empty? %>
+              <% s.session_attendances.each do |a| %>
+                <%= a.user.username %>, 
+              <% end %>
+            <% else %>
+              No one yet
+            <% end %>
+          </td>
+          <td><%= link_to 'rsvp',movie_session_url(s) %></td>
         </tr>
       <% end %>
       </table>
