@@ -42,7 +42,7 @@
     <div class="box">
     <strong>Make Selection</strong><br>
     <% if not @events.empty? %>
-      <% form_for @selection do |f| %>
+      <%= form_for @selection do |f| %>
         <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :movie_id, :value => @movie.id %>

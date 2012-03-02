@@ -10,7 +10,7 @@
         <h3><%= u.username %></h3>
         <ul>
           <li data-role="list-divider">Invite to</li>
-          <% form_for(@attendance) do |f| %>
+          <%= form_for(@attendance) do |f| %>
             <li><%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %></li>
             <%= f.hidden_field :inviting_id, :value => current_user.id %>
             <%= f.hidden_field :attending_id, :value => u.id %>

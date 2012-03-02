@@ -5,9 +5,9 @@ class UserController < ApplicationController
     @attendance = Attendance.new
     @events = current_user.events
     if( params[:search])
-      @users = User.find(:all, :conditions => { :username => params[:search] }).paginate(:page => params[:page], :per_page => 15)
+      @users = User.where( :username => params[:search] ).paginate(:page => params[:page], :per_page => 15)
     else
-      @users = User.all.paginate(:page => params[:page], :per_page => 15)
+      @users = User.paginate(:page => params[:page], :per_page => 15)
     end
   end
 

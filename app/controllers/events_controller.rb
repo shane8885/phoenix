@@ -9,9 +9,9 @@ class EventsController < ApplicationController
   
   def search
     if( params[:search])
-      @events = Event.find(:all, :conditions => { :name => params[:search] }).paginate(:page => params[:page], :per_page => 20)
+      @events = Event.where( :name => params[:search] ).paginate(:page => params[:page], :per_page => 20)
     else
-      @events = Event.all.paginate(:page => params[:page], :per_page => 20)
+      @events = Event.paginate(:page => params[:page], :per_page => 20)
     end
   end
 

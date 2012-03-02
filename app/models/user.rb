@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable, :confirmable,
+  
   devise :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :trackable, :validatable
- 
+  alias :devise_valid_password? :valid_password?
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :username, :avatar, :allow_notifications
   has_attached_file :avatar, :styles => { :thumb => "40x40#", :small => "150x150>", :medium => "300x300>" }, :storage => :s3, :s3_credentials => "#{::Rails.root.to_s}/config/amazon_s3.yml",
@@ -33,6 +34,23 @@ class User < ActiveRecord::Base
   
   validates_presence_of :username
   validates_uniqueness_of :username
+  
+  def valid_password?(password)
+    begin
+      super(password)
+    rescue BCrypt::Errors::InvalidHash
+      # check legacy password and set new password if it matches
+      digest = nil
+      10.times { digest = Digest::SHA1.hexdigest("--#{password_salt}--#{digest}--#{password}----") }
+      if digest == encrypted_password
+        self.password = password
+        true
+      else
+        false
+      end
+    end
+  end
+    
   
   def authorized?(id)
     self.admin? or self.id == id

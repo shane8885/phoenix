@@ -4,7 +4,7 @@
 <h1><%= @event.name %></h1>
 <h3>Broadcast Message</h3>
 <div class="box">
-  <% form_tag broadcast_message_event_path(@event), :method => 'post' do %>
+  <%= form_tag broadcast_message_event_path(@event), :method => 'post' do %>
       <%= label_tag 'Message to send all attendees' %><br />
       <%= text_area_tag :msg_text %><br />
       <%= submit_tag "Send" %>

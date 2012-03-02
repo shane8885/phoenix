@@ -17,7 +17,7 @@
     </ul>
     <%= yield :sidebar %>
   <% else %>
-    <% if request.request_uri != "/users/sign_in" %>
+    <% if request.url != "/users/sign_in" %>
       <h3 class="headerbar">Sign in</h3>
       <div class="box">
         <%= form_for("user", :url => user_session_path) do |f| %>

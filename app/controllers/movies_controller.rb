@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class MoviesController < ApplicationController
     Tmdb.api_key = "9027009be089788945e1c7aa516338a2"
     
@@ -13,7 +15,7 @@ class MoviesController < ApplicationController
           render 'shared/tmdb_error'
         end
 
-        if( user_signed_in? ):
+        if( user_signed_in? )
           @selection = current_user.selections.build()
           #user just sees their events
           @events = current_user.open_selection_events
@@ -37,7 +39,7 @@ class MoviesController < ApplicationController
           render 'shared/tmdb_error'
         end
 
-        if( user_signed_in? ):
+        if( user_signed_in? )
           @selection = current_user.selections.build()
           #user just sees their events
           @events = current_user.open_selection_events

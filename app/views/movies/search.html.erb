@@ -1,6 +1,6 @@
 <div class="push-4 last">
-  <% form_tag '/movies/index', :method => 'get' do %>
-      <span class="largefont">Find Movie</span>
+  <%= form_tag '/movies/index', :method => 'get' do %>
+      <%= label_tag 'search', 'Find movie' %>
       <%= text_field_tag :search %>
       <%= submit_tag "Search", :name => nil %>
   <% end %>

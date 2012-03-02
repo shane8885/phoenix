@@ -43,7 +43,7 @@
     <li>
       <h3>Select for...</h3>
       <ul>
-        <% form_for @selection do |f| %>
+        <%= form_for @selection do |f| %>
         <li> 
           <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
           <%= f.hidden_field :user_id %>

@@ -87,7 +87,7 @@
   <br>
   <hr />
   <h3>Comments</h3>
-  <% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
+  <%= form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
     <div>
       <%= f.text_area :comment, :class => "comment_textarea" %>
       <%= f.hidden_field :event_id, :value => @event.id %>

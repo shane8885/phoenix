@@ -18,7 +18,7 @@ class VotesController < ApplicationController
           redirect_to selections_event_path(event)
         end
       else
-        flash[:error] = 'Sorry, you used all you votes.'
+        flash[:error] = 'Sorry, you used all your votes.'
         redirect_to selections_event_path(event)
       end
     else

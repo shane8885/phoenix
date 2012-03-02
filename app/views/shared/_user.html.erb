@@ -5,7 +5,7 @@
   <td id="user_name"><%= user.username %></td>
   <td>
   <% if @events.count > 0 %>
-      <% form_for(@attendance) do |f| %>
+      <%= form_for(@attendance) do |f| %>
         Invite to <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
         <%= f.hidden_field :inviting_id, :value => current_user.id %>
         <%= f.hidden_field :attending_id, :value => user.id %>

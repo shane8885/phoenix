@@ -14,7 +14,7 @@
   <td id="votes_cell"><div id="votes"><strong><font size="5"><%= selection.votes %></font></strong><br>Votes</div></td>
   <% if current_user.invited_to?(event) and event.open_for_voting %>	
     <td>
-      <% form_for(@vote) do |f| %>
+      <%= form_for(@vote) do |f| %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
         <%= f.hidden_field :selection_id, :value => selection.id %>
         <%= f.submit "Vote" %>

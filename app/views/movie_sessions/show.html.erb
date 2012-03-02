@@ -39,7 +39,7 @@
     <p class="indent">No one has confirmed their attendance.</p>
   <% end %>
   <% unless @session_attendance %>
-    <% form_for(@new_attendance) do |f| %>
+    <%= form_for(@new_attendance) do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :movie_session_id, :value => @session.id %>
       <%= f.submit "I will be there!" %>

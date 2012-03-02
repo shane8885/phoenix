@@ -76,7 +76,7 @@
   <% end %>
   <br>
   <% if @selection.event.open_for_voting %>
-    <% form_for(@vote) do |f| %>
+    <%= form_for(@vote) do |f| %>
       <%= f.hidden_field :user_id, :value => current_user.id %>
       <%= f.hidden_field :selection_id, :value => @selection.id %>
       <%= f.submit "Add Vote" %>

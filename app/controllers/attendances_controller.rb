@@ -14,7 +14,7 @@ class AttendancesController < ApplicationController
       Notifier.invite_email(attendance).deliver
       redirect_to(event, :notice => 'Invitation was successfully created.')
     else
-      flash[:error] = 'Sorry, Could not create invitation.'
+      flash[:error] = 'Sorry, could not create invitation.'
       redirect_to(event)
     end
   end

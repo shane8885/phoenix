@@ -53,7 +53,7 @@
     <fieldset class="ui-grid-b">
       <div class="ui-block-a">
         <% if @selection.event.open_for_voting %>
-          <% form_for(@vote) do |f| %>
+          <%= form_for(@vote) do |f| %>
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.hidden_field :selection_id, :value => @selection.id %>
             <li><%= f.submit "Add Vote", "data-inline" => "true" %></li>

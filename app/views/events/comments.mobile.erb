@@ -3,7 +3,7 @@
   <h1>Comments</h1>
 <% end %>
 <ul data-role="listview">
-<% form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
+<%= form_for @newcomment,:html => { :id => 'comment_form' } do |f| %>
   <li><%= f.text_area :comment, :class => "comment_textarea" %></li>
   <%= f.hidden_field :event_id, :value => @event.id %>
   <fieldset class="ui-grid-a">
