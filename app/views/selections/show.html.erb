@@ -65,7 +65,7 @@
     <%= get_stars(@selection) %><br>
     <p class="indent">
       <%= @selection.average_rating %> (<%= link_to pluralize(@selection.reviews.count,'review'),list_reviews_selection_path(@selection) %>)
-    | <%= myreview %><br>
+    | <%= myreview(@selection) %><br>
     </p>
   <strong><%= pluralize(@selection.votes,'Vote') %></strong><br>
   

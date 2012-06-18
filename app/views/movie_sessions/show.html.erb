@@ -52,7 +52,7 @@
   <%= get_stars(@session.selection) %><br>
   <p class="indent">
     <%= @session.selection.average_rating %> (<%= link_to pluralize(@session.selection.reviews.count,'review'),list_reviews_selection_path(@session.selection) %>)
-  | <%= myreview %><br>
+  | <%= myreview(@session.selection) %><br>
   </p>
   <strong>Selected by</strong> (<%= @session.selection.created_at.strftime('%d %b %Y') %>)<br>
   <table>

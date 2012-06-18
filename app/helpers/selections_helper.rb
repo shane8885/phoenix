@@ -1,9 +1,9 @@
 module SelectionsHelper
-  def myreview
-    if review = current_user.reviews.find_by_selection_id(params[:id])
+  def myreview(s)
+    if review = current_user.reviews.find_by_selection_id(s.id)
         link_to 'update my review', edit_review_path(review)
     else
-        link_to 'review it', add_review_selection_path(@selection)
+        link_to 'review it', add_review_selection_path(s)
     end
   end
   
