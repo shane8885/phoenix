@@ -1,0 +1,14 @@
+<tr>
+  <td id ="row_image">
+    <%= image_tag(review2.selection.poster, :alt => "no image", :height => "50") %>
+  </td>
+  <td "comment_info">
+    <span id="user_name"><%= review2.user.username %></span><br>reviewed <%= truncate(review2.selection.movie_name,:length => 20) %><br>
+    <%= time_ago_in_words(review2.created_at) %> ago
+  </td>
+  <td id="comment_text">
+    <span class="largefont"><%= truncate(review2.summary,:length => 50) %></span><br />
+    <%= get_stars_for_review(review2,:small => true) %></br>
+    <%= truncate(review2.review,:length => 250) %>
+  </td>
+</tr>

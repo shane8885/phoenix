@@ -63,6 +63,14 @@
       <p class="indent"><%= link_to 'Make a selection now',movies_search_path %></p>
     <% end %>
   <% end %>
+  <% unless @event.reviews.empty? %>
+    <h3>Recent Reviews</h3>
+    <table class="phoenix_table">
+      <tbody>
+        <%= render :partial => 'shared/review2', :collection => @event.reviews.limit(5) %>
+      </tbody>
+    </table>
+  <% end %>
   <h3>Confirmed Attendees</h3>
   <% unless @event.confirmed_attendees.empty? %>
     <% @event.accepted_invitations.each do |a| %>

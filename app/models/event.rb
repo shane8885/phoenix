@@ -8,7 +8,7 @@ attr_accessible :name, :description, :public, :maxmovies, :start, :selections_de
   has_many :attendances, :dependent => :destroy
   has_many :movie_sessions, :dependent => :destroy
   has_many :event_comments, :dependent => :destroy
-    
+
   has_many :recent_selections, :class_name => 'Selection', :order => 'created_at DESC' 
   has_many :official_selections, :class_name => 'Selection', :order => 'votes DESC', :conditions => {:official => true}
   has_many :unofficial_selections, :class_name => 'Selection', :order => 'votes DESC', :conditions => {:official => false}
@@ -18,6 +18,7 @@ attr_accessible :name, :description, :public, :maxmovies, :start, :selections_de
   has_many :unconfirmed_attendees, :class_name => 'User', :through => :not_accepted_invitations, :source => :attending
   has_many :all_attendees, :class_name => 'User', :through => :attendances, :source => :attending
   has_many :upcoming_sessions, :class_name => 'MovieSession', :conditions => ['start > ?',Time.now.utc]
+  has_many :reviews, :class_name => 'Review', :through => :selections, :source => :reviews, :order => 'created_at DESC'
   validates :name, :presence => true, :length => { :maximum => 30 }
   validates :maxmovies, :presence => true, :numericality => { :within => 1..1000 }
   validates :start, :presence => true
