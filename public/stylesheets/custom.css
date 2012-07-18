@@ -176,6 +176,17 @@ a.signup_button {
 color: lightyellow;
 }
 
+#review_info {
+  width: 150px;
+}
+
+#review_text {
+  font-style: normal;
+  color: #222;
+  max-width: 400px;
+}
+
+
 #comment_info {
   width: 100px;
 }
