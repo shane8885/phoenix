@@ -47,14 +47,21 @@
 </div>
 <hr />
 <div class="span-18 last">
-  <h3>Recent Selections</h3>
-  <% unless @recent_selections.empty? %>
-    <% @recent_selections.each do |s| %>
-      <%= link_to image_tag(s.poster, :alt => s.movie_name, :title => s.movie_name, :height => 80),s %>
+  <% if not @event.open_for_selections and not @event.upcoming_sessions.empty? %>
+    <h3>Upcoming Movies Sessions</h3>
+    <% @event.upcoming_sessions.limit(12).each do |s| %>
+      <%= link_to image_tag(s.selection.poster, :alt => s.selection.movie_name, :title => s.selection.movie_name, :height => 80),s %>
     <% end %>
-    <br><%= link_to "#{@event.selections.length} total selections", selections_event_path %>
   <% else %>
-    <p class="indent"><%= link_to 'Make a selection now',movies_search_path %></p>
+    <h3>Recent Selections</h3>
+    <% unless @recent_selections.empty? %>
+      <% @recent_selections.each do |s| %>
+        <%= link_to image_tag(s.poster, :alt => s.movie_name, :title => s.movie_name, :height => 80),s %>
+      <% end %>
+      <br><%= link_to "#{@event.selections.length} total selections", selections_event_path %>
+    <% else %>
+      <p class="indent"><%= link_to 'Make a selection now',movies_search_path %></p>
+    <% end %>
   <% end %>
   <h3>Confirmed Attendees</h3>
   <% unless @event.confirmed_attendees.empty? %>
