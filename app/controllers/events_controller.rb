@@ -219,15 +219,7 @@ class EventsController < ApplicationController
   def voting
     @event = Event.find(params[:id])
     @title = @event.name
-    @votes = []
-    @event.selections.each do |s|
-      s.registered_votes.each do |v|
-        @votes << v
-      end
-    end  
-    if not @votes.empty?
-      @votes.sort! { |a,b| b.created_at <=> a.created_at }
-    end
+    @votes = @event.votes
   end
   
   private 
