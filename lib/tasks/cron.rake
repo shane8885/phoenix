@@ -2,7 +2,8 @@ task :cron => :environment do
   #only run on sunday
   if Time.now.utc.wday == 1
     Event.all.each do |e|
-      if( e.selections.where('created_at > ?',Time.now.utc - 1.week).length > 0 or e.movie_sessions.where('start > ? and start < ?',Time.now.utc,Time.now.utc + 1.week).length > 0 ) 
+      #if there's been recent selections or reviews or there's movie sessions coming up in the next week
+      if( e.selections.where('created_at > ?',Time.now.utc - 1.week).length > 0 or e.movie_sessions.where('start > ? and start < ?',Time.now.utc,Time.now.utc + 1.week).length > 0 or e.reviews.where('reviews.created_at > ?',Time.now.utc - 1.week).length > 0 ) 
         e.all_attendees.each do |u|
           if u.allow_notifications
             Notifier.weekly_update(u,e).deliver

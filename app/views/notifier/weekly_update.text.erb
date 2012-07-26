@@ -3,15 +3,22 @@ Update for <%= @event.name %>
 Hi <% @user.username %>, here's the latest news for <%= @event.name %>, for more information go to <%= root_url %>
 
 <%= @event.name %> has <%= @event.official_selections.count %> official selections and <%= @event.unofficial_selections.count %> unofficial selections.
-
 <% unless @selections.empty? %>
+
 Recent Selections
   <% @selections.each do |s| %>
   - <%= s.movie_name %>, selected by <%= User.find(s.user_id).username %>
   <% end %>     
 <% end %>
+<% unless @reviews.empty? %>
 
+Recent Reviews
+   <% @reviews.each do |r| %>
+  - <%= r.user.username %> reviewed <%= r.selection.movie_name %> giving it <%= r.rating %> stars
+   <% end %>
+<% end %>
 <% unless @sessions.empty? %>
+
 Upcoming Movie Sessions
   <% @sessions.each do |s| %>
   - <%= s.start.strftime("%a %d %b, %I:%M %P") %>, <%= Selection.find(s.selection_id).movie_name %> (venue: <%= s.venue %>)
