@@ -1,0 +1,13 @@
+New Comments
+------------
+
+<% unless @comments.empty? %>
+  <% @comments.each do |c| %>
+<%= c.user.username %>, <%= time_ago_in_words(c.created_at) %> ago:
+<%= c.comment %></td>
+-----------
+
+  <% end %>
+<% end %>
+
+Enjoy the movies!

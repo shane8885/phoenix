@@ -1,5 +1,5 @@
 task :cron => :environment do
-  #only run on sunday
+  #weekly update
   if Time.now.utc.wday == 1
     Event.all.each do |e|
       #if there's been recent selections or reviews or there's movie sessions coming up in the next week
@@ -12,6 +12,18 @@ task :cron => :environment do
       end
     end
   end
+
+  #daily updates
+  Event.all.each do |e|
+    if( e.event_comments.where('created_at > ?',Time.now.utc-1.day).length > 0 )
+      e.all_attendees.each do |u|
+        if u.allow_notifications
+          Notifier.daily_update(u,e).deliver
+        end
+      end
+    end
+  end
+
   #update event flags
   Event.all.each do |e|
     if e.selections_deadline < DateTime.now.utc and e.open_for_selections

@@ -25,7 +25,15 @@ class Notifier < ActionMailer::Base
     mail(:to => @user.email, 
          :subject => "Update for #{@event.name}")
   end
-  
+
+  def daily_update(user,event)
+    @user = user
+    @event = event
+    @comments = @event.event_comments.where('created_at > ?',Time.now.utc-1.day)
+    mail(:to => @user.email,
+         :subject => "#{@event.name} - New comments" )
+  end
+
   def schedule_update(user,event)
     @event = event
     @user = user
