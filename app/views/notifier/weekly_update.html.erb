@@ -2,6 +2,10 @@
 <html>
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+        table {border:1px solid #c3c3c3;border-collapse:collapse;}
+        td {border:1px solid #c3c3c3;padding:3px;}
+    </style>
   </head>
   <body>
     <h1>Update for <%= @event.name %></h1>
@@ -28,7 +32,7 @@
         <% @reviews.each do |r| %>
             <li><%= r.user.username %> reviewed <i><%= r.selection.movie_name %></i> giving it <%= r.rating %> stars</li>
         <% end %>
-        </ul>
+        </ul><br>
     <% end %>
     <% unless @sessions.empty? %>
       <h3>Upcoming Movie Sessions</h3>

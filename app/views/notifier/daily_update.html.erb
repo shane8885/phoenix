@@ -2,18 +2,25 @@
 <html>
   <head>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css">
+        table {border:1px solid #c3c3c3;border-collapse:collapse;}
+        td {border:1px solid #c3c3c3;padding:3px;}
+    </style>
   </head>
   <body>
     <h3>New Comments</h3>
     <p>Recent comments for <%= @event.name %>, for more information go the <%= link_to "website",root_url %></p>
     <% unless @comments.empty? %>
       <table border="1">
-      <tr align="left"><th>User</th><th>Comment</th></tr>
+      <tr align="left"><th /><th>User</th><th>Comment</th></tr>
       <% @comments.each do |c| %>
         <tr>
           <td>
+            <%= image_tag(c.user.avatar.url(:thumb)) %>
+          </td>
+          <td>
             <%= c.user.username %><br>
-            <%= time_ago_in_words(c.created_at) %> ago
+            <font size="1"><%= time_ago_in_words(c.created_at) %> ago</font>
           </td>
           <td>
             <%= c.comment %></td>
