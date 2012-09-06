@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.2'
-gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
 gem 'will_paginate', '3.0.3'
 gem 'ruby-tmdb', '0.2.1'
 gem 'devise', '2.0.4'
@@ -35,8 +34,13 @@ gem 'event-calendar', '2.3.3', :require => 'event_calendar'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
+  gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
   gem 'rspec-rails', '2.8.1'
   gem 'factory_girl', '2.6.1'
   gem 'capybara', '1.1.2'
   gem 'launchy', '2.0.5'
+end
+
+group :production do
+  gem 'pg'
 end
