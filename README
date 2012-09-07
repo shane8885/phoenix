@@ -1,7 +1,9 @@
 == Project Phoenix
 
-This is a project to write a website used for creating and running private movie nights or movie festivals. It may already exist somewhere but I don't really care since I want to do it my way and learn a few things on the way.  It uses the The Movie Database (www.themoviedb.org) for movie information and then allows users to create events, make movie selections, invite other users to attend and vote on selections and finally schedule the event and individual sessions. And a few other features along the way. 
+This is a web app for running a social movie club. It's aimed at small groups of friends rather than large professional festivals.
 
-This project is largely an excerses for me to learn Ruby on Rails programming but I'd also love to see the site become a useful product, esspecially since I myself love running movie festivals with my friends.
+A user can create an event and invite other users to attend, once invited a user can start choosing films they want to see included in the event (the app hooks into  TMDB for movie info). An event could be a single night or span across many months. While selecting films users can also vote for other selections. The owner of the event then makes the official selections (based on votes or other factors) and schedules movie sessions.
 
-Not much point putting any more info here just yet since it's very early days and everything is in development... I'll update this down the track when things are taking shape.
+Along the way the web app will update users periodically on things like deadlines, new selections, upcoming sessions, new reviews etc.
+
+This is still a work in progress or though the app does have a lot of the functionality in place.
