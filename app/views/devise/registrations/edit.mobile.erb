@@ -2,7 +2,7 @@
   <%= link_to "Back", root_url, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
   <h1>Edit Account</h1>
 <% end %>
-<%= form_for(resource_name, resource, :url => registration_path(resource_name), :html => { :multipart => true, :method => :put }) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :multipart => true, :method => :put }) do |f| %>
   <%= f.error_messages %>
 
   <%= f.label :email %>
