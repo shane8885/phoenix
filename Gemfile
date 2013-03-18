@@ -34,7 +34,7 @@ gem 'event-calendar', '2.3.3', :require => 'event_calendar'
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :development, :test do
-  gem 'sqlite3-ruby', '1.3.3', :require => 'sqlite3'
+  gem 'sqlite3'
   gem 'rspec-rails', '2.8.1'
   gem 'factory_girl', '2.6.1'
   gem 'capybara', '1.1.2'
