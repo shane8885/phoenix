@@ -10,7 +10,7 @@ describe "Users" do
   
   describe "sign in and out" do
     it "should work given valid credentials" do
-      user = Factory(:user, :username => 'joe', :password => 'password')
+      user = FactoryGirl.create(:user, :username => 'joe', :password => 'password')
       visit new_user_session_path
       fill_in 'Username', :with => 'joe'
       fill_in 'Password', :with => 'password'

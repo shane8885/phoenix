@@ -1,7 +1,5 @@
 class SelectionsController < ApplicationController
   before_filter :authenticate_user!
-  
-  Tmdb.api_key = "9027009be089788945e1c7aa516338a2"
 
   # POST /selections
   # POST /selections.xml
@@ -58,7 +56,8 @@ class SelectionsController < ApplicationController
     @selection = Selection.find(params[:id])
     if current_user.authorized?(@selection.user_id) or current_user.invited_to?(@selection.event)
       begin
-        @movie = TmdbMovie.find(:id => @selection.movie_id, :expand_results => true, :limit => 1)
+        @movie = Tmdb::Movie.detail(@selection.movie_id)
+        @trailers = Tmdb::Movie.trailers(@selection.movie_id)
       rescue
         render 'shared/tmdb_error'
       end

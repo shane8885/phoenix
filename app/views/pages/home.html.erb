@@ -20,13 +20,13 @@
 <div class="span-10 last">
   <div class="box">
     <% if @suggested_movie %>
-      <h1>Movie Suggestion</h1>
+      <h1>Movie Spotlight</h1>
       <table>
       <tr>
         <td vertical-align="top"><%= link_to insert_thumbnail(@suggested_movie,130),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %></td>
         <td>
-          <strong><%= @suggested_movie.name %></strong> (<%= Date.parse(@suggested_movie.released).year %>)<br />
-          <p class="indent"><%= truncate(@suggested_movie.overview, :length => 230) %> <%= link_to 'more',:controller => 'movies', :action => 'show', :id => @suggested_movie.id %> <strong>(<%= @suggested_movie.rating %> / <%= @suggested_movie.votes %> votes)</strong></p>
+          <strong><%= @suggested_movie.title %></strong> (<%= Date.parse(@suggested_movie.release_date).year %>)<br />
+          <p class="indent"><%= truncate(@suggested_movie.overview, :length => 230) %> <%= link_to 'more',:controller => 'movies', :action => 'show', :id => @suggested_movie.id %> <strong>(<%= @suggested_movie.vote_average %> / <%= @suggested_movie.vote_count %> votes)</strong></p>
         </td>
       </tr></table>
     <% end %>
@@ -34,9 +34,11 @@
 </div>
 <div class="span-18">
   <% unless @recent_movies.empty? %>
-  <h3>Latest Movies</h3>
-    <% @recent_movies.each do |m| %>
-      <%= link_to insert_thumbnail(m,90),:controller => 'movies', :action => 'show', :id => m.id %>
+  <h3>Now Playing</h3>
+    <% @recent_movies.first(20).each do |m| %>
+      <% if m['poster_path'] %>
+        <%= link_to insert_thumbnail(m,90),:controller => 'movies', :action => 'show', :id => m['id'] %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

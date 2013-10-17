@@ -8,9 +8,8 @@
       <li>
         <a href="<%= url_for(:action => "show", :id => m.id) %>">
           <%= insert_thumbnail(m,100) %>
-          <h3><%= m.name %></h3>
-          <p><%= m.rating %> (<%= m.votes %> votes)</p>
-          <p><%= m.overview %></p>
+          <h3><%= m.title %></h3>
+          <p><%= m.vote_average %> (<%= m.vote_count %> votes)</p>
         </a>
       </li>
     <% end %>

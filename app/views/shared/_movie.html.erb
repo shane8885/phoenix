@@ -3,15 +3,16 @@
       <%= link_to insert_thumbnail(movie,100), :action => "show", :id => movie.id %>
     </td>
     <td class="movie_info">
-        <span id="movie_title"><%= link_to movie.name, :action => "show", :id => movie.id %></span>
-        <span id="movie_release">     (<%= movie.released %>)</span><br>
-        <span id="movie_overview"><%= truncate(movie.overview, :length => 200) %></span>
+      <span id="movie_title"><%= link_to movie.title, :action => "show", :id => movie.id %></span><br>
+      <% unless movie.release_date == '' %>
+      <span id="movie_release">     (<%= movie.release_date %>)</span><br>
+      <% end  %>
     </td>
     <td id="movie_rating_cell">
       <div id="movie_rating_box">
       Rating<br>
-      <span id="movie_rating"><%= movie.rating %></span><br>
-      ( <%= movie.votes %> votes )
+      <span id="movie_rating"><%= movie.vote_average %></span><br>
+      ( <%= movie.vote_count %> votes )
       </div>
     </td>
     <td id="movie_buttons">

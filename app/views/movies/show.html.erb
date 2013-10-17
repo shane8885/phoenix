@@ -1,27 +1,23 @@
-<h1><%= @movie.name %></h1>
+<h1><%= @movie.title %></h1>
 <div class="span-6">
   <%= insert_poster(@movie,300) %>
   <table class="zebra">
     <tbody>
       <tr>
           <td>Released</td>
-          <td><%= @movie.released %></td>
+          <td><%= @movie.release_date %></td>
       </tr>
       <tr>
           <td>Urls</td>
-          <td><%= link_to( 'TMDB', @movie.url ) %><br>
+          <td><%= link_to( 'TMDB', tmdb_url(@movie) ) %><br>
               <% unless @movie.imdb_id.nil? %>
-                <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %>
+                <%= link_to( 'IMDB', imdb_url(@movie) ) %>
               <% end %>
           </td> 
       </tr>
       <tr>
           <td>TMDB User Rating</td>
-          <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
-      </tr>
-      <tr>
-          <td>Classification</td>
-          <td><%= @movie.certification %></td>
+          <td><%= @movie.vote_average %> ( <%= @movie.vote_count %> votes )</td>
       </tr>
       <tr>
           <td>Running Time</td>
@@ -29,7 +25,13 @@
       </tr>
       <tr>
           <td>Trailer</td>
-          <td><%= link_to( image_tag('youtube_icon_small.gif'),@movie.trailer ) if @movie.trailer %></td>
+          <% unless @trailers.empty? or @trailers['youtube'].first.nil? %>
+            <td><%= link_to( image_tag('youtube_icon_small.gif'),"http://www.youtube.com/watch?v=#{@trailers['youtube'].first['source']}" ) %></td>
+          <% end %>
+      </tr>
+      <tr>
+          <td>Budget</td>
+          <td>$ <%= @movie.budget if @movie.budget %></td>
       </tr>
       <tr>
           <td>Revenue</td>
@@ -46,7 +48,7 @@
         <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
         <%= f.hidden_field :user_id %>
         <%= f.hidden_field :movie_id, :value => @movie.id %>
-        <%= f.hidden_field :movie_name, :value => @movie.name %>
+        <%= f.hidden_field :movie_name, :value => @movie.title %>
         <%= f.hidden_field :running_time, :value => @movie.runtime %>
         <%= f.hidden_field :poster, :value => get_thumb_url(@movie) %>
         <%= f.submit "Select" %>
@@ -63,23 +65,22 @@
 <div class="span-12 last">
   <strong>Description</strong><br>
   <p class="indent"><%= @movie.overview %></p>
-  <strong>Credits</strong><br>
+  <strong>Cast</strong><br>
   <div class="span-6">
     <table class="zebra">
       <tbody>
-        <% @actors.first(8).each do |actor| %>
+        <% @cast.first(@cast.length/2).each do |person| %>
           <tr>
             <td width="60">
-              <% if actor.profile == "" %>
+              <% if person['profile_path'].nil? %>
                 <%= image_tag '/avatars/thumb/missing.png' %>
               <% else %>
-                <%= image_tag actor.profile,:height=>'50' %>
+                <%= person_thumbnail(person,50) %>
               <% end %>
             </td>
             <td>
-              <i><%= actor.job %></i><br>
-              <strong><%= link_to actor.name, actor.url %></strong> 
-              <%= (actor.character == '') ? '' : 'as '+actor.character %></td>
+              <strong><%= person['name'] %></strong> 
+              <%= (person['character'] == '') ? '' : 'as '+ person['character'] %></td>
           </tr>
         <% end %>  
       </tbody>
@@ -88,27 +89,23 @@
   <div class="span-6 last">
     <table class="zebra">
       <tbody>
-        <% @credits.first(8).each do |person| %>
-          <tr>
-            <td width="60">
-              <% if person.profile == "" %>
-                <%= image_tag '/avatars/thumb/missing.png' %>
-              <% else %>
-                <%= image_tag person.profile,:height=>'50' %>
-              <% end %>
-            </td>
-            <td>
-              <i><%= person.job %></i><br>
-              <strong><%= link_to person.name, person.url %></strong> 
-              <%= (person.character == '') ? '' : 'as '+person.character %></td>
-          </tr>
-        <% end %>  
+        <% if @cast.length > 1 %>
+          <% @cast.drop(@cast.length/2).each do |person| %>
+            <tr>
+              <td width="60">
+                <% if person['profile_path'].nil? %>
+                  <%= image_tag '/avatars/thumb/missing.png' %>
+                <% else %>
+                  <%= person_thumbnail(person,50) %>
+                <% end %>
+              </td>
+              <td>
+                <strong><%= person['name'] %></strong> 
+                <%= (person['character'] == '') ? '' : 'as '+ person['character'] %></td>
+            </tr>
+          <% end %>  
+        <% end %>
       </tbody>
     </table>
   </div>
-  <% if @actors.count > 8 or @credits.count > 8 %> 
-    <div class="span-12 last push-4">
-      <%= link_to "full credits", { :action => "credits", :id => @movie.id } %>
-    </div>
-  <% end %>
 </div>

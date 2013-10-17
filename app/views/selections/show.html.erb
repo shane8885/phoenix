@@ -8,23 +8,19 @@
     <tbody>
       <tr>
           <td>Released</td>
-          <td><%= @movie.released %></td>
+          <td><%= @movie.release_date %></td>
       </tr>
       <tr>
           <td>Urls</td>
-          <td><%= link_to( 'TMDB', @movie.url ) %><br>
+          <td><%= link_to( 'TMDB', tmdb_url(@movie)) %><br>
               <% unless @movie.imdb_id.nil? %>
-                <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id ) %>
+                <%= link_to( 'IMDB', imdb_url(@movie) ) %>
               <% end %>
           </td> 
       </tr>
       <tr>
           <td>TMDB User Rating</td>
-          <td><%= @movie.rating %> ( <%= @movie.votes %> votes )</td>
-      </tr>
-      <tr>
-          <td>Classification</td>
-          <td><%= @movie.certification %></td>
+          <td><%= @movie.vote_average %> ( <%= @movie.vote_count %> votes )</td>
       </tr>
       <tr>
           <td>Running Time</td>
@@ -32,7 +28,9 @@
       </tr>
       <tr>
           <td>Trailer</td>
-          <td><%= link_to( image_tag('youtube_icon_small.gif'),@movie.trailer ) if @movie.trailer %></td>
+            <% unless @trailers.empty? or @trailers['youtube'].first.nil? %>
+            <td><%= link_to( image_tag('youtube_icon_small.gif'),"http://www.youtube.com/watch?v=#{@trailers['youtube'].first['source']}" ) %></td>
+            <% end %>
       </tr>
       <tr>
           <td>Revenue</td>
@@ -49,7 +47,7 @@
     </div>
   <% end %>
   <strong>Title</strong>
-  <p class="indent"><%= @movie.name %></p>
+  <p class="indent"><%= @movie.title %></p>
   <strong>Description</strong><br>
   <p class="indent"><%= @movie.overview %></p>
   <strong>Status</strong>

@@ -2,7 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'will_paginate', '3.0.3'
-gem 'ruby-tmdb', '0.2.1'
+# gem 'ruby-tmdb3', '0.3.4'
+gem 'themoviedb'
 gem 'devise', '2.0.4'
 gem 'dynamic_form', '1.1.4'
 gem 'bcrypt-ruby', '3.0.1'
@@ -36,7 +37,7 @@ gem 'event-calendar', '2.3.3', :require => 'event_calendar'
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails', '2.8.1'
-  gem 'factory_girl', '2.6.1'
+  gem 'factory_girl','4.2.0'
   gem 'capybara', '1.1.2'
   gem 'launchy', '2.0.5'
 end

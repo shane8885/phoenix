@@ -1,40 +1,23 @@
 <% content_for(:header) do %>
   <%= link_to "Back", root_path, "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
-  <h1><%= @movie.name %></h1>
+  <h1><%= @movie.title %></h1>
 <% end %>
 <%= insert_poster(@movie,200) %>
 <ul data-role="listview">
   <li data-role="list-divider">Overview</l1>
   <li><p style="white-space: normal;"><%= @movie.overview %></p></li>
     <li data-role="list-divider">Details</l1>
-  <li>Released: <%= @movie.released %></li>
-  <li>TMDB User Rating: <%= @movie.rating %> ( <%= @movie.votes %> votes )</li>
-  <li>Classification: <%= @movie.certification %></li>
+  <li>Released: <%= @movie.release_date %></li>
+  <li>TMDB User Rating: <%= @movie.vote_average %> ( <%= @movie.vote_count %> votes )</li>
   <li>Running Time: <%= @movie.runtime %> mins</li>
   <li>
     <h3>Credits</h3>
     <ul>
-      <% @actors.each do |actor| %>
-        <li>
-          <% if actor.profile == "" %>
-            <%= image_tag '/avatars/thumb/missing.png' %>
-          <% else %>
-            <%= image_tag actor.profile,:height=>'50' %>
-          <% end %>
-          <h3><%= actor.name %></h3>
-          <p><%= actor.job %></p>
-          <p><%= (actor.character == '') ? '' : 'as '+actor.character %></p>
-        </li>
-      <% end %>
-      <% @credits.each do |person| %>
+      <% @cast.each do |person| %>
         <li> 
-          <% if person.profile == "" %>
-            <%= image_tag '/avatars/thumb/missing.png' %>
-          <% else %>
-            <%= image_tag person.profile,:height=>'50' %>
-          <% end %>
-          <h3><%= person.name %></h3>
-          <p><%= person.job %></p>
+          <%= person_thumbnail(person,50) %>
+          <h3><%= person['name'] %></h3>
+          <p><%= person['character'] %></p>
         </li>
       <% end %>
     </ul>
@@ -48,7 +31,7 @@
           <%= f.select(:event_id, @events.collect { |e| [e.name, e.id] } ) %>
           <%= f.hidden_field :user_id %>
           <%= f.hidden_field :movie_id, :value => @movie.id %>
-          <%= f.hidden_field :movie_name, :value => @movie.name %>
+          <%= f.hidden_field :movie_name, :value => @movie.title %>
           <%= f.hidden_field :running_time, :value => @movie.runtime %>
           <%= f.hidden_field :poster, :value => get_thumb_url(@movie) %>
         </li>
@@ -60,16 +43,16 @@
   <li>
     <fieldset class="ui-grid-b">
       <div class="ui-block-a">
-	      <%= link_to( 'TMDB', @movie.url, :rel => 'external', "data-role"=> "button", "data-inline" => "true" ) %>
+	      <%= link_to( 'TMDB', tmdb_url(@movie), :rel => 'external', "data-role"=> "button", "data-inline" => "true" ) %>
 	    </div>
       <div class="ui-block-b">
         <% unless @movie.imdb_id.nil? %>
-          <%= link_to( 'IMDB', "http://www.imdb.com/title/" + @movie.imdb_id, :rel => 'external', "data-role"=> "button", "data-inline" => "true" ) %>
+          <%= link_to( 'IMDB', imdb_url(@movie), :rel => 'external', "data-role"=> "button", "data-inline" => "true" ) %>
         <% end %>
       </div>
 	    <div class="ui-block-c">
-	      <% if @movie.trailer %>
-          <%= link_to 'Trailer',@movie.trailer, :rel => 'external', "data-role"=> "button", "data-inline" => "true" %>
+        <% unless @trailers.empty? or @trailers['youtube'].first.nil? %>
+          <%= link_to 'Trailer',"http://www.youtube.com/watch?v=#{@trailers['youtube'].first['source']}", :rel => 'external', "data-role" => "button", "data-inline" => "true" %>
         <% end %>
       </div>
     </fieldset>

@@ -1,6 +1,6 @@
 <% content_for(:header) do %>
   <%= link_to "Back", selections_event_path(@selection.event), "data-rel" => 'back', "data-role" => 'button', "class" => "ui-btn-left" %>
-  <h1><%= @movie.name %></h1>
+  <h1><%= @movie.title %></h1>
 <% end %>
 <%= insert_poster(@movie,200) %>
 <ul data-role="listview">
@@ -30,8 +30,7 @@
   </li>
 <% end %>
 <li>Event: <%= @selection.event.name %></li>
-<li>TMDB Rating: <%= @movie.rating %></li>
-<li>Classification: <%= @movie.certification %></li>
+<li>TMDB Rating: <%= @movie.vote_average %></li>
 <li>Running Time: <%= @movie.runtime %></li>
 <li>Status: <%= @selection.official ? "Official Selection" : "Unofficial Selection" %></li>
 <li>Selected by: <%= @selection.user.username %></li>

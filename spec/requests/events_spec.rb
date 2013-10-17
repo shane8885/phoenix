@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Events" do
   before :all do
-    @event = Factory(:event)
+    @event = FactoryGirl.create(:event)
   end
   
   after :all do
@@ -32,7 +32,7 @@ describe "Events" do
       visit search_user_index_path
       click_button 'Invite'
       page.should have_content 'Invitation was successfully created'
-      @attendee = Factory(:user)
+      @attendee = FactoryGirl.create(:user)
       # create invite for attendee
       # post_and_redirec
     end
@@ -81,7 +81,7 @@ describe "Events" do
       attendance.selections_remaining = 0
       attendance.save
       visit movies_search_path
-      fill_in 'Find movie', :with => 'jurasic park'
+      fill_in 'Find movie', :with => 'top gun'
       click_button 'Search'
       click_link 'show'
       click_button 'Select'
@@ -90,9 +90,9 @@ describe "Events" do
     end
     
     it "should create a schedule" do
-      Factory(:selection, :event_id => @event.id, :user_id => @event.user_id)
-      Factory(:selection, :event_id => @event.id, :user_id => @event.user_id)
-      Factory(:selection, :event_id => @event.id, :user_id => @event.user_id)
+      FactoryGirl.create(:selection, :event_id => @event.id, :user_id => @event.user_id)
+      FactoryGirl.create(:selection, :event_id => @event.id, :user_id => @event.user_id)
+      FactoryGirl.create(:selection, :event_id => @event.id, :user_id => @event.user_id)
     end
     
     it "should remove everything when deleted"
@@ -137,7 +137,7 @@ describe "Events" do
     end
     
     it "should not allow access to other events" do
-      e = Factory(:event)
+      e = FactoryGirl.create(:event)
       visit event_path(e)
       page.should have_content 'Not authorized to perform that action'
     end

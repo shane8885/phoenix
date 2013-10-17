@@ -1,16 +1,15 @@
 require 'will_paginate/array'
 
 class MoviesController < ApplicationController
-    Tmdb.api_key = "9027009be089788945e1c7aa516338a2"
     
     def search
     end
     
     def show
-        @actors = []
-        @credits = []
+        @cast = []
         begin
-          @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+          @movie = Tmdb::Movie.detail(params[:id])
+          @trailers = Tmdb::Movie.trailers(params[:id])
         rescue
           render 'shared/tmdb_error'
         end
@@ -25,16 +24,15 @@ class MoviesController < ApplicationController
           flash[:error] = 'Sorry, Could not find movie, this was unexpected'
           redirect_to(root_path)
         else
-          @actors = @movie.cast.find_all{|member| member.job == 'Actor'}
-          @credits = @movie.cast.find_all{|member| member.job != 'Actor'}
+          @cast = Tmdb::Movie.casts(params[:id])
         end
     end
 
     def credits
-        @actors = []
-        @credits = []
+        @cast = []
         begin
-          @movie = TmdbMovie.find(:id => params[:id], :expand_results => true, :limit => 1)
+          @movie = Tmdb::Movie.detail(params[:id])
+          @trailers = Tmdb::Movie.trailers(params[:id])
         rescue
           render 'shared/tmdb_error'
         end
@@ -49,15 +47,13 @@ class MoviesController < ApplicationController
           flash[:error] = 'Sorry, Could not find movie, this was unexpected'
           redirect_to(root_path)
         else
-          @actors = @movie.cast.find_all{|member| member.job == 'Actor'}
-          @credits = @movie.cast.find_all{|member| member.job != 'Actor'}
+          @cast = Tmdb::Movie.casts(params[:id])
         end
-
     end
     
     def index
         begin
-          results = TmdbMovie.find(:title => params[:search], :expand_results => false, :limit => 100)
+          results = Tmdb::Movie.find(params[:search])
         rescue
           render 'shared/tmdb_error'
         end
