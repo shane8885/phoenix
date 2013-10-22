@@ -182,7 +182,7 @@ DEPENDENCIES
   jquery-rails (= 2.0.1)
   launchy (= 2.0.5)
   mail (= 2.4.4)
-  paperclip
+  paperclip (= 3.5.1)
   pg
   rails (= 3.2.11)
   rspec-rails (= 2.8.1)
