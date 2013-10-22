@@ -686,9 +686,9 @@ form.rating_form input#rating_submit { display: none; }
 form.rating_form input.rating_button { display: none; }
 form.rating_form label.rating { cursor: pointer; display: block; height: 25px; width: 25px; float: left; }
 form.rating_form label.rating span { display: none; }
-form.rating_form label.rating { background-image: url(../images/star-dim.png); }
-form.rating_form label.rating.bright { background-image: url(../images/star-bright.png); }
-form.rating_form label.rating.glow { background-image: url(../images/star-glow.png); }
+form.rating_form label.rating { background-image: url(star-dim.png); }
+form.rating_form label.rating.bright { background-image: url(star-bright.png); }
+form.rating_form label.rating.glow { background-image: url(star-glow.png); }
 
 /* SIDEBAR */
 .sidebarmenu{
