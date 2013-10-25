@@ -1,30 +1,25 @@
 module MoviesHelper
   def insert_poster(movie,height)
-    if movie.class == Hash
-      if movie['poster_path']
-        return image_tag("#{@tmdb.base_url}w500#{movie['poster_path']}", :height => height)
-      end
-    else
-      if movie.poster_path
-        return image_tag("#{@tmdb.base_url}w500#{movie.poster_path}", :height => height)
-      end
-    end
-    image_tag 'no_poster.jpg', :height => height 
+    tmdb_poster(movie,"w500",height)
   end
   
   def insert_thumbnail(movie,height)
+    tmdb_poster(movie,"w92",height)
+  end
+ 
+  def tmdb_poster(movie,size,height, options = {})
     if movie.class == Hash
       if movie['poster_path']
-        return image_tag("#{@tmdb.base_url}w92#{movie['poster_path']}", :height => height, :title => movie['title'])
+        return image_tag("#{@tmdb.base_url}#{size}#{movie['poster_path']}", :height => height, :title => movie['title'])
       end
     else
       if movie.poster_path
-        return image_tag("#{@tmdb.base_url}w92#{movie.poster_path}", :height => height, :title => movie.title)
+        return image_tag("#{@tmdb.base_url}#{size}#{movie.poster_path}", :height => height, :title => movie.title)
       end
     end
     image_tag 'no_poster.jpg', :height => height 
   end
-  
+   
   def person_thumbnail(person,height)
     if person.class == Hash
       if person['profile_path']
