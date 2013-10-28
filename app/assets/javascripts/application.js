@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require tooltip
+//= require twitter/bootstrap
+
 
 jQuery.ajaxSetup({ 
   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}

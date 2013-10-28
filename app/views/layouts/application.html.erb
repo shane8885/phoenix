@@ -1,40 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><%= title %></title>
-        <link rel="shortcut icon" href="/assets/gff_icon.gif" />
-        <%= render 'layouts/stylesheets' %>
-        <%= javascript_include_tag 'application' %>
-        <%= yield :scripts %>
+        <%= favicon_link_tag 'gff_icon.gif' %>
         <%= csrf_meta_tag %>
+        <%= stylesheet_link_tag 'application', :media => 'all' %>
+        <%= yield :stylesheets %>
         <%= yield :head %>
-        <script type="text/javascript">
-        
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-24726120-1']);
-          _gaq.push(['_trackPageview']);
-        
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-        
-        </script>
     </head>
     <body>
-        <div class="container">
-            <%= render 'layouts/header' %>
-            <div id="mainview" class="span-24">
-              <div id="content" class="span-18 colborder">
-                  <% flash.each do |key, value| %>
-                    <div class="flash <%= key %>"><%= value %></div>
-                  <% end %>
-                  <%= yield %>
-              </div>
-              <%= render 'layouts/sidebar' %>
-              <%= render 'layouts/footer' %>
+      <%= render 'layouts/header' %>
+      <div class="container">
+          <div class="row">
+            <div class="span9">
+               <%= yield %>
             </div>
-        </div>
+            <div class="span3">
+              <%= render 'layouts/sidebar' %>
+            </div><!--/span-->
+          </div><!--/row-->
+
+        <footer>
+          <%= render 'layouts/footer' %>
+        </footer>
+        <%= yield :scripts %>
+        <%= javascript_include_tag 'application' %>
     </body>
 </html>
