@@ -59,7 +59,7 @@ class MoviesController < ApplicationController
         end
         # if only one result is returned it doesn't come back in an array, annoying. So we have to do this
         if( results.class == Array)
-           @movies = results.paginate(:page => params[:page], :per_page => 10)
+           @movies = results.paginate(:page => params[:page], :per_page => 20)
         else
            @movies = Array.new(1,results).paginate(:page => params[:page], :per_page => 10)
         end
