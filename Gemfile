@@ -11,7 +11,7 @@ gem 'mail', '2.4.4'
 gem 'faker', '1.0.1'
 gem "paperclip", '3.5.1'
 gem 'aws-sdk', '1.3.5'
-gem 'jquery-rails', '2.0.1'
+gem 'jquery-rails', '3.0.4'
 gem 'event-calendar', '2.3.3', :require => 'event_calendar'
 gem 'twitter-bootstrap-rails', '2.2.8'
 

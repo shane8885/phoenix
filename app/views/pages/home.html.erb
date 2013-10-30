@@ -1,28 +1,53 @@
 <% unless user_signed_in? %>
-  <div class="span-17 box last">
-      <%= link_to "Sign up now!",new_user_registration_path, :class => "signup_button" %>
-  </div>
+  <div class="row well">
+    <div class="span3 offset3">
+        <%= link_to "Sign up now!",new_user_registration_path, :class => "btn btn-warning" %>
+    </div><!-- sign up span9 -->
+  </div><!--sign up row -->
 <% end %>
-<hr />
-<div class="span8 well">
-    <% if @suggested_movie %>
-      <h1>Movie Spotlight</h1>
-      <table>
-      <tr>
-        <td vertical-align="top"><%= link_to tmdb_poster(@suggested_movie,@tmdb.poster_sizes[1],154),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %></td>
-        <td>
-          <strong><%= @suggested_movie.title %></strong> (<%= @suggested_movie.release_date %>)<br />
-          <p class="indent"><%= truncate(@suggested_movie.overview, :length => 400) %> <%= link_to 'more',:controller => 'movies', :action => 'show', :id => @suggested_movie.id %><br> <strong>(<%= @suggested_movie.vote_average %> / <%= @suggested_movie.vote_count %> votes)</strong></p>
-        </td>
-      </tr></table>
-    <% end %>
+<% if @suggested_movie %>
+<div class="row well">
+    <h3>Movie Spotlight</h1>
+    <div class="span2">
+      <%= link_to tmdb_poster(@suggested_movie,@tmdb.poster_sizes[1],154),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %>
+    </div>
+    <div class="span6">
+        <h3><%= @suggested_movie.title %></h3> (<%= @suggested_movie_date.year if @suggested_movie_date %>)
+        <p class="indent"><%= truncate(@suggested_movie.overview, :length => 400) %> </p>
+        <span class="badge badge-info"><%= @suggested_movie.vote_average %> / <%= @suggested_movie.vote_count %> votes</span>
+        <div class=row>
+          <%= link_to 'more', movies_show_path(:id => @suggested_movie.id), :class => "btn btn-info pull-right" %>
+        </div>
+    </div>
 </div>
-<div class="span9">
-  <% unless @recent_movies.empty? %>
-    <% @recent_movies.first(20).each do |m| %>
-      <% if m and m['poster_path'] %>
+<% end %>
+<% unless @recent_movies.empty? %>
+<div class="row">
+  <div class="span8">
+    <ul class="thumbnails">
+      <% @recent_movies.first(8).each do |m| %>
+        <% if m and m['poster_path'] %>
+      <li class="span1">
         <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],130),:controller => 'movies', :action => 'show', :id => m['id'] %>
+      </li>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end %>
+    </ul>
+  </div>
 </div>
+<% if @recent_movies.length > 8 %>
+<div class="row">
+  <div class="span8">
+    <ul class="thumbnails">
+      <% @recent_movies.drop(8).first(8).each do |m| %>
+        <% if m and m['poster_path'] %>
+      <li class="span1">
+        <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],130), movies_show_path(:id => m['id']) %>
+      </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+<% end %>

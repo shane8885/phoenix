@@ -6,14 +6,15 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="#">GarageFilmFestival</a>
+      <%= link_to "GarageFilmFestival",root_path, :class => "brand" %>
       <div class="container nav-collapse">
         <form class="navbar-search pull-left" action="/movies/index">
-            <input type="text" id="search" class="search-query" placeholder="Search">
+          <input type="text" name="search" id="search" class="search-query" placeholder="Find a movie">
+          <i class="icon-search"></i>
         </form>
         <ul class="nav pull-right">
           <% if user_signed_in? %>
-            <li class="divider"></li>
+            <li><%= link_to current_user.username, current_user %></li>
             <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
           <% else %>
             <li><%= link_to "Sign in", new_user_session_path  %></li>
@@ -21,9 +22,6 @@
           <% end %>
           <li><%= link_to "Mobile site", root_path(:mobile => 1) %></li>
         </ul>
-        <% if user_signed_in? %>
-          <%= link_to current_user.username, current_user, :class => "navbar-text pull-right" %>
-        <% end %>
       </div><!--/.nav-collapse -->
     </div><!--/.container -->
   </div><!--/.navbar-inner -->

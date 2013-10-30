@@ -1,21 +1,11 @@
-<div  class="push-4 last">
-  <%= form_tag '/movies/index', :method => 'get' do %>
-      <span class="largefont">Find Movie</span>
-      <%= text_field_tag :search %>
-      <%= submit_tag "Search", :name => nil %>
-  <% end %>
-</div>
-<div class="span-18" last>
-  <hr>
-  <% unless @movies.empty? %>
-      <%= will_paginate @movies %>
-      <table class="phoenix_table" summary="Movie search results">
-        <tbody>
-          <%= render :partial => 'shared/movie', :collection => @movies %>
-        </tbody>
-      </table>
-      <%= will_paginate @movies %>
-  <% else %>
-    <h3>Sorry, your search returned no results.</h3>
-  <% end %>
-</div>
+<% unless @movies.empty? %>
+    <%= will_paginate @movies %>
+    <table class="table" summary="Movie search results">
+      <tbody>
+        <%= render :partial => 'shared/movie', :collection => @movies %>
+      </tbody>
+    </table>
+    <%= will_paginate @movies %>
+<% else %>
+  <h3>Sorry, your search returned no results.</h3>
+<% end %>

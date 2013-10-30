@@ -14,32 +14,44 @@
     <body>
       <%= render 'layouts/header' %>
       <div class="container">
-          <div class="row">
-            <div class="span9">
-              <% flash.each do |key, value| %>
-                <% if key == :notice %>
-                    <div class="alert alert-info">
-                <% else %>
-                    <div class="alert alert-error">
+        <div class="row">
+          <div class="span9">
+            <% unless flash.empty? %>
+            <div class="row">
+              <div class="span9">
+                <% flash.each do |key, value| %>
+                  <% if key == :notice %>
+                      <div class="alert alert-info">
+                  <% else %>
+                      <div class="alert alert-error">
+                  <% end %>
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong><%= key %>: </strong><%= value %>
                 <% end %>
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    <strong><%= key %>: </strong><%= value %>
-                </div>
-              <% end %>
-               <%= yield %>
-            </div>
-            <div class="span3">
-              <%= render 'layouts/sidebar' %>
-            </div><!--/span-->
-          </div><!--/row-->
-
-        <footer>
+              </div><!--flash span9-->
+            </div><!--flash row-->
+            <% end %>
+            <div class="row">
+              <!--render main content pane-->
+              <%= yield %>
+            </div><!-- main content row -->
+          </div><!--main content span9-->
+          <div class="span3">
+            <%= render 'layouts/sidebar' %>
+          </div><!--sidebar span-->
+        </div><!-- main layout row-->
+      </div><!--container-->
+      <footer>
+      <div class="container">
+        <div class="row">
           <%= yield :footer %>
           <div class="span12"> 
             <%= link_to image_tag("tmdb.png", :width => 180),"http://www.themoviedb.org", :class => 'pull-right' %>
-          </div>
-        </footer>
-        <%= yield :scripts %>
-        <%= javascript_include_tag 'application' %>
+          </div><!--span12-->
+        </div><!--footer row-->
+      </div><!--footer container-->
+      </footer>
+      <%= yield :scripts %>
+      <%= javascript_include_tag 'application' %>
     </body>
 </html>

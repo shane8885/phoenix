@@ -13,6 +13,17 @@ class PagesController < ApplicationController
           @suggested_movie = nil
           flash.now[:error] = 'We are having problems accessing the movie database, you may experience difficulties. Sorry.'
         end
+        begin
+          @suggested_movie_date = Date.parse(@suggested_movie.release_date)
+        rescue
+          @suggested_movie_date = nil
+        end
+        # go through and cull nil movies or ones with no poster
+        @recent_movies.each do |m|
+          if m.nil? or not m['poster_path']
+            @recent_movies.delete(m)
+          end
+        end
       end
   end
 

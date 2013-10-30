@@ -10,11 +10,11 @@ module MoviesHelper
   def tmdb_poster(movie,size,height, options = {})
     if movie.class == Hash
       if movie['poster_path']
-        return image_tag("#{@tmdb.base_url}#{size}#{movie['poster_path']}", :height => height, :title => movie['title'], :style => "height: #{height}px;")
+        return image_tag("#{@tmdb.base_url}#{size}#{movie['poster_path']}", :height => height, :title => movie['title'])
       end
     else
       if movie.poster_path
-        return image_tag("#{@tmdb.base_url}#{size}#{movie.poster_path}", :height => height, :title => movie.title, :style => "height: #{height}px;")
+        return image_tag("#{@tmdb.base_url}#{size}#{movie.poster_path}", :height => height, :title => movie.title)
       end
     end
     image_tag 'no_poster.jpg', :height => height 
