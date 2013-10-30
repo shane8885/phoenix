@@ -24,7 +24,10 @@
           </div><!--/row-->
 
         <footer>
-          <%= render 'layouts/footer' %>
+          <%= yield :footer %>
+          <div class="span12"> 
+            <%= link_to image_tag("tmdb.png", :width => 180),"http://www.themoviedb.org", :class => 'pull-right' %>
+          </div>
         </footer>
         <%= yield :scripts %>
         <%= javascript_include_tag 'application' %>

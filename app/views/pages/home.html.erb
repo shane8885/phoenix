@@ -4,26 +4,24 @@
   </div>
 <% end %>
 <hr />
-<div class="span-18 last">
-  <div class="box">
+<div class="span8 well">
     <% if @suggested_movie %>
       <h1>Movie Spotlight</h1>
       <table>
       <tr>
         <td vertical-align="top"><%= link_to tmdb_poster(@suggested_movie,@tmdb.poster_sizes[1],154),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %></td>
         <td>
-          <strong><%= @suggested_movie.title %></strong> (<%= Date.parse(@suggested_movie.release_date).year %>)<br />
+          <strong><%= @suggested_movie.title %></strong> (<%= @suggested_movie.release_date %>)<br />
           <p class="indent"><%= truncate(@suggested_movie.overview, :length => 400) %> <%= link_to 'more',:controller => 'movies', :action => 'show', :id => @suggested_movie.id %><br> <strong>(<%= @suggested_movie.vote_average %> / <%= @suggested_movie.vote_count %> votes)</strong></p>
         </td>
       </tr></table>
     <% end %>
-  </div>
 </div>
-<div class="span-18">
+<div class="span9">
   <% unless @recent_movies.empty? %>
     <% @recent_movies.first(20).each do |m| %>
-      <% if m['poster_path'] %>
-        <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],120),:controller => 'movies', :action => 'show', :id => m['id'] %>
+      <% if m and m['poster_path'] %>
+        <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],100),:controller => 'movies', :action => 'show', :id => m['id'] %>
       <% end %>
     <% end %>
   <% end %>
