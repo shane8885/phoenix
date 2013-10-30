@@ -21,7 +21,7 @@
   <% unless @recent_movies.empty? %>
     <% @recent_movies.first(20).each do |m| %>
       <% if m and m['poster_path'] %>
-        <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],100),:controller => 'movies', :action => 'show', :id => m['id'] %>
+        <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],130),:controller => 'movies', :action => 'show', :id => m['id'] %>
       <% end %>
     <% end %>
   <% end %>

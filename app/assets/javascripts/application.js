@@ -29,6 +29,7 @@ jQuery.fn.submitWithAjax = function() {
 
 $(document).ready(function() {
   $("#comment_form").submitWithAjax();
+  $(".alert").alert()
   
   $('#selections').sortable({
     axis: 'y',

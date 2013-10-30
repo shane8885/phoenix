@@ -1,13 +1,13 @@
-<h3 class="headerbar"><%= sidebar_event.name.truncate(18) %></h3>
-<ul>
-<li><%= link_to 'Event home',sidebar_event %></li>
-<li><%= link_to 'Selections',selections_event_path(sidebar_event) %></li>
-<li><%= link_to 'Attendees',attendees_event_path(sidebar_event) %></li>
-<li><%= link_to 'Calendar', calendar_event_path(sidebar_event) %></li>
-<li><%= link_to 'Sessions', schedule_event_path(sidebar_event) %></li>
-<li><%= link_to 'Voting Log', voting_event_path(sidebar_event) %></li>
-<li><%= link_to 'Comments', comments_event_path(sidebar_event) %></li>
-<% if current_user.authorized?(sidebar_event.user_id) %>
-  <li><%= link_to 'Edit Settings',edit_event_path(sidebar_event) %></li>
-<% end %>
+<ul class="nav nav-list">
+    <li class="nav-header"><%= sidebar_event.name.truncate(18) %></li>
+    <li><%= link_to 'Event home',sidebar_event %></li>
+    <li><%= link_to 'Selections',selections_event_path(sidebar_event) %></li>
+    <li><%= link_to 'Attendees',attendees_event_path(sidebar_event) %></li>
+    <li><%= link_to 'Calendar', calendar_event_path(sidebar_event) %></li>
+    <li><%= link_to 'Sessions', schedule_event_path(sidebar_event) %></li>
+    <li><%= link_to 'Voting Log', voting_event_path(sidebar_event) %></li>
+    <li><%= link_to 'Comments', comments_event_path(sidebar_event) %></li>
+    <% if current_user.authorized?(sidebar_event.user_id) %>
+      <li><%= link_to 'Edit Settings',edit_event_path(sidebar_event) %></li>
+    <% end %>
 </ul>
