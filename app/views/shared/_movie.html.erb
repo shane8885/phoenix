@@ -1,21 +1,22 @@
 <tr>
-    <td id="movie_thumbnail">
+    <td>
       <%= link_to insert_thumbnail(movie,100), :action => "show", :id => movie.id %>
     </td>
-    <td class="movie_info">
-      <span id="movie_title"><%= link_to movie.title, :action => "show", :id => movie.id %></span><br>
+    <td>
+      <h4><%= link_to movie.title, :action => "show", :id => movie.id %></h4>
       <% unless movie.release_date == '' %>
-      <span id="movie_release">     (<%= movie.release_date %>)</span><br>
+        <%= Date.parse(movie.release_date).strftime('%e %b %Y') %>
       <% end  %>
     </td>
-    <td id="movie_rating_cell">
-      <div id="movie_rating_box">
-      Rating<br>
-      <span id="movie_rating"><%= movie.vote_average %></span><br>
-      ( <%= movie.vote_count %> votes )
-      </div>
+    <td style="text-align:center;vertical-align:middle;">
+      <% unless movie.vote_average == 0 %>
+          <div class="label label-info">
+              <h4><%= movie.vote_average %></h4>
+              <%= movie.vote_count %> votes
+          </div>
+      <% end %>
     </td>
-    <td id="movie_buttons">
-      <%= link_to "show", { :action => "show", :id => movie.id } %>
+    <td style="vertical-align:middle;">
+      <%= link_to "show", movies_show_path(:id => movie.id), :class => 'btn btn-info' %>
     </td>
 </tr>

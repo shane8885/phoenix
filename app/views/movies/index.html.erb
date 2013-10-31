@@ -1,11 +1,11 @@
 <% unless @movies.empty? %>
-    <%= will_paginate @movies %>
-    <table class="table" summary="Movie search results">
-      <tbody>
-        <%= render :partial => 'shared/movie', :collection => @movies %>
-      </tbody>
-    </table>
-    <%= will_paginate @movies %>
+    <div class="span8">
+        <table class="table table-hover" summary="Movie search results">
+          <tbody>
+            <%= render :partial => 'shared/movie', :collection => @movies %>
+          </tbody>
+        </table>
+    </div>
 <% else %>
   <h3>Sorry, your search returned no results.</h3>
 <% end %>

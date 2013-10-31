@@ -7,9 +7,8 @@
 <% end %>
 <% if @suggested_movie %>
 <div class="row well">
-    <h3>Movie Spotlight</h1>
     <div class="span2">
-      <%= link_to tmdb_poster(@suggested_movie,@tmdb.poster_sizes[1],154),:controller => 'movies', :action => 'show', :id => @suggested_movie.id %>
+      <%= link_to tmdb_poster(@suggested_movie,@tmdb.poster_sizes[2],200),movies_show_path(:id => @suggested_movie.id) %>
     </div>
     <div class="span6">
         <h3><%= @suggested_movie.title %></h3> (<%= @suggested_movie_date.year if @suggested_movie_date %>)
@@ -23,31 +22,27 @@
 <% end %>
 <% unless @recent_movies.empty? %>
 <div class="row">
-  <div class="span8">
-    <ul class="thumbnails">
+<table class="table span9">
+  <tr>
       <% @recent_movies.first(8).each do |m| %>
         <% if m and m['poster_path'] %>
-      <li class="span1">
-        <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],130),:controller => 'movies', :action => 'show', :id => m['id'] %>
-      </li>
+        <td>
+        <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],130), movies_show_path(:id => m['id']) %>
+        </td>
         <% end %>
       <% end %>
-    </ul>
-  </div>
-</div>
+   </tr>
 <% if @recent_movies.length > 8 %>
-<div class="row">
-  <div class="span8">
-    <ul class="thumbnails">
+    <tr>
       <% @recent_movies.drop(8).first(8).each do |m| %>
         <% if m and m['poster_path'] %>
-      <li class="span1">
+        <td>
         <%= link_to tmdb_poster(m,@tmdb.poster_sizes[1],130), movies_show_path(:id => m['id']) %>
-      </li>
+        </td>
         <% end %>
       <% end %>
-    </ul>
-  </div>
-</div>
+    </tr>
 <% end %>
+</table>
+</div><!--row-->
 <% end %>
