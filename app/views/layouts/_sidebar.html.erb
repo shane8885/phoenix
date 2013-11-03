@@ -1,32 +1,21 @@
-<div class="well sidebar-nav">
   <% if user_signed_in? %>
-    <ul class="nav nav-list">
-      <li class="nav-header">Actions</li>
-      <li><%= link_to "My Home", current_user %></li>
-      <li><%= link_to "Create Event", new_event_path %></li>
-    </ul>
-    <ul class="nav nav-list">
-      <li class="nav-header">Quick Links</li>
-      <% current_user.all_events.each do |event| %>
-        <li><%= link_to event.name,event,:class => "quicklink" %></li>
-      <% end %>
-    </ul>
     <%= yield :sidebar %>
   <% else %>
-    <% if request.url != "/users/sign_in" %>
-      <h3>Sign in</h3>
-      <div class="box">
-        <%= form_for("user", :url => user_session_path) do |f| %>
-          <%= f.label :username %>
-          <%= f.text_field :username, :size => 12 %>
-          <%= f.label :password %>
-          <%= f.password_field :password, :size => 12 %>
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-          <%= f.submit 'Sign in' %><br>
-          <%= link_to "Forgot your password?", new_password_path('user') %>
+    <div class="well sidebar-nav">
+        <% if request.url != "/users/sign_in" %>
+            <h3>Sign in</h3>
+            <div class="box">
+                <%= form_for("user", :url => user_session_path) do |f| %>
+                  <%= f.label :username %>
+                  <%= f.text_field :username, :size => 12 %>
+                  <%= f.label :password %>
+                  <%= f.password_field :password, :size => 12 %>
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                  <%= f.submit 'Sign in' %><br>
+                  <%= link_to "Forgot your password?", new_password_path('user') %>
+                <% end %>
+            </div>
         <% end %>
-      <% end %>
     </div>
   <% end %>
-</div>
